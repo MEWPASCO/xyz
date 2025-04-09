@@ -100,9 +100,21 @@
     font-size: 1.2em;
   }
 
-  .activity {
+   .activity {
+    margin-top: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #activity-label {
+    font-weight: bold;
+  }
+
+  #activity-detail {
     font-style: italic;
-    margin-top: 10px;
+    font-size: 0.95em;
   }
 
   .avatar-container {
@@ -168,7 +180,10 @@
         <span id="status-dot" class="status-dot"></span>
       </div>
         <div id="username">Loading...</div>
-        <div id="activity"></div>
+        <div id="activity">
+          <div id="activity-label"></div>
+          <div id="activity-detail"></div>
+      </div>
       </div>
       <!-- Center: Social Icons -->
       <div class="social-links">
@@ -237,14 +252,21 @@
       const game = activities.find(act => act.type === 0);   // Playing a game
       const spotify = data.spotify;
 
+      const label = document.getElementById("activity-label");
+      const detail = document.getElementById("activity-detail");
+
       if (spotify) {
-        activity.textContent = `🎧 Listening to ${spotify.song} by ${spotify.artist}`;
+        label.textContent = "🎧 Listening to:";
+        detail.textContent = `${spotify.song} by ${spotify.artist}`;
       } else if (game) {
-        activity.textContent = `🎮 Playing ${game.name}`;
+        label.textContent = "🎮 Playing:";
+        detail.textContent = `${game.name}`;
       } else if (custom && custom.state) {
-        activity.textContent = `💬 ${custom.state}`;
+        label.textContent = "💬 Status:";
+        detail.textContent = custom.state;
       } else {
-        activity.textContent = `— No activity`;
+        label.textContent = "";
+        detail.textContent = "— No activity";
       }
 
     } catch (err) {
