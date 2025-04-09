@@ -48,7 +48,7 @@
   .main-section {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 40px;
     flex-wrap: nowrap;
@@ -68,7 +68,7 @@
   .discord-widget,
   .gif-container {
     width: 360px;
-    height: 360px;
+    height: auto;
     border-radius: 16px;
     overflow: hidden;
     display: flex;
@@ -231,13 +231,13 @@
     </div>
   </div>
 
-  <div class="activity-separator"></div>
-
-<div class="activity-card" id="activity-card">
-  <div id="activity-icon">🎧</div>
-  <div>
-    <div id="activity-header">Now Playing</div>
-    <div id="activity-detail">Loading...</div>
+  <!-- New styled activity card inside the discord-widget -->
+  <div class="activity-card" id="activity-card">
+    <div id="activity-icon">🎧</div>
+    <div>
+      <div id="activity-header">Now Playing</div>
+      <div id="activity-detail">Loading...</div>
+    </div>
   </div>
 </div>
 
