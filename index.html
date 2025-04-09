@@ -140,17 +140,11 @@
   </div>
 </div>
 
-<audio autoplay loop preload="auto">
-  <source src="LoveIsABadWord.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+<button onclick="document.getElementById('bgm').play()">▶ Play Music</button>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const bgMusic = document.querySelector("audio");
-    if (bgMusic) bgMusic.volume = 0.2; // Adjust volume here (0.0–1.0)
-  });
-</script>
+<audio id="bgm" loop preload="auto">
+  <source src="LoveIsABadWord.mp3" type="audio/mpeg">
+</audio>
 
 <script>
   const userId = "579327734052814858";
