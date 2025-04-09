@@ -81,6 +81,7 @@
     background: rgba(0, 0, 0, 0.4);
     padding: 20px;
     box-sizing: border-box;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
   }
 
   .discord-widget img {
@@ -88,6 +89,11 @@
     height: 96px;
     border-radius: 50%;
     margin-bottom: 10px;
+  }
+
+  .discord-widget:hover {
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+    transition: box-shadow 0.3s ease;
   }
 
   .gif-container img {
@@ -310,23 +316,40 @@
       const icon = document.getElementById("activity-icon");
       const header = document.getElementById("activity-header");
       const detail = document.getElementById("activity-detail");
+      const card = document.getElementById("discord-card"); // grab this too!
 
       if (spotify) {
         icon.textContent = "🎧";
         header.textContent = "Now Playing";
         detail.textContent = `${spotify.song} by ${spotify.artist}`;
+
+      // 🔥 Dynamic styling for Spotify
+        card.style.background = "linear-gradient(135deg, #1db954, #191414)";
+        card.style.boxShadow = "0 0 12px rgba(30, 215, 96, 0.3)";
       } else if (game) {
         icon.textContent = "🕹️";
         header.textContent = "In-Game";
         detail.textContent = game.name;
+
+      // 🎮 Dynamic styling for game
+        card.style.background = "linear-gradient(135deg, #7289da, #23272a)";
+        card.style.boxShadow = "0 0 12px rgba(114, 137, 218, 0.3)";
       } else if (custom && custom.state) {
         icon.textContent = "💬";
         header.textContent = "Vibe Check";
         detail.textContent = custom.state;
+
+      // 💬 Custom status style
+        card.style.background = "linear-gradient(135deg, #ff66cc, #660066)";
+        card.style.boxShadow = "0 0 12px rgba(255, 102, 204, 0.3)";
       } else {
         icon.textContent = "";
         header.textContent = "";
         detail.textContent = "— No activity";
+
+      // 🌑 Fallback style
+        card.style.background = "rgba(0, 0, 0, 0.4)";
+        card.style.boxShadow = "none";
       }
 
     } catch (err) {
