@@ -31,17 +31,21 @@
 
   .main-section {
     display: flex;
-    gap: 40px;
+    flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
+    gap: 40px;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   .discord-widget,
   .gif-container img {
-    max-width: 300px;
-    width: 100%;
+    flex-shrink: 0;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
     border-radius: 16px;
   }
 
