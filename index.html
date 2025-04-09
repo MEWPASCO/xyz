@@ -176,6 +176,7 @@
     </div>
   </div>
 
+<!-- Discord Widget -->
 <script>
   const userId = "579327734052814858";
   const card = document.getElementById("discord-card");
@@ -233,6 +234,7 @@
   fetchStatus();
 </script>
 
+<!-- Hexagon Background -->
 <script>
 const canvas = document.getElementById('hexCanvas');
 const ctx = canvas.getContext('2d');
@@ -244,33 +246,35 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const hexSize = 4;
-const spacing = 40;
-const speed = 0.2;
+const hexSize = 15;
+const spacing = hexSize * 1.75;
 let offset = 0;
+const speed = 0.05;
 
-function drawHex(x, y, size, alpha) {
+function drawHex(x, y, size) {
   const angle = Math.PI / 3;
   ctx.beginPath();
   for (let i = 0; i < 6; i++) {
-    ctx.lineTo(
-      x + size * Math.cos(angle * i),
-      y + size * Math.sin(angle * i)
-    );
+    const px = x + size * Math.cos(angle * i);
+    const py = y + size * Math.sin(angle * i);
+    ctx.lineTo(px, py);
   }
   ctx.closePath();
-  ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+  ctx.strokeStyle = 'rgba(0, 255, 255, 0.08)';
+  ctx.shadowColor = 'rgba(0, 255, 255, 0.4)';
+  ctx.shadowBlur = 6;
   ctx.stroke();
+  ctx.shadowBlur = 0;
 }
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   offset += speed;
 
-  for (let y = 0; y < canvas.height + spacing; y += spacing) {
-    for (let x = 0; x < canvas.width + spacing; x += spacing * 1.5) {
-      const rowOffset = (y / spacing) % 2 === 0 ? 0 : spacing * 0.75;
-      drawHex(x + rowOffset - offset % spacing * 1.5, y - offset % spacing, hexSize, 0.1);
+  for (let y = -spacing; y < canvas.height + spacing; y += spacing) {
+    for (let x = -spacing; x < canvas.width + spacing; x += spacing * 1.5) {
+      const rowOffset = (Math.floor(y / spacing) % 2) * spacing * 0.75;
+      drawHex(x + rowOffset, y + offset % spacing, hexSize);
     }
   }
 
