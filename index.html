@@ -95,17 +95,25 @@
     border-radius: 16px;
   }
 
-  .username {
-    font-weight: bold;
-    font-size: 1.2em;
+  .user-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
   }
 
-   .activity {
-    margin-top: 15px;
-    text-align: center;
+  .user-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  #username {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 4px;
   }
 
   #activity-label {
@@ -115,6 +123,8 @@
   #activity-detail {
     font-style: italic;
     font-size: 0.95em;
+    max-width: 180px;
+    word-wrap: break-word;
   }
 
   .avatar-container {
@@ -175,14 +185,18 @@
     <div class="main-section">
       <!-- Left: Discord Widget -->
       <div id="discord-card" class="discord-widget">
+        <div class="user-row">
         <div class="avatar-container">
         <img id="avatar" src="" alt="Discord avatar">
         <span id="status-dot" class="status-dot"></span>
       </div>
+        <div class="user-info">
         <div id="username">Loading...</div>
         <div id="activity">
-          <div id="activity-label"></div>
-          <div id="activity-detail"></div>
+        <div id="activity-label"></div>
+        <div id="activity-detail"></div>
+      </div>
+      </div>
       </div>
       </div>
       <!-- Center: Social Icons -->
