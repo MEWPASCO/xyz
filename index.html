@@ -344,9 +344,34 @@ animate();
 <!-- Synthwave SVG Background -->
 <div class="skyline-wrapper">
   <svg viewBox="0 0 1000 200" preserveAspectRatio="none">
-    <!-- Palm Trees -->
-    <path d="M30,170 C28,160 32,150 34,140 C36,130 38,135 40,120 C42,105 44,110 46,95 C48,80 50,90 52,70 L54,190" stroke="#ff00cc" stroke-width="2" fill="none" />
-    <path d="M970,170 C968,160 972,150 974,140 C976,130 978,135 980,120 C982,105 984,110 986,95 C988,80 990,90 992,70 L994,190" stroke="#00ffff" stroke-width="2" fill="none" />
+    
+    <!-- Clean Palm Tree Left -->
+    <g transform="translate(60, 90) scale(1.2)">
+      <line x1="0" y1="0" x2="0" y2="100" stroke="#ff66ff" stroke-width="2"/>
+      <path d="M 0 0 
+               C -20 -10, -40 -20, -50 -10 
+               M 0 0 
+               C 20 -10, 40 -20, 50 -10 
+               M 0 0 
+               C -15 -15, -30 -35, -35 -20 
+               M 0 0 
+               C 15 -15, 30 -35, 35 -20" 
+            stroke="#ff66ff" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- Clean Palm Tree Right -->
+    <g transform="translate(940, 90) scale(1.2)">
+      <line x1="0" y1="0" x2="0" y2="100" stroke="#00ffff" stroke-width="2"/>
+      <path d="M 0 0 
+               C -20 -10, -40 -20, -50 -10 
+               M 0 0 
+               C 20 -10, 40 -20, 50 -10 
+               M 0 0 
+               C -15 -15, -30 -35, -35 -20 
+               M 0 0 
+               C 15 -15, 30 -35, 35 -20" 
+            stroke="#00ffff" stroke-width="2" fill="none"/>
+    </g>
 
     <!-- Skyline -->
     <path d="M0,180 
@@ -384,6 +409,7 @@ animate();
     </defs>
   </svg>
 </div>
+
 
 
 </body>
