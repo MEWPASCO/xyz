@@ -65,8 +65,8 @@
 
   .discord-widget,
   .gif-container {
-    width: 300px;
-    height: 300px;
+    width: 360px;
+    height: 360px;
     border-radius: 16px;
     overflow: hidden;
     display: flex;
@@ -95,7 +95,7 @@
     border-radius: 16px;
   }
 
-  .user-row {
+   .user-row {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -114,6 +114,17 @@
     font-weight: bold;
     font-size: 1.2em;
     margin-bottom: 4px;
+  }
+
+  #badges {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .badge {
+    width: 20px;
+    height: 20px;
   }
 
   #activity-label {
@@ -192,11 +203,17 @@
       </div>
         <div class="user-info">
         <div id="username">Loading...</div>
-        <div id="activity">
+      <!-- Optional: Discord Badges go here -->
+        <div id="badges">
+      <!-- Example badge -->
+      <!-- <img src="badge1.svg" alt="Badge" class="badge"> -->
+      </div>
+      </div>
+      </div>
+
+      <div class="activity">
         <div id="activity-label"></div>
         <div id="activity-detail"></div>
-      </div>
-      </div>
       </div>
       </div>
       <!-- Center: Social Icons -->
