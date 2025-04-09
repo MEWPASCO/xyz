@@ -45,17 +45,6 @@
     100% { background-position: 200% }
   }
 
-  .main-section {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: nowrap;
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
   .content-wrapper {
     flex: 1;
     display: flex;
@@ -128,39 +117,39 @@
     height: 20px;
   }
 
-.activity-card {
-  margin-top: 20px;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-align: left;
-  width: 90%;
-  max-width: 280px;
-}
+  .activity-card {
+    margin-top: 20px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    width: 90%;
+    max-width: 280px;
+  }
 
-#activity-icon {
-  font-size: 1.6em;
-}
+  #activity-icon {
+    font-size: 1.6em;
+  }
 
-.activity-text {
-  display: flex;
-  flex-direction: column;
-}
+  .activity-text {
+    display: flex;
+    flex-direction: column;
+  }
 
-#activity-header {
-  font-weight: bold;
-  font-size: 1em;
-  margin-bottom: 4px;
-}
+  #activity-header {
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 4px;
+  }
 
-#activity-detail {
-  font-size: 0.9em;
-  font-style: italic;
-  color: #ccc;
-}
+  #activity-detail {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #ccc;
+  }
 
   .avatar-container {
     position: relative;
@@ -214,6 +203,17 @@
     max-width: 180px;
     line-height: 1.4;
   }
+
+  .main-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+  }
 </style>
 </head>
 <body>
@@ -227,28 +227,29 @@
       </a>
     </h1>
 
-<div class="main-section">
-<!-- Left: Discord Widget -->
-<div id="discord-card" class="discord-widget">
-  <div class="user-row">
-    <div class="avatar-container">
-      <img id="avatar" src="" alt="Discord avatar">
-      <span id="status-dot" class="status-dot"></span>
-    </div>
-    <div class="user-info">
-      <div id="username">Wolfÿ</div>
-      <div id="custom-text">αвуѕѕ ♅</div>
-    </div>
-  </div>
+  <div class="main-section">
 
-  <!-- New styled activity card inside the discord-widget -->
-<div class="activity-card">
-  <div id="activity-icon">🎧</div>
-  <div class="activity-text">
-    <div id="activity-header">Now Playing</div>
-    <div id="activity-detail">Loading...</div>
-  </div>
-</div>
+    <!-- Discord Widget -->
+    <div id="discord-card" class="discord-widget">
+      <div class="user-row">
+        <div class="avatar-container">
+          <img id="avatar" src="" alt="Discord avatar">
+          <span id="status-dot" class="status-dot"></span>
+        </div>
+        <div class="user-info">
+          <div id="username">Wolfÿ</div>
+          <div id="custom-text">αвуёѕ ♅</div>
+        </div>
+      </div>
+
+      <div class="activity-card" id="activity-card">
+        <div id="activity-icon">🎷</div>
+        <div class="activity-text">
+          <div id="activity-header">Now Playing</div>
+          <div id="activity-detail">Loading...</div>
+        </div>
+      </div>
+    </div>
 
 
   <!-- Center: Social Icons -->
