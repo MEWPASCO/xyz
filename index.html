@@ -10,33 +10,33 @@
   body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #ff00cc, #3333ff);
     color: #fff;
-    overflow-x: hidden;
     height: 100vh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     position: relative;
+    background: linear-gradient(135deg, #ff00cc, #3333ff);
   }
 
   body::before {
     content: "";
     position: fixed;
     inset: 0;
+    z-index: -2;
     background: linear-gradient(135deg, #ff00cc, #3333ff);
-    z-index: -3;
   }
 
   body::after {
     content: "";
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 60%),
-                radial-gradient(circle at 70% 70%, rgba(0, 255, 255, 0.1), transparent 60%);
+    z-index: -1;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.06), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(0, 255, 255, 0.06), transparent 60%);
     animation: drift 20s ease-in-out infinite;
-    z-index: -2;
     pointer-events: none;
   }
 
