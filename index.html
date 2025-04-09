@@ -127,22 +127,6 @@
   .social-links a:hover {
     color: #ff00cc;
   }
-
-.skyline-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  z-index: -1; /* behind hexes but above background */
-  opacity: 0.2;
-  pointer-events: none;
-}
-
-.skyline-wrapper svg {
-  width: 100%;
-  height: 100%;
-}
 </style>
 </head>
 <body>
@@ -330,43 +314,6 @@ function animate() {
 resizeCanvas();
 animate();
 </script>
-
-
-<!-- Synthwave SVG Background -->
-<div class="skyline-wrapper">
-  <svg viewBox="0 0 1000 200" preserveAspectRatio="none">
-    <path d="M0,180 
-             L50,150 
-             L100,160 
-             L150,120 
-             L200,140 
-             L250,100 
-             L300,110 
-             L350,130 
-             L400,100 
-             L450,150 
-             L500,120 
-             L550,170 
-             L600,140 
-             L650,180 
-             L700,130 
-             L750,160 
-             L800,120 
-             L850,170 
-             L900,130 
-             L950,150 
-             L1000,100 
-             L1000,200 
-             L0,200 Z" 
-      fill="url(#glowGradient)" />
-    <defs>
-      <linearGradient id="glowGradient" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#ff00cc" stop-opacity="0.9"/>
-        <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-  </svg>
-</div>
 
 </body>
 </html>
