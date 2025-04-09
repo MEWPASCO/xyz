@@ -108,9 +108,9 @@
     margin-bottom: 4px;
     color: #00ffff;
     text-shadow:
-      0 0 3px #00ffff,
-      0 0 6px #33ccff,
-      0 0 12px #00ccff;
+      0 0 2px #00ffff,
+      0 0 4px #33ccff,
+      0 0 6px #00ccff;
   }
 
   .activity-separator {
@@ -415,12 +415,22 @@ function drawHex(x, y, size, rotation, color, glowAlpha) {
 }
 
 let offset = 0;
+let mouseX = 0, mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+  mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+});
+
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   offset += speed;
 
-  const xOffset = Math.sin(offset * 0.01) * spacing;
-  const yOffset = Math.cos(offset * 0.01) * spacing;
+  // Drift + mouse offset
+  const driftX = Math.sin(offset * 0.01) * spacing;
+  const driftY = Math.cos(offset * 0.01) * spacing;
+  const parallaxX = mouseX * 20;
+  const parallaxY = mouseY * 20;
 
   const time = Date.now() * 0.002;
 
@@ -428,7 +438,14 @@ function animate() {
     const opacity = 0.03 + Math.abs(Math.sin(time + hex.phase)) * 0.1;
     const glow = 0.3 + Math.abs(Math.sin(time + hex.phase)) * 0.5;
     const finalColor = hex.colorBase.replace('OPACITY', opacity.toFixed(2));
-    drawHex(hex.x + xOffset, hex.y + yOffset, hexSize, Math.PI / 4, finalColor, glow.toFixed(2));
+    drawHex(
+      hex.x + driftX + parallaxX,
+      hex.y + driftY + parallaxY,
+      hexSize,
+      Math.PI / 4,
+      finalColor,
+      glow.toFixed(2)
+    );
   }
 
   requestAnimationFrame(animate);
