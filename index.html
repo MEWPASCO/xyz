@@ -10,6 +10,7 @@
   body {
     margin: 0;
     font-family: 'Arial', sans-serif;
+    font-size: 16px;
     color: #fff;
     min-height: 100vh;
     overflow-x: hidden;
@@ -21,6 +22,12 @@
     background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
     position: relative;
     z-index: 0;
+  }
+
+  @media (max-width: 480px) {
+    body {
+      font-size: 14px;
+    }
   }
 
   #hexCanvas {
@@ -241,6 +248,41 @@
     flex-wrap: nowrap;
     max-width: 100%;
     overflow-x: auto;
+  }
+
+  @media (max-width: 768px) {
+    .main-section {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .discord-widget,
+    .gif-container {
+      width: 90%;
+      max-width: 320px;
+      height: auto;
+    }
+
+    .social-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      height: auto;
+      font-size: 1.8em;
+      margin-top: 20px;
+    }
+
+    .avatar-container {
+      margin-bottom: 0;
+    }
+
+    .activity-card {
+      max-width: 100%;
+      width: 100%;
+    }
   }
 </style>
 </head>
