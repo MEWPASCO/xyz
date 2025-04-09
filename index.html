@@ -122,6 +122,10 @@
     font-weight: bold;
   }
 
+  .activity-separator {
+    height: 20px;
+  }
+
   #activity-detail {
     font-style: italic;
     font-size: 0.95em;
@@ -194,25 +198,27 @@
       </a>
     </h1>
 
-    <div class="main-section">
-  <!-- Left: Discord Widget -->
-  <div id="discord-card" class="discord-widget">
-    <div class="user-row">
-      <div class="avatar-container">
-        <img id="avatar" src="" alt="Discord avatar">
-        <span id="status-dot" class="status-dot"></span>
-      </div>
-      <div class="user-info">
-        <div id="username">Wolfÿ</div>
-        <div id="custom-text">αвуѕѕ ♅</div>
-      </div>
+<div class="main-section">
+<!-- Left: Discord Widget -->
+<div id="discord-card" class="discord-widget">
+  <div class="user-row">
+    <div class="avatar-container">
+      <img id="avatar" src="" alt="Discord avatar">
+      <span id="status-dot" class="status-dot"></span>
     </div>
-
-    <div class="activity">
-      <div id="activity-label"></div>
-      <div id="activity-detail"></div>
+    <div class="user-info">
+      <div id="username">Wolfÿ</div>
+      <div id="custom-text">αвуѕѕ ♅</div>
     </div>
   </div>
+
+  <div class="activity-separator"></div>
+
+  <div class="activity">
+    <div id="activity-label"></div>
+    <div id="activity-detail"></div>
+  </div>
+</div>
 
   <!-- Center: Social Icons -->
   <div class="social-links">
