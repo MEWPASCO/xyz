@@ -128,34 +128,39 @@
     height: 20px;
   }
 
-  .activity-card {
-    margin-top: 20px;
-    padding: 12px 16px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-align: left;
-    width: 90%;
-    max-width: 280px;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-  }
+.activity-card {
+  margin-top: 20px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  width: 90%;
+  max-width: 280px;
+}
 
-  #activity-icon {
-    font-size: 1.6em;
-  }
+#activity-icon {
+  font-size: 1.6em;
+}
 
-  #activity-header {
-    font-weight: bold;
-    font-size: 1em;
-    margin-bottom: 4px;
-  }
+.activity-text {
+  display: flex;
+  flex-direction: column;
+}
 
-  #activity-detail {
-    font-size: 0.9em;
-    font-style: italic;
-    color: #ccc;
-  }
+#activity-header {
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 4px;
+}
+
+#activity-detail {
+  font-size: 0.9em;
+  font-style: italic;
+  color: #ccc;
+}
 
   .avatar-container {
     position: relative;
@@ -237,14 +242,14 @@
   </div>
 
   <!-- New styled activity card inside the discord-widget -->
-  <div class="activity-card" id="activity-card">
-    <div id="activity-icon">🎧</div>
-    <div>
-      <div id="activity-header">Now Playing</div>
-      <div id="activity-detail">Loading...</div>
-    </div>
+<div class="activity-card">
+  <div id="activity-icon">🎧</div>
+  <div class="activity-text">
+    <div id="activity-header">Now Playing</div>
+    <div id="activity-detail">Loading...</div>
   </div>
 </div>
+
 
   <!-- Center: Social Icons -->
   <div class="social-links">
@@ -317,35 +322,24 @@
       const detail = document.getElementById("activity-detail");
       const activityCard = document.getElementById("activity-card");
 
-      if (spotify) {
-        icon.textContent = "🎧";
-        header.textContent = "Now Playing";
-        detail.textContent = `${spotify.song} by ${spotify.artist}`;
-        activityCard.style.background = "linear-gradient(135deg, #1db954, #1ed760)";
-        activityCard.style.boxShadow = "0 0 12px rgba(30, 215, 96, 0.4)";
-      } else if (game) {
-        icon.textContent = "🕹️";
-        header.textContent = "In-Game";
-        detail.textContent = game.name;
-        activityCard.style.background = "linear-gradient(135deg, #3b82f6, #60a5fa)";
-        activityCard.style.boxShadow = "0 0 12px rgba(59, 130, 246, 0.4)";
-      } else if (custom && custom.state) {
-        icon.textContent = "💬";
-        header.textContent = "Vibe Check";
-        detail.textContent = custom.state;
-        activityCard.style.background = "linear-gradient(135deg, #a855f7, #d946ef)";
-        activityCard.style.boxShadow = "0 0 12px rgba(168, 85, 247, 0.4)";
-      } else {
-        icon.textContent = "";
-        header.textContent = "";
-        detail.textContent = "— No activity";
-        activityCard.style.background = "rgba(255, 255, 255, 0.05)";
-        activityCard.style.boxShadow = "none";
-      }
-      // 🌑 Fallback style
-        card.style.background = "rgba(0, 0, 0, 0.4)";
-        card.style.boxShadow = "none";
-      }
+if (spotify) {
+  icon.textContent = "🎧";
+  header.textContent = "Now Playing";
+  detail.textContent = `${spotify.song} by ${spotify.artist}`;
+} else if (game) {
+  icon.textContent = "🕹️";
+  header.textContent = "Playing";
+  detail.textContent = game.name;
+} else if (custom && custom.state) {
+  icon.textContent = "💬";
+  header.textContent = "Status";
+  detail.textContent = custom.state;
+} else {
+  icon.textContent = "";
+  header.textContent = "";
+  detail.textContent = "— No activity";
+}
+
 
     } catch (err) {
       card.innerHTML = "<p style='color: red;'>Failed to load Discord status</p>";
