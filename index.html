@@ -38,17 +38,22 @@
     margin-bottom: 30px;
   }
 
-  .discord-widget {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 20px;
+  .discord-widget,
+  .gif-container img {
+    max-width: 300px;
+    width: 100%;
     border-radius: 16px;
+  }
+
+  .discord-widget {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
     text-align: center;
-    max-width: 200px;
   }
 
   .discord-widget img {
-    width: 96px;
-    height: 96px;
+    width: 128px;
+    height: 128px;
     border-radius: 50%;
     margin-bottom: 10px;
   }
@@ -71,8 +76,9 @@
   .social-links {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+    height: 300px;
     font-size: 2em;
   }
 
@@ -83,11 +89,6 @@
 
   .social-links a:hover {
     color: #ff00cc;
-  }
-
-  .gif-container img {
-    max-width: 200px;
-    border-radius: 10px;
   }
 
   audio {
@@ -163,7 +164,10 @@
       const user = data.discord_user;
       const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`;
       avatar.src = avatarUrl;
-      username.textContent = `${user.username}#${user.discriminator}`;
+      username.textContent = user.discriminator === "0"
+      ? user.username
+      : `${user.username}#${user.discriminator}`;
+
 
       // Online Status
       const discordStatus = data.discord_status;
