@@ -100,14 +100,34 @@
     font-size: 1.2em;
   }
 
-  .status {
-    margin-top: 5px;
-    font-size: 1em;
-  }
-
   .activity {
     font-style: italic;
     margin-top: 10px;
+  }
+
+  .avatar-container {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 10px;
+  }
+
+  .avatar-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .status-dot {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid #0d0d1a;
+    background-color: gray;
   }
 
   .social-links {
@@ -143,9 +163,11 @@
     <div class="main-section">
       <!-- Left: Discord Widget -->
       <div id="discord-card" class="discord-widget">
+        <div class="avatar-container">
         <img id="avatar" src="" alt="Discord avatar">
+        <span id="status-dot" class="status-dot"></span>
+      </div>
         <div id="username">Loading...</div>
-        <div id="status"></div>
         <div id="activity"></div>
       </div>
       <!-- Center: Social Icons -->
@@ -182,7 +204,7 @@
   const card = document.getElementById("discord-card");
   const avatar = document.getElementById("avatar");
   const username = document.getElementById("username");
-  const status = document.getElementById("status");
+  const statusDot = document.getElementById("status-dot");
   const activity = document.getElementById("activity");
 
   async function fetchStatus() {
@@ -201,13 +223,13 @@
 
       // Online Status
       const discordStatus = data.discord_status;
-      const statusMap = {
-        online: "🟢 Online",
-        idle: "🌙 Idle",
-        dnd: "⛔ Do Not Disturb",
-        offline: "⚫ Offline"
+      const statusColors = {
+        online: "#43b581",
+        idle: "#faa61a",
+        dnd: "#f04747",
+        offline: "#747f8d"
       };
-      status.textContent = statusMap[discordStatus] || "Unknown";
+      statusDot.style.backgroundColor = statusColors[discordStatus] || "#747f8d";
 
       // Current Activity
       const activities = data.activities;
