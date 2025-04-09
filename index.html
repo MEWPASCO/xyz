@@ -133,9 +133,8 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 350px;
-    z-index: -2;
-    opacity: 0.25;
+    height: 300px;
+    z-index: -1;
     pointer-events: none;
   }
 
@@ -145,29 +144,25 @@
     display: block;
   }
 
+  .skyline-glow {
+    animation: pulse-glow 4s ease-in-out infinite;
+    transform-origin: center;
+    filter: drop-shadow(0 0 3px #ff66ff) drop-shadow(0 0 6px #00ffff);
+  }
+
   @keyframes pulse-glow {
     0%, 100% { opacity: 0.25; transform: scale(1); }
     50% { opacity: 0.45; transform: scale(1.02); }
   }
 
-  .glow-pink {
-    fill: none;
-    stroke: #ff66ff;
-    stroke-width: 1.5;
-    filter: drop-shadow(0 0 3px #ff66ff) drop-shadow(0 0 6px #ff66ff);
+  .retro-sun {
+    opacity: 0.4;
+    animation: sunPulse 6s ease-in-out infinite;
   }
 
-  .glow-cyan {
-    fill: none;
-    stroke: #00ffff;
-    stroke-width: 1.5;
-    filter: drop-shadow(0 0 3px #00ffff) drop-shadow(0 0 6px #00ffff);
-  }
-
-  .skyline-glow {
-    animation: pulse-glow 4s ease-in-out infinite;
-    transform-origin: center;
-    filter: drop-shadow(0 0 3px #ff66ff) drop-shadow(0 0 6px #00ffff);
+  @keyframes sunPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.6; }
   }
 </style>
 </head>
@@ -357,52 +352,33 @@ resizeCanvas();
 animate();
 </script>
 
+<!-- Retro Sun with Scanlines -->
+<g class="retro-sun" transform="translate(500,80)">
+  <circle r="40" fill="url(#sunGradient)" />
+  <g stroke="#ff0099" stroke-width="2">
+    <line x1="-35" x2="35" y1="-25" y2="-25"/>
+    <line x1="-40" x2="40" y1="-15" y2="-15"/>
+    <line x1="-42" x2="42" y1="-5" y2="-5"/>
+    <line x1="-38" x2="38" y1="5" y2="5"/>
+    <line x1="-30" x2="30" y1="15" y2="15"/>
+    <line x1="-20" x2="20" y1="25" y2="25"/>
+  </g>
+</g>
+
+<defs>
+  <radialGradient id="sunGradient" r="70%">
+    <stop offset="0%" stop-color="#ff00cc"/>
+    <stop offset="100%" stop-color="transparent"/>
+  </radialGradient>
+</defs>
+
 <!-- Synthwave SVG Background -->
-<div class="skyline-wrapper">
-  <svg viewBox="0 -120 1000 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-
-    <!-- Left Polygon Palm Tree -->
-    <g transform="translate(60, 90) scale(1.1)">
-      <polygon points="5,0 15,0 18,-30 2,-30" class="glow-pink"/>
-      <polygon points="2,-30 18,-30 20,-60 0,-60" class="glow-pink"/>
-      <polygon points="0,-60 20,-60 22,-85 -2,-85" class="glow-pink"/>
-      <!-- Leaves -->
-      <polygon points="10,-85 35,-105 30,-90 20,-85" class="glow-pink"/>
-      <polygon points="10,-85 -15,-105 -10,-90 0,-85" class="glow-pink"/>
-      <polygon points="10,-85 40,-95 28,-80 18,-82" class="glow-pink"/>
-      <polygon points="10,-85 -20,-95 -5,-80 8,-82" class="glow-pink"/>
-    </g>
-
-    <!-- Right Polygon Palm Tree -->
-    <g transform="translate(940, 90) scale(1.1)">
-      <polygon points="5,0 15,0 18,-30 2,-30" class="glow-cyan"/>
-      <polygon points="2,-30 18,-30 20,-60 0,-60" class="glow-cyan"/>
-      <polygon points="0,-60 20,-60 22,-85 -2,-85" class="glow-cyan"/>
-      <!-- Leaves -->
-      <polygon points="10,-85 35,-105 30,-90 20,-85" class="glow-cyan"/>
-      <polygon points="10,-85 -15,-105 -10,-90 0,-85" class="glow-cyan"/>
-      <polygon points="10,-85 40,-95 28,-80 18,-82" class="glow-cyan"/>
-      <polygon points="10,-85 -20,-95 -5,-80 8,-82" class="glow-cyan"/>
-    </g>
-
-    <!-- Wireframe Skyline -->
-    <g class="skyline-glow">
-      <polyline 
-        points="0,180 50,150 100,160 150,120 200,140 250,100 300,110 350,130 400,100 450,150 500,120 550,170 600,140 650,180 700,130 750,160 800,120 850,170 900,130 950,150 1000,100"
-        fill="none" stroke="url(#skylineGradient)" stroke-width="2" />
-      <line x1="0" y1="200" x2="1000" y2="200" stroke="url(#skylineGradient)" stroke-width="2"/>
-    </g>
-
-    <defs>
-      <linearGradient id="skylineGradient" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#ff00cc"/>
-        <stop offset="50%" stop-color="#ff66ff"/>
-        <stop offset="100%" stop-color="#00ffff"/>
-      </linearGradient>
-    </defs>
-  </svg>
-</div>
-
+<g class="skyline-glow">
+  <polyline 
+    points="0,180 50,150 100,160 150,120 200,140 250,100 300,110 350,130 400,100 450,150 500,120 550,170 600,140 650,180 700,130 750,160 800,120 850,170 900,130 950,150 1000,100"
+    fill="none" stroke="url(#skylineGradient)" stroke-width="2" />
+  <line x1="0" y1="200" x2="1000" y2="200" stroke="url(#skylineGradient)" stroke-width="2"/>
+</g>
 
 
 </body>
