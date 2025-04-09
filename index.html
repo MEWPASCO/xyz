@@ -123,6 +123,8 @@
     text-align: left;
     width: 90%;
     max-width: 280px;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.15); /* ✅ adds subtle neon glow */
+    transition: box-shadow 0.3s ease;
   }
 
   #activity-icon {
@@ -318,23 +320,23 @@
       const detail = document.getElementById("activity-detail");
       const activityCard = document.getElementById("activity-card");
 
-if (spotify) {
-  icon.textContent = "🎧";
-  header.textContent = "Now Playing";
-  detail.textContent = `${spotify.song} by ${spotify.artist}`;
-} else if (game) {
-  icon.textContent = "🕹️";
-  header.textContent = "Playing";
-  detail.textContent = game.name;
-} else if (custom && custom.state) {
-  icon.textContent = "💬";
-  header.textContent = "Status";
-  detail.textContent = custom.state;
-} else {
-  icon.textContent = "";
-  header.textContent = "";
-  detail.textContent = "— No activity";
-}
+      if (spotify) {
+        icon.textContent = "🎧";
+        header.textContent = "Now Playing";
+        detail.textContent = `${spotify.song} by ${spotify.artist}`;
+      } else if (game) {
+        icon.textContent = "🕹️";
+        header.textContent = "Playing";
+        detail.textContent = game.name;
+      } else if (custom && custom.state) {
+        icon.textContent = "💬";
+        header.textContent = "Status";
+        detail.textContent = custom.state;
+      } else {
+        icon.textContent = "";
+        header.textContent = "";
+        detail.textContent = "— No activity";
+      }
 
 
     } catch (err) {
