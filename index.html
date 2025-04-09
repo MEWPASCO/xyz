@@ -144,14 +144,29 @@
     height: 100%;
   }
 
-  .skyline-glow {
-    animation: pulse-glow 4s ease-in-out infinite;
-    transform-origin: center;
-  }
-
   @keyframes pulse-glow {
     0%, 100% { opacity: 0.25; transform: scale(1); }
     50% { opacity: 0.45; transform: scale(1.02); }
+  }
+
+  .glow-pink {
+    fill: none;
+    stroke: #ff66ff;
+    stroke-width: 1.5;
+    filter: drop-shadow(0 0 3px #ff66ff) drop-shadow(0 0 6px #ff66ff);
+  }
+
+  .glow-cyan {
+    fill: none;
+    stroke: #00ffff;
+    stroke-width: 1.5;
+    filter: drop-shadow(0 0 3px #00ffff) drop-shadow(0 0 6px #00ffff);
+  }
+
+  .skyline-glow {
+    animation: pulse-glow 4s ease-in-out infinite;
+    transform-origin: center;
+    filter: drop-shadow(0 0 3px #ff66ff) drop-shadow(0 0 6px #00ffff);
   }
 </style>
 </head>
@@ -343,62 +358,39 @@ animate();
 
 <!-- Synthwave SVG Background -->
 <div class="skyline-wrapper">
-  <svg viewBox="0 0 1000 200" preserveAspectRatio="none">
-    
-    <!-- Clean Palm Tree Left -->
-    <g transform="translate(60, 90) scale(1.2)">
-      <line x1="0" y1="0" x2="0" y2="100" stroke="#ff66ff" stroke-width="2"/>
-      <path d="M 0 0 
-               C -20 -10, -40 -20, -50 -10 
-               M 0 0 
-               C 20 -10, 40 -20, 50 -10 
-               M 0 0 
-               C -15 -15, -30 -35, -35 -20 
-               M 0 0 
-               C 15 -15, 30 -35, 35 -20" 
-            stroke="#ff66ff" stroke-width="2" fill="none"/>
+  <svg viewBox="0 0 1000 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Left Polygon Palm Tree -->
+    <g transform="translate(60, 90) scale(1.1)">
+      <polygon points="5,0 15,0 18,-30 2,-30" class="glow-pink"/>
+      <polygon points="2,-30 18,-30 20,-60 0,-60" class="glow-pink"/>
+      <polygon points="0,-60 20,-60 22,-85 -2,-85" class="glow-pink"/>
+      <!-- Leaves -->
+      <polygon points="10,-85 35,-105 30,-90 20,-85" class="glow-pink"/>
+      <polygon points="10,-85 -15,-105 -10,-90 0,-85" class="glow-pink"/>
+      <polygon points="10,-85 40,-95 28,-80 18,-82" class="glow-pink"/>
+      <polygon points="10,-85 -20,-95 -5,-80 8,-82" class="glow-pink"/>
     </g>
 
-    <!-- Clean Palm Tree Right -->
-    <g transform="translate(940, 90) scale(1.2)">
-      <line x1="0" y1="0" x2="0" y2="100" stroke="#00ffff" stroke-width="2"/>
-      <path d="M 0 0 
-               C -20 -10, -40 -20, -50 -10 
-               M 0 0 
-               C 20 -10, 40 -20, 50 -10 
-               M 0 0 
-               C -15 -15, -30 -35, -35 -20 
-               M 0 0 
-               C 15 -15, 30 -35, 35 -20" 
-            stroke="#00ffff" stroke-width="2" fill="none"/>
+    <!-- Right Polygon Palm Tree -->
+    <g transform="translate(940, 90) scale(1.1)">
+      <polygon points="5,0 15,0 18,-30 2,-30" class="glow-cyan"/>
+      <polygon points="2,-30 18,-30 20,-60 0,-60" class="glow-cyan"/>
+      <polygon points="0,-60 20,-60 22,-85 -2,-85" class="glow-cyan"/>
+      <!-- Leaves -->
+      <polygon points="10,-85 35,-105 30,-90 20,-85" class="glow-cyan"/>
+      <polygon points="10,-85 -15,-105 -10,-90 0,-85" class="glow-cyan"/>
+      <polygon points="10,-85 40,-95 28,-80 18,-82" class="glow-cyan"/>
+      <polygon points="10,-85 -20,-95 -5,-80 8,-82" class="glow-cyan"/>
     </g>
 
-    <!-- Skyline -->
-    <path d="M0,180 
-             L50,150 
-             L100,160 
-             L150,120 
-             L200,140 
-             L250,100 
-             L300,110 
-             L350,130 
-             L400,100 
-             L450,150 
-             L500,120 
-             L550,170 
-             L600,140 
-             L650,180 
-             L700,130 
-             L750,160 
-             L800,120 
-             L850,170 
-             L900,130 
-             L950,150 
-             L1000,100 
-             L1000,200 
-             L0,200 Z" 
-      fill="url(#skylineGradient)" 
-      class="skyline-glow"/>
+    <!-- Wireframe Skyline -->
+    <g class="skyline-glow">
+      <polyline 
+        points="0,180 50,150 100,160 150,120 200,140 250,100 300,110 350,130 400,100 450,150 500,120 550,170 600,140 650,180 700,130 750,160 800,120 850,170 900,130 950,150 1000,100"
+        fill="none" stroke="url(#skylineGradient)" stroke-width="2" />
+      <line x1="0" y1="200" x2="1000" y2="200" stroke="url(#skylineGradient)" stroke-width="2"/>
+    </g>
 
     <defs>
       <linearGradient id="skylineGradient" x1="0" y1="0" x2="1" y2="0">
