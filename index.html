@@ -77,6 +77,67 @@
   </a>
 </div>
 
+<div id="discord-card" style="font-family: sans-serif; color: white; background: rgba(0,0,0,0.4); padding: 16px; border-radius: 16px; width: fit-content; text-align: center;">
+  <img id="avatar" src="" alt="Discord avatar" width="96" style="border-radius: 50%; margin-bottom: 8px;">
+  <div id="username" style="font-size: 1.5em; font-weight: bold;">Loading...</div>
+  <div id="status" style="margin-top: 4px;"></div>
+  <div id="activity" style="margin-top: 8px; font-style: italic;"></div>
+</div>
+
+<script>
+  const userId = "579327734052814858";
+  const card = document.getElementById("discord-card");
+  const avatar = document.getElementById("avatar");
+  const username = document.getElementById("username");
+  const status = document.getElementById("status");
+  const activity = document.getElementById("activity");
+
+  async function fetchStatus() {
+    try {
+      const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+      const { data } = await res.json();
+
+      // Username + Avatar
+      const user = data.discord_user;
+      const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`;
+      avatar.src = avatarUrl;
+      username.textContent = `${user.username}#${user.discriminator}`;
+
+      // Online Status
+      const discordStatus = data.discord_status;
+      const statusMap = {
+        online: "🟢 Online",
+        idle: "🌙 Idle",
+        dnd: "⛔ Do Not Disturb",
+        offline: "⚫ Offline"
+      };
+      status.textContent = statusMap[discordStatus] || "Unknown";
+
+      // Current Activity
+      const activities = data.activities;
+      const custom = activities.find(act => act.type === 4); // Custom status
+      const game = activities.find(act => act.type === 0);   // Playing a game
+      const spotify = data.spotify;
+
+      if (spotify) {
+        activity.textContent = `🎧 Listening to ${spotify.song} by ${spotify.artist}`;
+      } else if (game) {
+        activity.textContent = `🎮 Playing ${game.name}`;
+      } else if (custom && custom.state) {
+        activity.textContent = `💬 ${custom.state}`;
+      } else {
+        activity.textContent = `— No activity`;
+      }
+
+    } catch (err) {
+      card.innerHTML = "<p style='color: red;'>Failed to load Discord status</p>";
+      console.error(err);
+    }
+  }
+
+  fetchStatus();
+</script>
+
 
 <audio autoplay loop preload="auto">
   <source src="LoveIsABadWord.mp3" type="audio/mpeg">
