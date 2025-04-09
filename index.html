@@ -116,17 +116,6 @@
     margin-bottom: 4px;
   }
 
-  #badges {
-    display: flex;
-    gap: 6px;
-    margin-top: 4px;
-  }
-
-  .badge {
-    width: 20px;
-    height: 20px;
-  }
-
   #activity-label {
     font-weight: bold;
   }
@@ -180,6 +169,16 @@
   .social-links a:hover {
     color: #ff00cc;
   }
+
+  #custom-text {
+    font-size: 0.9em;
+    color: #ccc;
+    margin-top: 4px;
+    font-style: italic;
+    text-align: left;
+    max-width: 180px;
+    line-height: 1.4;
+  }
 </style>
 </head>
 <body>
@@ -202,18 +201,15 @@
         <span id="status-dot" class="status-dot"></span>
       </div>
         <div class="user-info">
-        <div id="username">Loading...</div>
-      <!-- Optional: Discord Badges go here -->
-        <div id="badges">
-      <!-- Example badge -->
-      <!-- <img src="badge1.svg" alt="Badge" class="badge"> -->
-      </div>
+        <div id="username">Wolfÿ</div>
+        <div id="custom-text">αвуѕѕ ♅</div>
       </div>
       </div>
 
       <div class="activity">
         <div id="activity-label"></div>
         <div id="activity-detail"></div>
+      </div>
       </div>
       </div>
       <!-- Center: Social Icons -->
@@ -262,10 +258,8 @@
       const user = data.discord_user;
       const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`;
       avatar.src = avatarUrl;
-      username.textContent = user.discriminator === "0"
-      ? user.username
-      : `${user.username}#${user.discriminator}`;
-
+      const nickname = "Wolfÿ";
+      username.textContent = nickname;
 
       // Online Status
       const discordStatus = data.discord_status;
