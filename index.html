@@ -310,7 +310,7 @@
   /* ─────────────────────────────── */
   .steam-profile-widget {
     width: 360px;
-    height: 400px;
+    height: 360px;
     background: rgba(0, 0, 0, 0.4);
     padding: 20px;
     box-sizing: border-box;
@@ -321,6 +321,7 @@
     align-items: center;
     box-shadow: 0 0 12px rgba(0,255,255,0.15);
   }
+
 
 
 
@@ -395,13 +396,15 @@
   <!-- Steam Widget -->
   <div class="steam-profile-widget"></div>
     <iframe src="https://gamer2810.github.io/steam-miniprofile/?accountId=76561198806901415"
-      style="border:0; width:600px; height:400px;"
+      style="border:0; width:100%; height:360px 16px;"
       frameborder="0"
       scrolling="no"
       allowfullscreen>
     </iframe>
   </div>
 
+
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
 
   <!-- Discord User Widget -->
   <div id="discord-card" class="discord-widget">
@@ -449,6 +452,7 @@
     </a>
   </div>
 
+  </div>
 
   <!-- Right -->
   <!-- GIF + Discord Server Widget wrapper -->
@@ -466,7 +470,10 @@
         height="500" 
         allowtransparency="true" 
         frameborder="0" 
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+        
+        style="border-radius: 16px; box-shadow: 0 0 12px rgba(0,255,255,0.1);">
+
       </iframe>
     </div>
   </div>
