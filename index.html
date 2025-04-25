@@ -305,6 +305,22 @@
     overflow-x: auto;
   }
 
+  /* ─────────────────────────────── */
+  /* 😎 Steam Profile Widget        */
+  /* ─────────────────────────────── */
+  .steam-profile-widget {
+    width: 360px;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 12px rgba(0,255,255,0.15);
+  }
 
 
 
@@ -357,33 +373,51 @@
 </style>
 </head>
 <body>
-
+<!-- Background Hexagonses ;) -->
 <canvas id="hexCanvas"></canvas>
 
-<div class="content-wrapper">
+
+<!-- Title - Top -->
+<!-- Title - Bungie User Name -->
+  <div class="content-wrapper">
     <h1>
       <a href="https://www.bungie.net/7/en/User/Profile/3/4611686018519998253?bgn=Wolf%C3%BF" target="_blank" style="color: inherit; text-decoration: none;">
         Wolfÿ#3139
       </a>
     </h1>
 
+
+  <!-- Main Website Area -->    
   <div class="main-section">
 
-    <!-- Discord User Widget -->
-    <div id="discord-card" class="discord-widget">
-      <div class="user-row">
-        <div class="avatar-container">
-          <img id="avatar" src="" alt="Discord avatar">
-          <span id="status-dot" class="status-dot"></span>
-        </div>
-        <div class="user-info">
-          <div id="username">Wolfÿ</div>
-          <div id="custom-text">αвуѕѕ ♅</div>
-        </div>
-      </div>
 
-      <div class="activity-card" id="activity-card">
-        <div id="activity-icon">🎷</div>
+  <!-- Left -->
+  <!-- Steam Widget -->
+  <div class="steam-profile-widget"></div>
+    <iframe src="https://gamer2810.github.io/steam-miniprofile/?accountId=76561198806901415"
+      style="border:0; width:600px; height:400px;"
+      frameborder="0"
+      scrolling="no"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+
+  <!-- Discord User Widget -->
+  <div id="discord-card" class="discord-widget">
+    <div class="user-row">
+      <div class="avatar-container">
+        <img id="avatar" src="" alt="Discord avatar">
+        <span id="status-dot" class="status-dot"></span>
+      </div>
+    <div class="user-info">
+      <div id="username">Wolfÿ</div>
+      <div id="custom-text">αвуѕѕ ♅</div>
+    </div>
+  </div>
+    <!-- Activity Box inside of Discord User Widget -->
+    <div class="activity-card" id="activity-card">
+      <div id="activity-icon">🎷</div>
         <div class="activity-text">
           <div id="activity-header">Now Playing</div>
           <div id="activity-detail">Loading...</div>
@@ -392,7 +426,8 @@
     </div>
 
 
-  <!-- Center: Social Icons -->
+  <!-- Center -->
+  <!-- Social Icons -->
   <div class="social-links">
     <a href="https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y?si=b820322fefbb4c41" target="_blank" title="Spotify">
       <i class="fab fa-spotify"></i>
@@ -414,14 +449,32 @@
     </a>
   </div>
 
-  <!-- Right: GIF -->
-  <div class="gif-container">
-    <img src="media/1589466873795.gif" alt="Cool GIF" width="200">
+
+  <!-- Right -->
+  <!-- GIF + Discord Server Widget wrapper -->
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+    <!-- GIF -->
+    <div class="gif-container">
+      <img src="media/1589466873795.gif" alt="Cool GIF" width="200">
+    </div>
+
+
+    <!-- Discord Server Widget -->
+    <div class="discord-server-widget">
+      <iframe src="https://discord.com/widget?id=936383427215785985&theme=dark" 
+        width="350" 
+        height="500" 
+        allowtransparency="true" 
+        frameborder="0" 
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>
+    </div>
   </div>
 </div>
-</div>
 
-<!-- Discord User Widget -->
+
+<!-- Other creative things -->
+<!-- Discord User Widget Customization + api Updater / Lanyard -->
 <script>
   const userId = "579327734052814858";
   const card = document.getElementById("discord-card");
@@ -503,124 +556,104 @@
   setInterval(fetchStatus, 7500);
 </script>
 
-<!-- Hexagon Background -->
+
+<!-- Hexagon Background Script / Animation -->
 <script>
-const canvas = document.getElementById('hexCanvas');
-const ctx = canvas.getContext('2d');
+  const canvas = document.getElementById('hexCanvas');
+  const ctx = canvas.getContext('2d');
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  initHexes(); // re-generate hexes when window changes
-}
-window.addEventListener('resize', resizeCanvas);
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initHexes(); // re-generate hexes when window changes
+  }
+  window.addEventListener('resize', resizeCanvas);
 
-// Configs
-const hexSize = 10;
-const spacing = hexSize * 3.5;
-const speed = 0.2;
-const colors = [
-  'rgba(0, 255, 255, OPACITY)',     // Cyan
-  'rgba(255, 0, 255, OPACITY)',     // Magenta
-  'rgba(255, 128, 255, OPACITY)'    // Light pink
-];
+  // Configs
+  const hexSize = 10;
+  const spacing = hexSize * 3.5;
+  const speed = 0.2;
+  const colors = [
+    'rgba(0, 255, 255, OPACITY)',     // Cyan
+    'rgba(255, 0, 255, OPACITY)',     // Magenta
+    'rgba(255, 128, 255, OPACITY)'    // Light pink
+  ];
 
-// Generate grid of hex "particles"
-let hexes = [];
-function initHexes() {
-  hexes = [];
-  for (let y = -spacing; y < canvas.height + spacing; y += spacing) {
-    for (let x = -spacing; x < canvas.width + spacing; x += spacing * 1.5) {
-      const rowOffset = (Math.floor(y / spacing) % 2) * spacing * 0.75;
-      const colorBase = colors[Math.floor(Math.random() * colors.length)];
-      const phase = Math.random() * Math.PI * 2;
-      hexes.push({
-        x: x + rowOffset,
-        y: y,
-        colorBase,
-        phase
-      });
+  // Generate grid of hex "particles"
+  let hexes = [];
+  function initHexes() {
+    hexes = [];
+    for (let y = -spacing; y < canvas.height + spacing; y += spacing) {
+      for (let x = -spacing; x < canvas.width + spacing; x += spacing * 1.5) {
+        const rowOffset = (Math.floor(y / spacing) % 2) * spacing * 0.75;
+        const colorBase = colors[Math.floor(Math.random() * colors.length)];
+        const phase = Math.random() * Math.PI * 2;
+        hexes.push({
+          x: x + rowOffset,
+          y: y,
+          colorBase,
+          phase
+        });
+      }
     }
   }
-}
 
-function drawHex(x, y, size, rotation, color, glowAlpha) {
-  const angle = Math.PI / 3;
-  ctx.beginPath();
-  for (let i = 0; i < 6; i++) {
-    const px = x + size * Math.cos(angle * i + rotation);
-    const py = y + size * Math.sin(angle * i + rotation);
-    ctx.lineTo(px, py);
-  }
-  ctx.closePath();
-  ctx.strokeStyle = color;
-  ctx.shadowColor = color.replace(/rgba\(([^,]+),([^,]+),([^,]+),[^)]+\)/, 'rgba($1,$2,$3,' + glowAlpha + ')');
-  ctx.shadowBlur = 6;
-  ctx.stroke();
-  ctx.shadowBlur = 0;
-}
-
-let offset = 0;
-let mouseX = 0, mouseY = 0;
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-  mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-});
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  offset += speed;
-
-  // Drift + mouse offset
-  const driftX = Math.sin(offset * 0.01) * spacing;
-  const driftY = Math.cos(offset * 0.01) * spacing;
-  const parallaxX = mouseX * 20;
-  const parallaxY = mouseY * 20;
-
-  const time = Date.now() * 0.002;
-
-  for (const hex of hexes) {
-    const opacity = 0.03 + Math.abs(Math.sin(time + hex.phase)) * 0.1;
-    const glow = 0.3 + Math.abs(Math.sin(time + hex.phase)) * 0.5;
-    const finalColor = hex.colorBase.replace('OPACITY', opacity.toFixed(2));
-    drawHex(
-      hex.x + driftX + parallaxX,
-      hex.y + driftY + parallaxY,
-      hexSize,
-      Math.PI / 4,
-      finalColor,
-      glow.toFixed(2)
-    );
+  function drawHex(x, y, size, rotation, color, glowAlpha) {
+    const angle = Math.PI / 3;
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) {
+      const px = x + size * Math.cos(angle * i + rotation);
+      const py = y + size * Math.sin(angle * i + rotation);
+      ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = color;
+    ctx.shadowColor = color.replace(/rgba\(([^,]+),([^,]+),([^,]+),[^)]+\)/, 'rgba($1,$2,$3,' + glowAlpha + ')');
+    ctx.shadowBlur = 6;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
   }
 
-  requestAnimationFrame(animate);
-}
+  let offset = 0;
+  let mouseX = 0, mouseY = 0;
 
-resizeCanvas();
-animate();
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    offset += speed;
+
+    // Drift + mouse offset
+    const driftX = Math.sin(offset * 0.01) * spacing;
+    const driftY = Math.cos(offset * 0.01) * spacing;
+    const parallaxX = mouseX * 20;
+    const parallaxY = mouseY * 20;
+
+    const time = Date.now() * 0.002;
+
+    for (const hex of hexes) {
+      const opacity = 0.03 + Math.abs(Math.sin(time + hex.phase)) * 0.1;
+      const glow = 0.3 + Math.abs(Math.sin(time + hex.phase)) * 0.5;
+      const finalColor = hex.colorBase.replace('OPACITY', opacity.toFixed(2));
+      drawHex(
+        hex.x + driftX + parallaxX,
+        hex.y + driftY + parallaxY,
+        hexSize,
+        Math.PI / 4,
+        finalColor,
+        glow.toFixed(2)
+      );
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  resizeCanvas();
+  animate();
 </script>
-
-<!-- Discord Server Widget -->
-<div class="discord-server-widget">
-  <iframe src="https://discord.com/widget?id=936383427215785985&theme=dark" 
-  width="350" 
-  height="500" 
-  allowtransparency="true" 
-  frameborder="0" 
-  sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-  </iframe>
-</div>
-
-<!-- Steam Profile Widget -->
-<div class="steam-profile-widget"></div>
-<iframe src="https://gamer2810.github.io/steam-miniprofile/?accountId=mewpasco"
-        style="border:0; width:600px; height:400px;"
-        frameborder="0"
-        scrolling="no"
-        allowfullscreen>
-</iframe>
-</div>
 
 
 </body>
