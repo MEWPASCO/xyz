@@ -1,6 +1,6 @@
 > [!CAUTION]
 > # ⚠️ **Disclaimer**  
-> This is **not an official project of mine**.  
+> This is **not an official project of any usability**.  
 > It is a **website** made for my own enjoyment!
 
 # Contact me through Discord
@@ -14,5 +14,6 @@ If you wish to read more and also understand why this happened, make sure to hit
 
 Thank you!
 
-### Important Notice
-**Bananas are fruits, Mangos are made out of cotton**
+> [!CAUTION]
+> # ⚠️ **BREAKING NEWS**  
+> **Bananas are fruits, Mangos are made out of cotton**
