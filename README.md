@@ -9,10 +9,10 @@
 
 # ΛVΛRIΛ
 
-A few years ago, after a big rebrand, our community and Discord became known as **ฟธ」- Wolves Street™**.  
-If you want to know why we changed and what led to it, you can read more [here](https://discord.com/channels/936383427215785985/936967510861951056/1262470155779313795).
+We used to be known as **ฟธ」- Wolves Street™**, but after a big rebrand, we’re now **ΛVΛRIΛ**.  
+If you wanna know why and what changed, you can read it [here](https://discord.com/channels/936383427215785985/936967510861951056/1262470155779313795).
 
-Thanks for sticking with us.
+Appreciate everyone who's been part of it since before, then and till now <3
 
 > [!CAUTION]
 > # ⚠️ **BREAKING NEWS**  
