@@ -23,6 +23,9 @@
    <meta name="twitter:title" content="ΛVΛRIΛ | Wolfÿ's Profile">
    <meta name="twitter:description" content="Live Discord status, current activity, and curated social links.">
  <style>
+  /* ─────────────────────────────── */
+  /* ⚙️  Base Styles and Layout     */
+  /* ─────────────────────────────── */
   body {
     margin: 0;
     font-family: 'Arial', sans-serif;
@@ -46,6 +49,7 @@
     }
   }
 
+  /* 🌌 Background Animation Canvas */
   #hexCanvas {
     position: fixed;
     top: 0;
@@ -54,6 +58,9 @@
     pointer-events: none;
   }
 
+  /* ─────────────────────────────── */
+  /* 💫 Header Glow Title           */
+  /* ─────────────────────────────── */
   h1 {
     font-size: 3em;
     background: linear-gradient(90deg, #ff00cc, #00ffff, #ff00cc);
@@ -68,6 +75,7 @@
     100% { background-position: 200% }
   }
 
+  /* 🧱 Wrapper for Content */
   .content-wrapper {
     flex: 1;
     display: flex;
@@ -77,8 +85,14 @@
     min-height: 100vh;
   }
 
-  .discord-widget,
-  .gif-container {
+  /* ─────────────────────────────── */
+  /* 👤 Discord User Widget         */
+  /* ─────────────────────────────── */
+  .discord-widget {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    box-sizing: border-box;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
     width: 360px;
     height: 360px;
     border-radius: 16px;
@@ -89,13 +103,6 @@
     align-items: center;
   }
 
-  .discord-widget {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 20px;
-    box-sizing: border-box;
-    transition: background 0.4s ease, box-shadow 0.4s ease;
-  }
-
   .discord-widget img {
     width: 96px;
     height: 96px;
@@ -103,13 +110,7 @@
     margin-bottom: 10px;
   }
 
-  .gif-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-  }
-
+  /* Avatar + Name Row */
   .user-row {
     display: flex;
     align-items: center;
@@ -129,7 +130,7 @@
     font-weight: bold;
     font-size: 1.2em;
     margin-bottom: 4px;
-    color: #c084fc; /* Light purple */
+    color: #c084fc;
     text-shadow:
       0 0 2px #7c3aed,
       0 0 6px #a855f7,
@@ -152,6 +153,44 @@
     }
   }
 
+  /* Dot Indicator - Discord Online/Away/DND/Offline */
+  .avatar-container {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 10px;
+  }
+
+  .avatar-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .status-dot {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid #0d0d1a;
+    background-color: gray;
+  }
+
+  /* ✨ Custom Tag Below Name */
+  #custom-text {
+    font-size: 0.9em;
+    color: #ccc;
+    margin-top: 4px;
+    font-style: italic;
+    text-align: left;
+    max-width: 180px;
+    line-height: 1.4;
+  }
+
+  /* 🎶 Now Playing / Activity */
   .activity-separator {
     height: 20px;
   }
@@ -188,45 +227,42 @@
     font-weight: bold;
     font-size: 1em;
     margin-bottom: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
   }
 
   #activity-detail {
     font-size: 0.9em;
     font-style: italic;
     color: #ccc;
-  }
-
-  #activity-header,
-  #activity-detail {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
 
-  .avatar-container {
-    position: relative;
-    width: 96px;
-    height: 96px;
-    margin-bottom: 10px;
+  /* ─────────────────────────────── */
+  /* 🖼️ GIF Panel Right Side       */
+  /* ─────────────────────────────── */
+  .gif-container {
+    width: 360px;
+    height: 360px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .avatar-container img {
+  .gif-container img {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    display: block;
+    object-fit: cover;
+    border-radius: 16px;
   }
 
-  .status-dot {
-    position: absolute;
-    bottom: 4px;
-    right: 4px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 3px solid #0d0d1a;
-    background-color: gray;
-  }
-
+  /* ─────────────────────────────── */
+  /* 🌐 Social Link Icons           */
+  /* ─────────────────────────────── */
   .social-links {
     display: flex;
     flex-direction: column;
@@ -245,16 +281,19 @@
     color: #ff00cc;
   }
 
-  #custom-text {
-    font-size: 0.9em;
-    color: #ccc;
-    margin-top: 4px;
-    font-style: italic;
-    text-align: left;
-    max-width: 180px;
-    line-height: 1.4;
+  /* ─────────────────────────────── */
+  /* 🤖 Discord Server Widget       */
+  /* ─────────────────────────────── */
+  .discord-server-widget {
+    margin-top: 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
   }
 
+  /* ─────────────────────────────── */
+  /* 🧩 Main Section Layout         */
+  /* ─────────────────────────────── */
   .main-section {
     display: flex;
     flex-direction: row;
@@ -266,6 +305,12 @@
     overflow-x: auto;
   }
 
+
+
+
+  /* ─────────────────────────────── */
+  /* ‼️ Mobile Design override      */
+  /* ─────────────────────────────── */
   @media (max-width: 768px) {
     .main-section {
       flex-direction: column;
@@ -301,12 +346,13 @@
     }
 
     .discord-server-widget {
-      margin-top: 40px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+      width: 90%;
+      max-width: 360px;
+      height: auto;
     }
-
+  /* ─────────────────────────────── */
+  /* ‼️ Mobile Design override END  */
+  /* ─────────────────────────────── */
   }
 </style>
 </head>
@@ -568,7 +614,7 @@ animate();
 
 <!-- Steam Profile Widget -->
 <div class="steam-profile-widget"></div>
-<iframe src="https://gamer2810.github.io/steam-miniprofile/?accountId=YOUR_ACCOUNTID_HERE"
+<iframe src="https://gamer2810.github.io/steam-miniprofile/?accountId=mewpasco"
         style="border:0; width:600px; height:400px;"
         frameborder="0"
         scrolling="no"
