@@ -89,16 +89,18 @@
   /* 👤 Discord User Widget         */
   /* ─────────────────────────────── */
   .discord-widget {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    box-sizing: border-box;
     width: 360px;
     height: 360px;
-    background: rgba(0, 0, 0, 0.4);
     border-radius: 16px;
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+    transition: box-shadow 0.3s ease;
+    overflow: hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    padding: 20px;
   }
 
   .discord-widget img {
@@ -300,7 +302,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 40px;
+    gap: 120px;
     margin-top: 80px;
     flex-wrap: wrap;
   }
