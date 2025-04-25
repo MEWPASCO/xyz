@@ -299,6 +299,14 @@
       max-width: 100%;
       width: 100%;
     }
+
+    .discord-server-widget {
+      margin-top: 40px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+    }
+
   }
 </style>
 </head>
@@ -315,7 +323,7 @@
 
   <div class="main-section">
 
-    <!-- Discord Widget -->
+    <!-- Discord User Widget -->
     <div id="discord-card" class="discord-widget">
       <div class="user-row">
         <div class="avatar-container">
@@ -367,7 +375,7 @@
 </div>
 </div>
 
-<!-- Discord Widget -->
+<!-- Discord User Widget -->
 <script>
   const userId = "579327734052814858";
   const card = document.getElementById("discord-card");
@@ -546,6 +554,18 @@ function animate() {
 resizeCanvas();
 animate();
 </script>
+
+<!-- Discord Server Widget -->
+<div class="discord-server-widget">
+  <iframe src="https://discord.com/widget?id=936383427215785985&theme=dark" 
+  width="350" 
+  height="500" 
+  allowtransparency="true" 
+  frameborder="0" 
+  sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+  </iframe>
+</div>
+
 
 </body>
 </html>
