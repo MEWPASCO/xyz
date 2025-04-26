@@ -571,7 +571,7 @@
 
           if (game.name) {
             const gameSearch = encodeURIComponent(game.name);
-            detail.innerHTML = `<a href="https://store.steampowered.com/search/?term=${gameSearch}" target="_blank" rel="noopener noreferrer" style="color: #ccc; text-decoration: underline;">${game.name}</a>`;
+            detail.innerHTML = `<a href="https://store.steampowered.com/search/?term=${gameSearch}" target="_blank" rel="noopener noreferrer">${game.name}</a>`;
           } else {
           detail.textContent = game.name;
           }        
