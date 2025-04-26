@@ -346,14 +346,21 @@
   /* ‼️ Mobile Design override      */
   /* ─────────────────────────────── */
   @media (max-width: 768px) {
-    .main-section,
-    .widget-row {
+    .main-section {
       flex-direction: column;
       align-items: center;
       gap: 20px;
       padding: 20px;
     }
 
+    .widget-row {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    
     .social-links {
       flex-direction: row;
       flex-wrap: wrap;
