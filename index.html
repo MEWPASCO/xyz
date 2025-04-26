@@ -426,7 +426,7 @@
   <div id="discord-card" class="discord-widget">
     <div class="user-row">
       <div class="avatar-container">
-        <img id="avatar" src="media/avatar-default.jpg" alt="Discord avatar">
+        <img id="avatar" src="media/avatar-default.jpg" alt="Discord avatar" loading="lazy">
         <span id="status-dot" class="status-dot" style="background-color: #747f8d;"></span>
       </div>
     <div class="user-info">
@@ -434,12 +434,20 @@
       <div id="custom-text">αвуѕѕ ♅</div>
     </div>
   </div>
-    <!-- Activity Box inside of Discord User Widget -->
-    <div class="activity-card" id="activity-card">
-      <div id="activity-icon">🎷</div>
+    <!-- Spotify Box inside of Discord User Widget -->
+    <div class="activity-card" id="spotify-card">
+      <div id="spotify-icon">🎧</div>
         <div class="activity-text">
-          <div id="activity-header">Now Playing</div>
-          <div id="activity-detail">Loading...</div>
+          <div id="spotify-header">Now Playing</div>
+          <div id="spotify-detail">Fetching...</div>
+        </div>
+      </div>
+    <!-- Other Activity Box inside of Discord User Widget -->
+    <div class="activity-card" id="game-card">
+      <div id="game-icon">🎧</div>
+        <div class="activity-text">
+          <div id="game-header">Now Playing</div>
+          <div id="game-detail">Loading...</div>
         </div>
       </div>
     </div>
@@ -505,14 +513,13 @@
 <!-- Discord User Widget Customization + api Updater / Lanyard -->
 <script defer>
   const userId = "579327734052814858";
-  const card = document.getElementById("discord-card");
   const statusDot = document.getElementById("status-dot");
 
-  // Activity
-  function updateActivity(iconText, headerText, detailHtml) {
-    const icon = document.getElementById("activity-icon");
-    const header = document.getElementById("activity-header");
-    const detail = document.getElementById("activity-detail");
+  // Spotify updates
+  function updateSpotify(iconText, headerText, detailHtml) {
+    const icon = document.getElementById("spotify-icon");
+    const header = document.getElementById("spotify-header");
+    const detail = document.getElementById("spotify-detail");
 
     icon.textContent = iconText;
     header.style.opacity = 0;
@@ -526,7 +533,24 @@
     }, 200);
   }
 
-  // Avatar
+  function updateGame(iconText, headerText, detailHtml) {
+    const icon = document.getElementById("game-icon");
+    const header = document.getElementById("game-header");
+    const detail = document.getElementById("game-detail");
+
+    icon.textContent = iconText;
+    header.style.opacity = 0;
+    detail.style.opacity = 0;
+
+    setTimeout(() => {
+      header.textContent = headerText;
+      detail.innerHTML = detailHtml;
+      header.style.opacity = 1;
+      detail.style.opacity = 1;
+    }, 200);
+  }
+
+  // Fetch
   async function fetchStatus() {
     try {
       const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
@@ -547,16 +571,34 @@
       const custom = activities.find(act => act.type === 4); // Custom status
       const game = activities.find(act => act.type === 0);   // Playing a game
       const spotify = data.spotify;
-
+    
+       // 🎧 Spotify Section
       if (spotify) {
-        updateActivity("🎧", "Now Playing", `<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" rel="noopener noreferrer">${spotify.song} by ${spotify.artist}</a>`);
-      } else if (game) {
-        const gameSearch = encodeURIComponent(game.name);
-        updateActivity("🕹️", "Playing", `<a href="https://store.steampowered.com/search/?term=${gameSearch}" target="_blank" rel="noopener noreferrer">${game.name}</a>`);
-      } else if (custom && custom.state) {
-        updateActivity("💬", "Status", custom.state);
+        updateSpotify(
+          "🎧",
+          "Now Playing",
+          `<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" rel="noopener noreferrer">${spotify.song} by ${spotify.artist}</a>`
+        );
       } else {
-        updateActivity("", "", "— No activity");
+        updateSpotify("👻", "Nothing Playing", "Ghostly noises..");
+      }
+
+      // 🕹️ Game or 💬 Status Section
+      if (game) {
+        const gameSearch = encodeURIComponent(game.name);
+        updateGame(
+          "🕹️",
+          "Playing",
+          `<a href="https://store.steampowered.com/search/?term=${gameSearch}" target="_blank" rel="noopener noreferrer">${game.name}</a>`
+        );
+      } else if (custom && custom.state) {
+        updateGame(
+          "💬",
+          "Status",
+          custom.state
+        );
+      } else {
+        updateGame("😶‍🌫️", "Oh no!", "Currently occupied?");
       }
 
     } catch (err) {
