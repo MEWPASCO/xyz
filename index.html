@@ -323,25 +323,6 @@
     padding: 0;
   }
 
-  /* Fallback Text in Box in case iframe does not load */
-  .fallback-message {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    text-align: center;
-    transform: translate(-50%, -50%);
-    font-style: italic;
-    color: #fff;
-    font-size: 1rem;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .fallback-message.hidden {
-    display: none;
-  }
-
   /* ─────────────────────────────── */
   /* 🤖 Steam Profile Widget        */
   /* ─────────────────────────────── */
@@ -500,38 +481,16 @@
 
     <!-- Discord Server Widget -->
     <div class="discord-server-widget">
-      <div id="discord-fallback" class="fallback-message">
-        <a href="https://discord.gg/avia" target="_blank">Join our Discord server!</a>
-      </div>
-      <iframe src="https://discord.com/widget?id=936383427215785985&theme=dark"
-        id="discord-iframe" 
+      <iframe src="https://discord.com/widget?id=936383427215785985&theme=dark" 
         width="100%" 
         height="100%"
         allowtransparency="true" 
         frameborder="0"
         style="border: none;"
-        allow="clipboard-write"
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts;"
-        loading="lazy">
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
       </iframe>
     </div>
   </div>
-
-<!-- Discord Server Widget -->
-<script>
-  setTimeout(() => {
-    const iframe = document.getElementById("discord-iframe");
-    const fallback = document.getElementById("discord-fallback");
-
-    const isVisible = iframe && iframe.offsetHeight > 0 && iframe.offsetWidth > 0;
-
-    if (!isVisible) {
-      fallback.classList.remove("hidden");
-    } else {
-      fallback.classList.add("hidden");
-    }
-  }, 2000); // Give time for iframe to attempt render
-</script>
 
 
 <!-- Other creative things -->
