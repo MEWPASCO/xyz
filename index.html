@@ -506,7 +506,6 @@
 <script defer>
   const userId = "579327734052814858";
   const card = document.getElementById("discord-card");
-  const avatar = document.getElementById("avatar");
   const statusDot = document.getElementById("status-dot");
 
   // Activity
@@ -532,13 +531,6 @@
     try {
       const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
       const { data } = await res.json();
-
-      if (data.discord_user.avatar) {
-        const newAvatarUrl = `https://cdn.discordapp.com/avatars/${data.discord_user.id}/${data.discord_user.avatar}.png?size=128`;
-        if (avatar.src !== newAvatarUrl) {
-          avatar.src = newAvatarUrl;
-        }
-      }
 
       // Online Status
       const discordStatus = data.discord_status;
