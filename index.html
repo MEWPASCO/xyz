@@ -234,20 +234,8 @@
     color: #ff00cc;
   }
 
-  #activity-header {
-    font-weight: bold;
-    font-size: 1em;
-    margin-bottom: 4px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  #activity-detail {
-    font-size: 0.9em;
-    font-style: italic;
-    color: #ccc;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+  .activity-text div {
+    transition: opacity 0.4s ease;
   }
 
   /* ─────────────────────────────── */
@@ -515,11 +503,15 @@
   const userId = "579327734052814858";
   const statusDot = document.getElementById("status-dot");
 
-  // Spotify updates
+  // Spotify Card updates
   function updateSpotify(iconText, headerText, detailHtml) {
     const icon = document.getElementById("spotify-icon");
     const header = document.getElementById("spotify-header");
     const detail = document.getElementById("spotify-detail");
+
+    if (header.textContent === headerText && detail.innerHTML === detailHtml) {
+    return;
+    }
 
     icon.textContent = iconText;
     header.style.opacity = 0;
@@ -533,10 +525,15 @@
     }, 200);
   }
 
+  // Game Card updates
   function updateGame(iconText, headerText, detailHtml) {
     const icon = document.getElementById("game-icon");
     const header = document.getElementById("game-header");
     const detail = document.getElementById("game-detail");
+
+    if (header.textContent === headerText && detail.innerHTML === detailHtml) {
+    return;
+    }
 
     icon.textContent = iconText;
     header.style.opacity = 0;
