@@ -555,7 +555,11 @@
           header.textContent = "Now Playing";
 
            // Make clickable link for song
-          detail.innerHTML = `<a href="https://open.spotify.com/track/${spotify.song_id}" target="_blank" style="color: #1DB954; text-decoration: none;">${spotify.song} by ${spotify.artist}</a>`;
+           if (spotify.track_id) {
+            detail.innerHTML = `<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" rel="noopener noreferrer" style="color: #ccc; text-decoration: underline;">${spotify.song} by ${spotify.artist}</a>`;
+          } else {
+            detail.textContent = `${spotify.song} by ${spotify.artist}`;
+          }
 
         } else if (game) {
           icon.textContent = "🕹️";
