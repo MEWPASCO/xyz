@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <title>♅</title>
-   <!-- SEO Meta Tags -->
-   <meta name="description" content="ΛVΛRIΛ | Wolfÿ's Profile">
-   <meta name="keywords" content="Wolfy, Discord, Spotify, Bungie, Social Links, Gaming, Profile, Destiny 2, Marathon">
-   <meta name="author" content="Wolfÿ">
- 
-   <!-- Open Graph Meta Tags -->
-   <meta property="og:title" content="ΛVΛRIΛ | Wolfÿ's Profile">
-   <meta property="og:description" content="Live Discord status, current activity, and curated social links.">
-   <meta property="og:url" content="https://avariaxyz.win">
-   <meta property="og:type" content="website">
- 
-   <!-- Twitter Card Meta Tags -->
-   <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:title" content="ΛVΛRIΛ | Wolfÿ's Profile">
-   <meta name="twitter:description" content="Live Discord status, current activity, and curated social links.">
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="ΛVΛRIΛ | Wolfÿ's Profile">
+  <meta name="keywords" content="Wolfy, Discord, Spotify, Bungie, Social Links, Gaming, Profile, Destiny 2, Marathon">
+  <meta name="author" content="Wolfÿ">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="ΛVΛRIΛ | Wolfÿ's Profile">
+  <meta property="og:description" content="Live Discord status, current activity, and curated social links.">
+  <meta property="og:url" content="https://avariaxyz.win">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ΛVΛRIΛ | Wolfÿ's Profile">
+  <meta name="twitter:description" content="Live Discord status, current activity, and curated social links.">
  <style>
   /* ─────────────────────────────── */
   /* ⚙️  Base Styles and Layout     */
@@ -420,8 +421,6 @@
 
   <!-- Main Website Area -->    
   <div class="main-section">
-
-
   <!-- Left -->
   <!-- Discord User Widget -->
   <div id="discord-card" class="discord-widget">
@@ -444,7 +443,6 @@
         </div>
       </div>
     </div>
-
 
   <!-- Center -->
   <!-- Social Icons -->
@@ -469,11 +467,10 @@
     </a>
   </div>
 
-
   <!-- Right -->
     <!-- GIF -->
     <div class="gif-container">
-      <img src="media/1589466873795.gif" alt="Cool GIF" width="200">
+      <img src="media/1589466873795.gif" alt="Cool GIF" width="200" loading="lazy">
     </div>
   </div>
 
@@ -482,17 +479,17 @@
   <div class="widget-row">
     <!-- Steam Widget -->
     <div class="steam-profile-widget">
-      <iframe src="https://mewpasco.github.io/steam-miniprofile-fork/?interactive=true&vanityId=mewpasco&appId=1085660"
-        frameborder="1"
+      <iframe loading="lazy" src="https://mewpasco.github.io/steam-miniprofile-fork/?interactive=true&vanityId=mewpasco&appId=1085660"
+        frameborder="0"
         scrolling="no"
         style="border: none; width: 360px; height: 360px;"
-        allowfullscreen>
+        allowfullscreen="">
       </iframe>
     </div>
 
     <!-- Discord Server Widget -->
     <div class="discord-server-widget">
-      <iframe src="https://discord.com/widget?id=936383427215785985&theme=dark" 
+      <iframe loading="lazy" src="https://discord.com/widget?id=936383427215785985&theme=dark" 
         width="100%" 
         height="100%"
         allowtransparency="true" 
@@ -506,25 +503,42 @@
 
 <!-- Other creative things -->
 <!-- Discord User Widget Customization + api Updater / Lanyard -->
-<script>
+<script defer>
   const userId = "579327734052814858";
   const card = document.getElementById("discord-card");
   const avatar = document.getElementById("avatar");
-  const username = document.getElementById("username");
   const statusDot = document.getElementById("status-dot");
-  const activity = document.getElementById("activity");
 
+  // Activity
+  function updateActivity(iconText, headerText, detailHtml) {
+    const icon = document.getElementById("activity-icon");
+    const header = document.getElementById("activity-header");
+    const detail = document.getElementById("activity-detail");
+
+    icon.textContent = iconText;
+    header.style.opacity = 0;
+    detail.style.opacity = 0;
+
+    setTimeout(() => {
+      header.textContent = headerText;
+      detail.innerHTML = detailHtml;
+      header.style.opacity = 1;
+      detail.style.opacity = 1;
+    }, 200);
+  }
+
+  // Avatar
   async function fetchStatus() {
     try {
       const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
       const { data } = await res.json();
 
-      // Username + Avatar
-      const user = data.discord_user;
-      const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`;
-      avatar.src = avatarUrl;
-      const nickname = "Wolfÿ";
-      username.textContent = nickname;
+      if (data.discord_user.avatar) {
+        const newAvatarUrl = `https://cdn.discordapp.com/avatars/${data.discord_user.id}/${data.discord_user.avatar}.png?size=128`;
+        if (avatar.src !== newAvatarUrl) {
+          avatar.src = newAvatarUrl;
+        }
+      }
 
       // Online Status
       const discordStatus = data.discord_status;
@@ -542,74 +556,41 @@
       const game = activities.find(act => act.type === 0);   // Playing a game
       const spotify = data.spotify;
 
-      const icon = document.getElementById("activity-icon");
-      const header = document.getElementById("activity-header");
-      const detail = document.getElementById("activity-detail");
-
       // Fade out current activity smoothly
       header.style.opacity = 0;
       detail.style.opacity = 0;
 
-      // Wait a bit to switch content
+      if (spotify) {
+        updateActivity("🎧", "Now Playing", `<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" rel="noopener noreferrer">${spotify.song} by ${spotify.artist}</a>`);
+      } else if (game) {
+        const gameSearch = encodeURIComponent(game.name);
+        updateActivity("🕹️", "Playing", `<a href="https://store.steampowered.com/search/?term=${gameSearch}" target="_blank" rel="noopener noreferrer">${game.name}</a>`);
+      } else if (custom && custom.state) {
+        updateActivity("💬", "Status", custom.state);
+      } else {
+        updateActivity("", "", "— No activity");
+      }
+
+      // Fade in the new content
+      header.style.opacity = "0";
+      detail.style.opacity = "0";
       setTimeout(() => {
-        if (spotify) {
-          icon.textContent = "🎧";
-          header.textContent = "Now Playing";
-
-           // Make clickable link for song
-           if (spotify.track_id) {
-            detail.innerHTML = `<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" rel="noopener noreferrer">${spotify.song} by ${spotify.artist}</a>`;
-          } else {
-            detail.textContent = `${spotify.song} by ${spotify.artist}`;
-          }
-
-        } else if (game) {
-          icon.textContent = "🕹️";
-          header.textContent = "Playing";
-
-          // Try getting Steam ID if possible
-          let gameName = game.name;
-          let steamUrl = '';
-
-          if (game.name) {
-            const gameSearch = encodeURIComponent(game.name);
-            detail.innerHTML = `<a href="https://store.steampowered.com/search/?term=${gameSearch}" target="_blank" rel="noopener noreferrer">${game.name}</a>`;
-          } else {
-          detail.textContent = game.name;
-          }        
-
-        } else if (custom && custom.state) {
-          icon.textContent = "💬";
-          header.textContent = "Status";
-          detail.textContent = custom.state;
-        } else {
-          icon.textContent = "";
-          header.textContent = "";
-          detail.textContent = "— No activity";
-        }
-
-        // Fade in the new content
-        header.style.opacity = "0";
-        detail.style.opacity = "0";
-        setTimeout(() => {
-          header.style.opacity = "1";
-          detail.style.opacity = "1";
-        }, 200); // quick fade transition
-      },);
+        header.style.opacity = "1";
+        detail.style.opacity = "1";
+      }, 200); // quick fade transition
 
     } catch (err) {
-      card.innerHTML = "<p style='color: red;'>Failed to load Discord status</p>";
-      console.error(err);
-    }
+    console.error("Failed to load Discord status", err);
   }
+}
 
   fetchStatus();
-  setInterval(fetchStatus, 7500);
+  setInterval(fetchStatus, 15000); // Time to re-fetch status, 15s aka 15000 default
 </script>
 
 
 <!-- Hexagon Background Script / Animation -->
-<script>
+<script defer>
   const canvas = document.getElementById('hexCanvas');
   const ctx = canvas.getContext('2d');
 
@@ -705,7 +686,5 @@
   resizeCanvas();
   animate();
 </script>
-
-
 </body>
 </html>
