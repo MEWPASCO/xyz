@@ -346,6 +346,21 @@
   /* ‼️ Mobile Design override      */
   /* ─────────────────────────────── */
   @media (max-width: 768px) {
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      padding: 0 16px; /* Keeps spacing on sides without overflowing */
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     .main-section {
       flex-direction: column;
       align-items: center;
