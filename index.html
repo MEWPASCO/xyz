@@ -222,6 +222,15 @@
     flex-direction: column;
   }
 
+  .activity-text a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .activity-text a:hover {
+    color: #ff00cc;
+  }
+
   #activity-header {
     font-weight: bold;
     font-size: 1em;
@@ -534,7 +543,6 @@
       const icon = document.getElementById("activity-icon");
       const header = document.getElementById("activity-header");
       const detail = document.getElementById("activity-detail");
-      const activityCard = document.getElementById("activity-card");
 
       // Fade out current activity smoothly
       header.style.opacity = 0;
@@ -545,11 +553,28 @@
         if (spotify) {
           icon.textContent = "🎧";
           header.textContent = "Now Playing";
-          detail.textContent = `${spotify.song} by ${spotify.artist}`;
+
+           // Make clickable link for song
+          detail.innerHTML = `<a href="https://open.spotify.com/track/${spotify.song_id}" target="_blank" style="color: #1DB954; text-decoration: none;">${spotify.song} by ${spotify.artist}</a>`;
+
         } else if (game) {
           icon.textContent = "🕹️";
           header.textContent = "Playing";
-          detail.textContent = game.name;
+
+          // Try getting Steam ID if possible
+          let gameName = game.name;
+          let steamUrl = '';
+
+          if (game.application_id) {
+            steamUrl = `https://store.steampowered.com/app/${game.application_id}`;
+          }
+
+          if (steamUrl) {
+            detail.innerHTML = `<a href="${steamUrl}" target="_blank" style="color: #66c0f4; text-decoration: none;">${gameName}</a>`;
+          } else {
+            detail.textContent = gameName;
+          }
+
         } else if (custom && custom.state) {
           icon.textContent = "💬";
           header.textContent = "Status";
