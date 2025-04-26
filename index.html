@@ -65,8 +65,10 @@
     font-size: 3em;
     background: linear-gradient(90deg, #ff00cc, #00ffff, #ff00cc);
     background-size: 200%;
-    -webkit-background-clip: text;
+    background-clip: text; /* standard version */
+    -webkit-background-clip: text; /*webkit Chrome/Safari */
     -webkit-text-fill-color: transparent;
+    color: transparent; /* fallback */
     animation: shine 3s linear infinite;
   }
 
@@ -425,8 +427,8 @@
   <div id="discord-card" class="discord-widget">
     <div class="user-row">
       <div class="avatar-container">
-        <img id="avatar" src="" alt="Discord avatar">
-        <span id="status-dot" class="status-dot"></span>
+        <img id="avatar" src="media/avatar-default.jpg" alt="Discord avatar">
+        <span id="status-dot" class="status-dot" style="background-color: #747f8d;"></span>
       </div>
     <div class="user-info">
       <div id="username">Wolfÿ</div>
@@ -587,10 +589,13 @@
         }
 
         // Fade in the new content
-          header.style.opacity = 1;
-          detail.style.opacity = 1;
-        }, 200); // You can tweak this timing
-
+        header.style.opacity = "0";
+        detail.style.opacity = "0";
+        setTimeout(() => {
+          header.style.opacity = "1";
+          detail.style.opacity = "1";
+        }, 200); // quick fade transition
+      },);
 
     } catch (err) {
       card.innerHTML = "<p style='color: red;'>Failed to load Discord status</p>";
