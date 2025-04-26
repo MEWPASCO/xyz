@@ -556,10 +556,6 @@
       const game = activities.find(act => act.type === 0);   // Playing a game
       const spotify = data.spotify;
 
-      // Fade out current activity smoothly
-      header.style.opacity = 0;
-      detail.style.opacity = 0;
-
       if (spotify) {
         updateActivity("🎧", "Now Playing", `<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" rel="noopener noreferrer">${spotify.song} by ${spotify.artist}</a>`);
       } else if (game) {
@@ -570,14 +566,6 @@
       } else {
         updateActivity("", "", "— No activity");
       }
-
-      // Fade in the new content
-      header.style.opacity = "0";
-      detail.style.opacity = "0";
-      setTimeout(() => {
-        header.style.opacity = "1";
-        detail.style.opacity = "1";
-      }, 200); // quick fade transition
 
     } catch (err) {
     console.error("Failed to load Discord status", err);
