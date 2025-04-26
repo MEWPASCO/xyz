@@ -323,6 +323,17 @@
     padding: 0;
   }
 
+  /* Fallback Text in Box in case iframe does not load */
+  .discord-server-text {
+    position: absolute;
+    color: white;
+    font-size: 1.2em;
+    font-style: italic;
+    text-align: center;
+    pointer-events: none; /* So iframe clickable once loaded */
+    z-index: 1;
+  }
+
   /* ─────────────────────────────── */
   /* 🤖 Steam Profile Widget        */
   /* ─────────────────────────────── */
@@ -386,18 +397,6 @@
       margin-bottom: 10px;
     }
 
-    .discord-server-widget {
-      display: flex !important;
-      width: 100%;
-      max-width: 360px;
-      height: auto;
-      min-height: 360px;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 16px;
-      overflow: hidden;
-    }
 }
   /* ─────────────────────────────── */
   /* ‼️ Mobile Design override END  */
@@ -493,6 +492,11 @@
 
     <!-- Discord Server Widget -->
     <div class="discord-server-widget">
+      <div class="discord-server-text">
+        <a href="https://discord.gg/avia" target="_blank" style="color: white; text-decoration: underline;">
+          Join our Discord server!
+        </a>
+      </div>
       <iframe src="https://discord.com/widget?id=936383427215785985&theme=dark" 
         width="100%" 
         height="100%"
