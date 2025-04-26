@@ -250,6 +250,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
   }
 
   .gif-container img {
@@ -424,18 +425,18 @@
   </div>
     <!-- Spotify Box inside of Discord User Widget -->
     <div class="activity-card" id="spotify-card">
-      <div id="spotify-icon">🎧</div>
+      <div id="spotify-icon">🧩</div>
         <div class="activity-text">
-          <div id="spotify-header">Now Playing</div>
+          <div id="spotify-header">Fetching...</div>
           <div id="spotify-detail">Fetching...</div>
         </div>
       </div>
     <!-- Other Activity Box inside of Discord User Widget -->
     <div class="activity-card" id="game-card">
-      <div id="game-icon">🎧</div>
+      <div id="game-icon">🧩</div>
         <div class="activity-text">
-          <div id="game-header">Now Playing</div>
-          <div id="game-detail">Loading...</div>
+          <div id="game-header">Fetching...</div>
+          <div id="game-detail">Fetching...</div>
         </div>
       </div>
     </div>
@@ -573,24 +574,24 @@
       if (spotify) {
         updateSpotify(
           "🎧",
-          "Now Playing",
+          "Now Listening",
           `<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" rel="noopener noreferrer">${spotify.song} by ${spotify.artist}</a>`
         );
       } else {
         updateSpotify("👻", "Nothing Playing", "Ghostly noises..");
       }
 
-      // 🕹️ Game or 💬 Status Section
+      // 🎮 Game or 💬 Status Section
       if (game) {
         const gameSearch = encodeURIComponent(game.name);
         updateGame(
-          "🕹️",
+          "🎮",
           "Playing",
           `<a href="https://store.steampowered.com/search/?term=${gameSearch}" target="_blank" rel="noopener noreferrer">${game.name}</a>`
         );
       } else if (custom && custom.state) {
         updateGame(
-          "💬",
+          "💭",
           "Status",
           custom.state
         );
