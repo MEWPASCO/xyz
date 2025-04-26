@@ -346,20 +346,12 @@
   /* ‼️ Mobile Design override      */
   /* ─────────────────────────────── */
   @media (max-width: 768px) {
-    .main-section {
+    .main-section,
+    .widget-row {
       flex-direction: column;
       align-items: center;
       gap: 20px;
       padding: 20px;
-    }
-
-    .discord-server-widget,
-    .steam-profile-widget,
-    .discord-widget,
-    .gif-container {
-      width: 90%;
-      max-width: 320px;
-      height: auto;
     }
 
     .social-links {
@@ -369,21 +361,13 @@
       gap: 16px;
       height: auto;
       font-size: 1.8em;
-      margin-top: 20px;
+      margin-bottom: 10px;
     }
 
-    .avatar-container {
-      margin-bottom: 0;
-    }
-
-    .activity-card {
-      max-width: 100%;
-      width: 100%;
-    }
+}
   /* ─────────────────────────────── */
   /* ‼️ Mobile Design override END  */
   /* ─────────────────────────────── */
-  }
 </style>
 </head>
 <body>
