@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index, follow">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <title>♅</title>
 
@@ -45,6 +44,8 @@
     background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
     position: relative;
     z-index: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   @media (max-width: 480px) {
@@ -421,7 +422,7 @@
   <div id="discord-card" class="discord-widget">
     <div class="user-row">
       <div class="avatar-container">
-        <img id="avatar" src="media/avatar.webp" alt="Discord avatar" width="128" height="132">
+        <img id="avatar" src="media/avatar.webp" alt="Discord avatar" width="128" height="132" fetchpriority="high">
         <span id="status-dot" class="status-dot" style="background-color: #747f8d;"></span>
       </div>
     <div class="user-info">
@@ -431,7 +432,7 @@
   </div>
     <!-- Spotify Box inside of Discord User Widget -->
     <div class="activity-card" id="spotify-card">
-      <i id="spotify-icon" class="activity-icon fab fa-spotify"></i>
+      <img id="spotify-icon" class="activity-icon" src="media/icons/spotify.svg" alt="Spotify Icon" width="32" height="32">
         <div class="activity-text">
           <div id="spotify-header">Fetching...</div>
           <div id="spotify-detail">Fetching...</div>
@@ -439,7 +440,7 @@
       </div>
     <!-- Other Activity Box inside of Discord User Widget -->
     <div class="activity-card" id="game-card">
-      <i id="game-icon" class="activity-icon fab fa-discord"></i>
+      <i id="game-icon" class="activity-icon" src="media/icons/discord.svg" alt="Game Icon" width="32" height="32">
         <div class="activity-text">
           <div id="game-header">Fetching...</div>
           <div id="game-detail">Fetching...</div>
@@ -451,22 +452,22 @@
   <!-- Social Icons -->
   <div class="social-links">
     <a href="https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y?si=b820322fefbb4c41" target="_blank" title="Spotify">
-      <i class="fab fa-spotify"></i>
+      <img src="media/icons/spotify.svg" alt="Spotify Icon" width="32" height="32">
     </a>
     <a href="https://www.youtube.com/@MEWPASCO" target="_blank" title="YouTube">
-      <i class="fab fa-youtube"></i>
+      <img src="media/icons/youtube.svg" alt="YouTube Icon" width="32" height="32">
     </a>
     <a href="https://x.com/mewpasco" target="_blank" title="X">
-      <i class="fab fa-x-twitter"></i>
+      <img src="media/icons/twitter.svg" alt="X Icon" width="32" height="32">
     </a>
     <a href="https://discord.gg/avia" target="_blank" title="Discord">
-      <i class="fab fa-discord"></i>
+      <img src="media/icons/discord.svg" alt="Discord Icon" width="32" height="32">
     </a>
     <a href="https://raid.report/pc/4611686018519998253" target="_blank" title="Raid Report">
-      <i class="fas fa-trophy"></i>
+      <img src="media/icons/raid.svg" alt="Raid Icon" width="32" height="32">
     </a>
     <a href="https://dungeon.report/pc/4611686018519998253" target="_blank" title="Dungeon Report">
-      <i class="fas fa-dungeon"></i>
+      <img src="media/icons/dungeon.svg" alt="Dungeon Icon" width="32" height="32">
     </a>
   </div>
 
@@ -514,7 +515,7 @@
   const statusDot = document.getElementById("status-dot");
 
   // Spotify Card updates
-  function updateSpotify(iconClass, color, headerText, detailHtml) {
+  function updateSpotify(iconSrc, headerText, detailHtml) {
     const icon = document.getElementById("spotify-icon");
     const header = document.getElementById("spotify-header");
     const detail = document.getElementById("spotify-detail");
@@ -523,8 +524,7 @@
     return;
     }
 
-    icon.className = `activity-icon ${iconClass}`;
-    icon.style.color = color;
+    icon.src = iconSrc;
     header.style.opacity = 0;
     detail.style.opacity = 0;
 
@@ -537,7 +537,7 @@
   }
 
   // Game Card updates
-  function updateGame(iconClass, color, headerText, detailHtml) {
+  function updateGame(iconSrc, headerText, detailHtml) {
     const icon = document.getElementById("game-icon");
     const header = document.getElementById("game-header");
     const detail = document.getElementById("game-detail");
@@ -546,8 +546,7 @@
     return;
     }
 
-    icon.className = `activity-icon ${iconClass}`;
-    icon.style.color = color;
+    icon.src = iconSrc;
     header.style.opacity = 0;
     detail.style.opacity = 0;
 
@@ -584,14 +583,14 @@
        // 🎧 Spotify Section
       if (spotify) {
         updateSpotify(
-          "fab fa-spotify",
+          "media/icons/spotify.svg",
           "#1ED760", // Spotify green
           "Now Listening",
           `<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" rel="noopener noreferrer">${spotify.song} by ${spotify.artist}</a>`
         );
       } else {
         updateSpotify(
-          "fas fa-ghost",
+          "media/icons/ghost.svg",
           "#FFFFFF", // White
           "Nothing Playing",
           "Ghostly noises.."
@@ -602,21 +601,21 @@
       if (game) {
         const gameSearch = encodeURIComponent(game.name);
         updateGame(
-          "fab fa-steam",
+          "media/icons/steam.svg",
           "#00adee", // Steam blue
           "Playing",
           `<a href="https://store.steampowered.com/search/?term=${gameSearch}" target="_blank" rel="noopener noreferrer">${game.name}</a>`
         );
       } else if (custom && custom.state) {
         updateGame(
-          "fab fa-discord",
+          "media/icons/discord.svg",
           "#5865F2", // Discord Blurple
           "Status",
           custom.state
         );
       } else {
         updateGame(
-          "fas fa-wand-magic-sparkles",
+          "media/icons/wand.svg",
           "#888888", // Soft gray
           "Oh no!", 
           "Magically disappeared?"
