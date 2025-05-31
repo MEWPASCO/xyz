@@ -1,2 +1,311 @@
-/* style.css */
-/* Place all CSS content from the <style> tag here */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
+  position: relative;
+  z-index: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+#hexCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+h1 {
+  font-size: 3em;
+  background: linear-gradient(90deg, #ff00cc, #00ffff, #ff00cc);
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% { background-position: 0% }
+  100% { background-position: 200% }
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.discord-widget {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  box-sizing: border-box;
+  width: 360px;
+  height: 360px;
+  border-radius: 16px;
+  box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.discord-widget img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+#username {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 4px;
+  color: #c084fc;
+  text-shadow:
+    0 0 2px #7c3aed,
+    0 0 6px #a855f7,
+    0 0 10px #9333ea;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 2px #7c3aed, 0 0 6px #a855f7, 0 0 10px #9333ea;
+  }
+  50% {
+    text-shadow: 0 0 4px #7c3aed, 0 0 10px #a855f7, 0 0 16px #9333ea;
+  }
+}
+
+.avatar-container {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 10px;
+}
+
+.avatar-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: block;
+}
+
+.status-dot {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid #0d0d1a;
+  background-color: gray;
+}
+
+#custom-text {
+  font-size: 0.9em;
+  color: #ccc;
+  margin-top: 4px;
+  font-style: italic;
+  text-align: left;
+  max-width: 180px;
+  line-height: 1.4;
+}
+
+.activity-separator {
+  height: 20px;
+}
+
+.activity-card {
+  margin-top: 20px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  width: 90%;
+  max-width: 280px;
+  box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
+  transition: box-shadow 0.3s ease;
+}
+
+.activity-card:hover {
+  box-shadow: 0 0 12px rgba(255, 0, 204, 0.25), 0 0 24px rgba(147, 51, 234, 0.2);
+}
+
+.activity-icon {
+  font-size: 1.8em;
+  margin-right: 8px;
+  transition: color 0.3s ease;
+}
+
+.activity-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-text a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.activity-text a:hover {
+  color: #ff00cc;
+}
+
+.activity-text div {
+  transition: opacity 0.4s ease;
+}
+
+.gif-container {
+  width: 360px;
+  height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
+}
+
+.gif-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  gap: 24px;
+  position: relative;
+  top: 10px;
+}
+
+.social-links a {
+  color: white;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #ff00cc;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: nowrap;
+  max-width: 100%;
+}
+
+.widget-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 120px;
+  margin-top: 80px;
+  flex-wrap: wrap;
+}
+
+.discord-server-widget,
+.steam-profile-widget {
+  width: 360px;
+  height: 360px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    padding: 0 16px;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  .main-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .widget-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+    margin-top: 0px;
+  }
+
+  .social-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    height: auto;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+}

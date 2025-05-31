@@ -92,388 +92,12 @@
     ]
   }
   </script>
- <style>
-  /* ─────────────────────────────── */
-  /* ⚙️  Base Styles and Layout     */
-  /* ─────────────────────────────── */
-  body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
-    color: #fff;
-    min-height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
-    position: relative;
-    z-index: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  @media (max-width: 480px) {
-    body {
-      font-size: 14px;
-    }
-  }
-
-  /* 🌌 Background Animation Canvas */
-  #hexCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    pointer-events: none;
-  }
-
-  /* ─────────────────────────────── */
-  /* 💫 Header Glow Title           */
-  /* ─────────────────────────────── */
-  h1 {
-    font-size: 3em;
-    background: linear-gradient(90deg, #ff00cc, #00ffff, #ff00cc);
-    background-size: 200%;
-    background-clip: text; /* standard version */
-    -webkit-background-clip: text; /*webkit Chrome/Safari */
-    -webkit-text-fill-color: transparent;
-    color: transparent; /* fallback */
-    animation: shine 3s linear infinite;
-  }
-
-  @keyframes shine {
-    0% { background-position: 0% }
-    100% { background-position: 200% }
-  }
-
-  /* 🧱 Wrapper for Content */
-  .content-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-
-  /* ─────────────────────────────── */
-  /* 👤 Discord User Widget         */
-  /* ─────────────────────────────── */
-  .discord-widget {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 20px;
-    box-sizing: border-box;
-    width: 360px;
-    height: 360px;
-    border-radius: 16px;
-    box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* Avatar + Name Row */
-  .discord-widget img {
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-
-  .user-row {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 16px;
-  }
-
-  .user-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  #username {
-    font-weight: bold;
-    font-size: 1.2em;
-    margin-bottom: 4px;
-    color: #c084fc;
-    text-shadow:
-      0 0 2px #7c3aed,
-      0 0 6px #a855f7,
-      0 0 10px #9333ea;
-    animation: pulse-glow 3s ease-in-out infinite;
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% {
-      text-shadow:
-        0 0 2px #7c3aed,
-        0 0 6px #a855f7,
-        0 0 10px #9333ea;
-    }
-    50% {
-      text-shadow:
-        0 0 4px #7c3aed,
-        0 0 10px #a855f7,
-        0 0 16px #9333ea;
-    }
-  }
-
-  /* Dot Indicator - Discord Online/Away/DND/Offline */
-  .avatar-container {
-    position: relative;
-    width: 96px;
-    height: 96px;
-    margin-bottom: 10px;
-  }
-
-  .avatar-container img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    display: block;
-  }
-
-  .status-dot {
-    position: absolute;
-    bottom: 4px;
-    right: 4px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 3px solid #0d0d1a;
-    background-color: gray;
-  }
-
-  /* ✨ Custom Tag Below Name */
-  #custom-text {
-    font-size: 0.9em;
-    color: #ccc;
-    margin-top: 4px;
-    font-style: italic;
-    text-align: left;
-    max-width: 180px;
-    line-height: 1.4;
-  }
-
-  /* 🎶 Now Playing / Activity */
-  .activity-separator {
-    height: 20px;
-  }
-
-  .activity-card {
-    margin-top: 20px;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-align: left;
-    width: 90%;
-    max-width: 280px;
-    box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
-    transition: box-shadow 0.3s ease;
-  }
-
-  .activity-card:hover {
-    box-shadow: 0 0 12px rgba(255, 0, 204, 0.25), 0 0 24px rgba(147, 51, 234, 0.2);
-  }
-
-  .activity-icon {
-    font-size: 1.8em;
-    margin-right: 8px;
-    transition: color 0.3s ease;
-  }
-
-  .activity-text {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .activity-text a {
-    color: inherit;
-    text-decoration: underline;
-  }
-
-  .activity-text a:hover {
-    color: #ff00cc;
-  }
-
-  .activity-text div {
-    transition: opacity 0.4s ease;
-  }
-
-  /* ─────────────────────────────── */
-  /* 🖼️ GIF Panel Right Side       */
-  /* ─────────────────────────────── */
-  .gif-container {
-    width: 360px;
-    height: 360px;
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
-  }
-
-  .gif-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-    display: block;
-  }
-
-  /* ─────────────────────────────── */
-  /* 🌐 Social Link Icons           */
-  /* ─────────────────────────────── */
-  .social-links {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    gap: 24px;
-    position: relative;
-    top: 10px;
-  }
-
-  .social-links a {
-    color: white;
-    transition: color 0.3s;
-  }
-
-  .social-links a:hover {
-    color: #ff00cc;
-  }
-
-  /* ─────────────────────────────── */
-  /* 🧩 Main Section Layout         */
-  /* ─────────────────────────────── */
-  .main-section {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: nowrap;
-    max-width: 100%;
-  }
-
-  /* ─────────────────────────────── */
-  /* 🧩 2nd Row Below Main Section  */
-  /* ─────────────────────────────── */
-  .widget-row {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 120px;
-    margin-top: 80px;
-    flex-wrap: wrap;
-  }
-
-  /* ─────────────────────────────── */
-  /* 🤖 Discord Server Widget       */
-  /* ─────────────────────────────── */
-  .discord-server-widget {
-    width: 360px;
-    height: 360px;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 16px;
-    box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding: 0;
-  }
-
-  /* ─────────────────────────────── */
-  /* 🤖 Steam Profile Widget        */
-  /* ─────────────────────────────── */
-  .steam-profile-widget {
-    width: 360px;
-    height: 360px;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 16px;
-    box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding: 0;
-  }
-
-
-
-
-  /* ─────────────────────────────── */
-  /* ‼️ Mobile Design override      */
-  /* ─────────────────────────────── */
-  @media (max-width: 768px) {
-    html, body {
-      overflow-x: hidden;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      padding: 0 16px; /* Keeps spacing on sides without overflowing */
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
-    .main-section {
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .widget-row {
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
-      padding: 20px;
-      margin-top: 0px;
-    }
-    
-    .social-links {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-      height: auto;
-      font-size: 1.8em;
-      margin-bottom: 10px;
-    }
-
-}
-  /* ─────────────────────────────── */
-  /* ‼️ Mobile Design override END  */
-  /* ─────────────────────────────── */
-</style>
 </head>
 <body>
-<!-- Background Hexagonses ;) -->
-<canvas id="hexCanvas"></canvas>
+  <!-- Background Hexagonses ;) -->
+  <canvas id="hexCanvas"></canvas>
 
-
-<!-- Title - Top -->
-<!-- Title - Bungie User Name -->
+  <!-- Title - Bungie User Name -->
   <div class="content-wrapper">
     <h1>
       <a href="https://www.bungie.net/7/en/User/Profile/3/4611686018519998253?bgn=Wolf%C3%BF" target="_blank" style="color: inherit; text-decoration: none;">
@@ -481,322 +105,71 @@
       </a>
     </h1>
 
+    <!-- Main Website Area -->
+    <div class="main-section">
+      <!-- Discord User Widget -->
+      <div id="discord-card" class="discord-widget">
+        <div class="user-row">
+          <div class="avatar-container">
+            <img id="avatar" src="media/avatar.webp" alt="Discord avatar" width="128" height="132">
+            <span id="status-dot" class="status-dot" style="background-color: #747f8d;"></span>
+          </div>
+          <div class="user-info">
+            <div id="username">Wolfÿ</div>
+            <div id="custom-text">αвуѕѕ ♅</div>
+          </div>
+        </div>
 
-  <!-- Main Website Area -->    
-  <div class="main-section">
-  <!-- Left -->
-  <!-- Discord User Widget -->
-  <div id="discord-card" class="discord-widget">
-    <div class="user-row">
-      <div class="avatar-container">
-        <img id="avatar" src="media/avatar.webp" alt="Discord avatar" width="128" height="132">
-        <span id="status-dot" class="status-dot" style="background-color: #747f8d;"></span>
-      </div>
-    <div class="user-info">
-      <div id="username">Wolfÿ</div>
-      <div id="custom-text">αвуѕѕ ♅</div>
-    </div>
-  </div>
-    <!-- Spotify Box inside of Discord User Widget -->
-    <div class="activity-card" id="spotify-card">
-      <i id="spotify-icon" class="activity-icon fab fa-spotify"></i>
-        <div class="activity-text">
-          <div id="spotify-header">Fetching...</div>
-          <div id="spotify-detail">Fetching...</div>
+        <div class="activity-card" id="spotify-card">
+          <i id="spotify-icon" class="activity-icon fab fa-spotify"></i>
+          <div class="activity-text">
+            <div id="spotify-header">Fetching...</div>
+            <div id="spotify-detail">Fetching...</div>
+          </div>
+        </div>
+
+        <div class="activity-card" id="game-card">
+          <i id="game-icon" class="activity-icon fab fa-discord"></i>
+          <div class="activity-text">
+            <div id="game-header">Fetching...</div>
+            <div id="game-detail">Fetching...</div>
+          </div>
         </div>
       </div>
-    <!-- Other Activity Box inside of Discord User Widget -->
-    <div class="activity-card" id="game-card">
-      <i id="game-icon" class="activity-icon fab fa-discord"></i>
-        <div class="activity-text">
-          <div id="game-header">Fetching...</div>
-          <div id="game-detail">Fetching...</div>
-        </div>
+
+      <!-- Social Links -->
+      <div class="social-links">
+        <a href="https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y" target="_blank" title="Spotify"><i class="fab fa-spotify"></i></a>
+        <a href="https://www.youtube.com/@MEWPASCO" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://x.com/mewpasco" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://discord.gg/avia" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+        <a href="https://raid.report/pc/4611686018519998253" target="_blank" title="Raid Report"><i class="fas fa-trophy"></i></a>
+        <a href="https://dungeon.report/pc/4611686018519998253" target="_blank" title="Dungeon Report"><i class="fas fa-dungeon"></i></a>
+      </div>
+
+      <!-- Right -->
+      <div class="gif-container">
+        <video autoplay loop muted playsinline width="360" height="360">
+          <source src="media/Cool GIF.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
 
-  <!-- Center -->
-  <!-- Social Icons -->
-  <div class="social-links">
-    <a href="https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y?si=b820322fefbb4c41" target="_blank" title="Spotify">
-      <i class="fab fa-spotify"></i>
-    </a>
-    <a href="https://www.youtube.com/@MEWPASCO" target="_blank" title="YouTube">
-      <i class="fab fa-youtube"></i>
-    </a>
-    <a href="https://x.com/mewpasco" target="_blank" title="X">
-      <i class="fab fa-x-twitter"></i>
-    </a>
-    <a href="https://discord.gg/avia" target="_blank" title="Discord">
-      <i class="fab fa-discord"></i>
-    </a>
-    <a href="https://raid.report/pc/4611686018519998253" target="_blank" title="Raid Report">
-      <i class="fas fa-trophy"></i>
-    </a>
-    <a href="https://dungeon.report/pc/4611686018519998253" target="_blank" title="Dungeon Report">
-      <i class="fas fa-dungeon"></i>
-    </a>
-  </div>
+    <!-- 2nd Row of Widgets -->
+    <div class="widget-row">
+      <div class="steam-profile-widget">
+        <iframe loading="lazy" src="https://mewpasco.github.io/steam-miniprofile-fork/?interactive=true&vanityId=mewpasco&appId=1085660" frameborder="0" scrolling="no" style="border: none; width: 360px; height: 360px;" allowfullscreen></iframe>
+      </div>
 
-  <!-- Right -->
-    <!-- GIF -->
-    <div class="gif-container">
-      <video autoplay loop muted playsinline width="360" height="360">
-        <source src="media/Cool GIF.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="discord-server-widget">
+        <iframe loading="lazy" src="https://discord.com/widget?id=936383427215785985&theme=dark" width="100%" height="100%" allowtransparency="true" frameborder="0" style="border: none;" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+      </div>
     </div>
   </div>
 
-
-  <!-- 2nd Row of Widgets -->
-  <div class="widget-row">
-    <!-- Steam Widget -->
-    <div class="steam-profile-widget">
-      <iframe loading="lazy" src="https://mewpasco.github.io/steam-miniprofile-fork/?interactive=true&vanityId=mewpasco&appId=1085660"
-        frameborder="0"
-        scrolling="no"
-        style="border: none; width: 360px; height: 360px;"
-        allowfullscreen="">
-      </iframe>
-    </div>
-
-    <!-- Discord Server Widget -->
-    <div class="discord-server-widget">
-      <iframe loading="lazy" src="https://discord.com/widget?id=936383427215785985&theme=dark" 
-        width="100%" 
-        height="100%"
-        allowtransparency="true" 
-        frameborder="0"
-        style="border: none;"
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-      </iframe>
-    </div>
-  </div>
-
-
-<!-- Other creative things -->
-<!-- Discord User Widget Customization + api Updater / Lanyard -->
-<script defer>
-  const userId = "579327734052814858";
-  const statusDot = document.getElementById("status-dot");
-
-  // Spotify Card updates
-  function updateSpotify(iconClass, color, headerText, detailHtml) {
-    const icon = document.getElementById("spotify-icon");
-    const header = document.getElementById("spotify-header");
-    const detail = document.getElementById("spotify-detail");
-
-    if (header.textContent === headerText && detail.innerHTML === detailHtml) {
-    return;
-    }
-
-    icon.className = `activity-icon ${iconClass}`;
-    icon.style.color = color;
-    header.style.opacity = 0;
-    detail.style.opacity = 0;
-
-    setTimeout(() => {
-      header.textContent = headerText;
-      detail.innerHTML = detailHtml;
-      header.style.opacity = 1;
-      detail.style.opacity = 1;
-    }, 200);
-  }
-
-  // Game Card updates
-  function updateGame(iconClass, color, headerText, detailHtml) {
-    const icon = document.getElementById("game-icon");
-    const header = document.getElementById("game-header");
-    const detail = document.getElementById("game-detail");
-
-    if (header.textContent === headerText && detail.innerHTML === detailHtml) {
-    return;
-    }
-
-    icon.className = `activity-icon ${iconClass}`;
-    icon.style.color = color;
-    header.style.opacity = 0;
-    detail.style.opacity = 0;
-
-    setTimeout(() => {
-      header.textContent = headerText;
-      detail.innerHTML = detailHtml;
-      header.style.opacity = 1;
-      detail.style.opacity = 1;
-    }, 200);
-  }
-
-  // Fetch
-  async function fetchStatus() {
-    try {
-      const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
-      const { data } = await res.json();
-
-      // Online Status
-      const discordStatus = data.discord_status;
-      const statusColors = {
-        online: "#43b581",
-        idle: "#faa61a",
-        dnd: "#f04747",
-        offline: "#747f8d"
-      };
-      statusDot.style.backgroundColor = statusColors[discordStatus] || "#747f8d";
-
-      // Current Activity
-      const activities = data.activities;
-      const custom = activities.find(act => act.type === 4); // Custom status
-      const game = activities.find(act => act.type === 0);   // Playing a game
-      const spotify = data.spotify;
-    
-       // 🎧 Spotify Section
-      if (spotify) {
-        updateSpotify(
-          "fab fa-spotify",
-          "#1ED760", // Spotify green
-          "Now Listening",
-          `<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" rel="noopener noreferrer">${spotify.song} by ${spotify.artist}</a>`
-        );
-      } else {
-        updateSpotify(
-          "fas fa-ghost",
-          "#FFFFFF", // White
-          "Nothing Playing",
-          "Ghostly noises.."
-        );
-      }
-
-      // 🎮 Game or 💬 Status Section
-      if (game) {
-        const gameSearch = encodeURIComponent(game.name);
-        updateGame(
-          "fab fa-steam",
-          "#00adee", // Steam blue
-          "Playing",
-          `<a href="https://store.steampowered.com/search/?term=${gameSearch}" target="_blank" rel="noopener noreferrer">${game.name}</a>`
-        );
-      } else if (custom && custom.state) {
-        updateGame(
-          "fab fa-discord",
-          "#5865F2", // Discord Blurple
-          "Status",
-          custom.state
-        );
-      } else {
-        updateGame(
-          "fas fa-wand-magic-sparkles",
-          "#888888", // Soft gray
-          "Oh no!", 
-          "Magically disappeared?"
-        );
-      }
-
-    } catch (err) {
-    console.error("Failed to load Discord status", err);
-  }
-}
-
-  fetchStatus();
-  setInterval(fetchStatus, 15000); // Time to re-fetch status, 15s aka 15000 default
-</script>
-
-
-<!-- Hexagon Background Script / Animation -->
-<script defer>
-  const canvas = document.getElementById('hexCanvas');
-  const ctx = canvas.getContext('2d');
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    initHexes(); // re-generate hexes when window changes
-  }
-  window.addEventListener('resize', resizeCanvas);
-
-  // Configs
-  const hexSize = 10;
-  const spacing = hexSize * 3.5;
-  const speed = 0.2;
-  const colors = [
-    'rgba(0, 255, 255, OPACITY)',     // Cyan
-    'rgba(255, 0, 255, OPACITY)',     // Magenta
-    'rgba(255, 128, 255, OPACITY)'    // Light pink
-  ];
-
-  // Generate grid of hex "particles"
-  let hexes = [];
-  function initHexes() {
-    hexes = [];
-    for (let y = -spacing; y < canvas.height + spacing; y += spacing) {
-      for (let x = -spacing; x < canvas.width + spacing; x += spacing * 1.5) {
-        const rowOffset = (Math.floor(y / spacing) % 2) * spacing * 0.75;
-        const colorBase = colors[Math.floor(Math.random() * colors.length)];
-        const phase = Math.random() * Math.PI * 2;
-        hexes.push({
-          x: x + rowOffset,
-          y: y,
-          colorBase,
-          phase
-        });
-      }
-    }
-  }
-
-  function drawHex(x, y, size, rotation, color, glowAlpha) {
-    const angle = Math.PI / 3;
-    ctx.beginPath();
-    for (let i = 0; i < 6; i++) {
-      const px = x + size * Math.cos(angle * i + rotation);
-      const py = y + size * Math.sin(angle * i + rotation);
-      ctx.lineTo(px, py);
-    }
-    ctx.closePath();
-    ctx.strokeStyle = color;
-    ctx.shadowColor = color.replace(/rgba\(([^,]+),([^,]+),([^,]+),[^)]+\)/, 'rgba($1,$2,$3,' + glowAlpha + ')');
-    ctx.shadowBlur = 6;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-  }
-
-  let offset = 0;
-  let mouseX = 0, mouseY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    offset += speed;
-
-    // Drift + mouse offset
-    const driftX = Math.sin(offset * 0.01) * spacing;
-    const driftY = Math.cos(offset * 0.01) * spacing;
-    const parallaxX = mouseX * 20;
-    const parallaxY = mouseY * 20;
-
-    const time = Date.now() * 0.002;
-
-    for (const hex of hexes) {
-      const opacity = 0.03 + Math.abs(Math.sin(time + hex.phase)) * 0.1;
-      const glow = 0.3 + Math.abs(Math.sin(time + hex.phase)) * 0.5;
-      const finalColor = hex.colorBase.replace('OPACITY', opacity.toFixed(2));
-      drawHex(
-        hex.x + driftX + parallaxX,
-        hex.y + driftY + parallaxY,
-        hexSize,
-        Math.PI / 4,
-        finalColor,
-        glow.toFixed(2)
-      );
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  resizeCanvas();
-  animate();
-</script>
+  <!-- These <script defer> tags are removed and moved into external JS: -->
+  <script defer src="lanyard.js"></script>
+  <script defer src="hexbg.js"></script>
 </body>
 </html>
