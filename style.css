@@ -1,3 +1,6 @@
+/* ─────────────────────────────── */
+/* ⚙️  Base Styles and Layout     */
+/* ─────────────────────────────── */
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
@@ -23,6 +26,7 @@ body {
   }
 }
 
+/* 🌌 Background Animation Canvas */
 #hexCanvas {
   position: fixed;
   top: 0;
@@ -31,6 +35,7 @@ body {
   pointer-events: none;
 }
 
+/* 💫 Header Glow Title */
 h1 {
   font-size: 3em;
   background: linear-gradient(90deg, #ff00cc, #00ffff, #ff00cc);
@@ -47,6 +52,7 @@ h1 {
   100% { background-position: 200% }
 }
 
+/* 🧱 Wrapper for Content */
 .content-wrapper {
   flex: 1;
   display: flex;
@@ -56,6 +62,7 @@ h1 {
   min-height: 100vh;
 }
 
+/* 👤 Discord User Widget */
 .discord-widget {
   background: rgba(0, 0, 0, 0.4);
   padding: 20px;
@@ -70,6 +77,7 @@ h1 {
   align-items: center;
 }
 
+/* Avatar + Name Row */
 .discord-widget img {
   width: 96px;
   height: 96px;
@@ -106,10 +114,16 @@ h1 {
 
 @keyframes pulse-glow {
   0%, 100% {
-    text-shadow: 0 0 2px #7c3aed, 0 0 6px #a855f7, 0 0 10px #9333ea;
+    text-shadow:
+      0 0 2px #7c3aed,
+      0 0 6px #a855f7,
+      0 0 10px #9333ea;
   }
   50% {
-    text-shadow: 0 0 4px #7c3aed, 0 0 10px #a855f7, 0 0 16px #9333ea;
+    text-shadow:
+      0 0 4px #7c3aed,
+      0 0 10px #a855f7,
+      0 0 16px #9333ea;
   }
 }
 
@@ -138,6 +152,7 @@ h1 {
   background-color: gray;
 }
 
+/* ✨ Custom Tag Below Name */
 #custom-text {
   font-size: 0.9em;
   color: #ccc;
@@ -148,6 +163,7 @@ h1 {
   line-height: 1.4;
 }
 
+/* 🎶 Now Playing / Activity */
 .activity-separator {
   height: 20px;
 }
@@ -195,6 +211,7 @@ h1 {
   transition: opacity 0.4s ease;
 }
 
+/* 🖼️ GIF Panel */
 .gif-container {
   width: 360px;
   height: 360px;
@@ -215,6 +232,7 @@ h1 {
   display: block;
 }
 
+/* 🌐 Social Link Icons */
 .social-links {
   display: flex;
   flex-direction: column;
@@ -235,6 +253,7 @@ h1 {
   color: #ff00cc;
 }
 
+/* 🧩 Main Section Layout */
 .main-section {
   display: flex;
   flex-direction: row;
@@ -245,6 +264,7 @@ h1 {
   max-width: 100%;
 }
 
+/* 🧩 2nd Row Below Main Section */
 .widget-row {
   display: flex;
   justify-content: center;
@@ -254,6 +274,7 @@ h1 {
   flex-wrap: wrap;
 }
 
+/* 🤖 Discord Server Widget */
 .discord-server-widget,
 .steam-profile-widget {
   width: 360px;
@@ -268,6 +289,7 @@ h1 {
   padding: 0;
 }
 
+/* ‼️ Mobile Design override */
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
@@ -296,7 +318,7 @@ h1 {
     align-items: center;
     gap: 40px;
     padding: 20px;
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   .social-links {
