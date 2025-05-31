@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     ctx.closePath();
     ctx.strokeStyle = color;
-    ctx.shadowColor = color.replace(/rgba\\(([^,]+),([^,]+),([^,]+),[^)]+\\)/, 'rgba($1,$2,$3,' + glowAlpha + ')');
+    ctx.shadowColor = color.replace(/rgba\(([^,]+),([^,]+),([^,]+),[^)]+\)/, 'rgba($1,$2,$3,' + glowAlpha + ')');
     ctx.shadowBlur = 6;
     ctx.stroke();
     ctx.shadowBlur = 0;
@@ -62,17 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
   });
 
-  let lastTime = 0;
-  const fps = 30;
-  const interval = 1000 / fps;
-
-  function animate(time = 0) {
-    if (time - lastTime < interval) {
-      requestAnimationFrame(animate);
-      return;
-    }
-    lastTime = time;
-
+  function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     offset += speed;
 
@@ -86,7 +76,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const opacity = 0.03 + Math.abs(Math.sin(timeFactor + hex.phase)) * 0.1;
       const glow = 0.3 + Math.abs(Math.sin(timeFactor + hex.phase)) * 0.5;
       const finalColor = hex.colorBase.replace('OPACITY', opacity.toFixed(2));
-      drawHex(hex.x + driftX + parallaxX, hex.y + driftY + parallaxY, hexSize, Math.PI / 4, finalColor, glow.toFixed(2));
+      drawHex(
+        hex.x + driftX + parallaxX,
+        hex.y + driftY + parallaxY,
+        hexSize,
+        Math.PI / 4,
+        finalColor,
+        glow.toFixed(2)
+      );
     }
 
     requestAnimationFrame(animate);
