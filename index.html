@@ -37,17 +37,61 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Wolfÿ",
-    "url": "https://avariaxyz.win",
-    "sameAs": [
-      "https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y",
-      "https://www.youtube.com/@MEWPASCO",
-      "https://x.com/mewpasco",
-      "https://discord.gg/avia"
-    ],
-    "image": "https://avariaxyz.win/media/avatar.webp",
-    "description": "Live Discord status, gaming activity, and curated social links. Part of ΛVΛRIΛ."
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://avariaxyz.win/#organization",
+        "name": "ΛVΛRIΛ",
+        "url": "https://avariaxyz.win",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://avariaxyz.win/media/avatar.webp"
+        },
+        "sameAs": [
+          "https://discord.gg/avia",
+          "https://x.com/mewpasco",
+          "https://www.youtube.com/@MEWPASCO",
+          "https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y"
+        ]
+      },
+      {
+        "@type": "Person",
+        "name": "Wolfÿ",
+        "url": "https://avariaxyz.win",
+        "image": "https://avariaxyz.win/media/avatar.webp",
+        "affiliation": {
+          "@id": "https://avariaxyz.win/#organization"
+        },
+        "sameAs": [
+          "https://discord.gg/avia",
+          "https://x.com/mewpasco",
+          "https://www.youtube.com/@MEWPASCO",
+          "https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y"
+        ],
+        "description": "Live Discord status, gaming activity, and curated social links. Part of ΛVΛRIΛ."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Who is Wolfÿ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Wolfÿ is a creator and gamer showcasing live Discord activity, gaming presence, and curated links as part of ΛVΛRIΛ."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is ΛVΛRIΛ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ΛVΛRIΛ is an online community and profile project built around presence, aesthetics, and gaming culture — currently centered on Destiny 2 and Marathon."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
  <style>
