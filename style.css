@@ -48,8 +48,8 @@ h1 {
 }
 
 @keyframes shine {
-  0% { background-position: 0% }
-  100% { background-position: 200% }
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
 }
 
 /* 🧱 Wrapper for Content */
@@ -77,14 +77,16 @@ h1 {
   align-items: center;
 }
 
-/* Avatar + Name Row */
-.discord-widget img {
+.discord-widget img,
+.avatar-container img {
   width: 96px;
   height: 96px;
   border-radius: 50%;
   margin-bottom: 10px;
+  display: block;
 }
 
+/* Avatar + Info */
 .user-row {
   display: flex;
   align-items: center;
@@ -134,13 +136,6 @@ h1 {
   margin-bottom: 10px;
 }
 
-.avatar-container img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  display: block;
-}
-
 .status-dot {
   position: absolute;
   bottom: 4px;
@@ -163,7 +158,7 @@ h1 {
   line-height: 1.4;
 }
 
-/* 🎶 Now Playing / Activity */
+/* 🎶 Activity Cards */
 .activity-separator {
   height: 20px;
 }
@@ -232,7 +227,7 @@ h1 {
   display: block;
 }
 
-/* 🌐 Social Link Icons */
+/* 🌐 Social Links */
 .social-links {
   display: flex;
   flex-direction: column;
@@ -253,7 +248,7 @@ h1 {
   color: #ff00cc;
 }
 
-/* 🧩 Main Section Layout */
+/* 🧩 Layout Sections */
 .main-section {
   display: flex;
   flex-direction: row;
@@ -264,7 +259,6 @@ h1 {
   max-width: 100%;
 }
 
-/* 🧩 2nd Row Below Main Section */
 .widget-row {
   display: flex;
   justify-content: center;
@@ -274,7 +268,7 @@ h1 {
   flex-wrap: wrap;
 }
 
-/* 🤖 Discord Server Widget */
+/* 🤖 Widgets */
 .discord-server-widget,
 .steam-profile-widget {
   width: 360px;
@@ -289,7 +283,7 @@ h1 {
   padding: 0;
 }
 
-/* ‼️ Mobile Design override */
+/* 📱 Mobile Overrides */
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
