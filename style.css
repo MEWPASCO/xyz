@@ -373,3 +373,9 @@ a.glow-button {
     box-shadow: 0 0 16px rgba(255, 0, 204, 0.3), 0 0 30px rgba(255, 0, 204, 0.1);
   }
 }
+
+.downloads-button-container {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+}
