@@ -327,28 +327,39 @@ h1 {
 }
 
 /*✅ Downloads button below */
-.downloads-button-container {
-  margin-top: 60px;
-  margin-bottom: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.button-link {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: rgba(255, 0, 204, 0.15);
-  color: #fff;
-  border: 1px solid #ff00cc;
+.glow-button {
+  padding: 12px 28px;
+  background: transparent;
+  border: 2px solid #ff00cc;
   border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
   font-size: 1.1em;
+  font-weight: bold;
+  color: #ff00cc;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
   transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 204, 0.2);
 }
 
-.button-link:hover {
-  background-color: rgba(255, 0, 204, 0.3);
-  color: #ff00cc;
+.glow-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #00ffff66, transparent);
+  animation: glow-slide 2s linear infinite;
+}
+
+@keyframes glow-slide {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.glow-button:hover {
+  background-color: rgba(255, 0, 204, 0.1);
+  color: #fff;
+  border-color: #00ffff;
 }
