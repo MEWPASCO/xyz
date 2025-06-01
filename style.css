@@ -328,6 +328,8 @@ h1 {
 
 /*✅ Downloads button below */
 .download-list {
+  list-style: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -353,7 +355,6 @@ a.glow-button {
   box-shadow: 0 0 10px rgba(255, 0, 204, 0.2);
   animation: pulse-glow 3s ease-in-out infinite;
 }
-
 
 .glow-button:hover {
   color: #fff;
