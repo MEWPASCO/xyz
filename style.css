@@ -111,10 +111,10 @@ h1 {
     0 0 2px #7c3aed,
     0 0 6px #a855f7,
     0 0 10px #9333ea;
-  animation: pulse-glow 3s ease-in-out infinite;
+  animation: username-glow 3s ease-in-out infinite;
 }
 
-@keyframes pulse-glow {
+@keyframes username-glow {
   0%, 100% {
     text-shadow:
       0 0 2px #7c3aed,
