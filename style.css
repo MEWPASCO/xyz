@@ -263,8 +263,8 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 120px;
-  margin-top: 40px;
+  gap: 60px;
+  margin-top: 80px;
   flex-wrap: wrap;
 }
 
