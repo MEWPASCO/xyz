@@ -327,12 +327,13 @@ h1 {
 }
 
 /*✅ Downloads button below */
-a.glow-button {
+.glow-button {
+  display: inline-block;
   padding: 12px 28px;
   background: transparent;
   border: 2px solid #ff00cc;
   border-radius: 12px;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
   color: #ff00cc;
   text-decoration: none;
@@ -340,9 +341,13 @@ a.glow-button {
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 0 10px rgba(255, 0, 204, 0.2);
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  margin: 8px auto;
 }
 
-a.glow-button::before {
+.glow-button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -358,8 +363,16 @@ a.glow-button::before {
   100% { left: 100%; }
 }
 
-a.glow-button:hover {
+.glow-button:hover {
   background-color: rgba(255, 0, 204, 0.1);
   color: #fff;
   border-color: #00ffff;
+}
+
+.download-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
 }
