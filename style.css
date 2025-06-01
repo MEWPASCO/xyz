@@ -335,24 +335,25 @@ h1 {
   margin-bottom: 40px;
 }
 
-.glow-button {
+a.glow-button {
   display: inline-block;
-  padding: 10px 24px;
-  font-size: 1em;
-  font-weight: 600;
-  color: #ff00cc;
-  background: rgba(255, 255, 255, 0.05);
+  min-width: 240px; /* or whatever width fits best */
+  text-align: center;
+  padding: 12px 28px;
+  background: transparent;
   border: 2px solid #ff00cc;
   border-radius: 12px;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #ff00cc;
   text-decoration: none;
   position: relative;
+  overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 0 8px rgba(255, 0, 204, 0.2);
-  backdrop-filter: blur(6px);
-  min-width: 220px;
-  text-align: center;
-  animation: pulse-glow 3.5s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(255, 0, 204, 0.2);
+  animation: pulse-glow 3s ease-in-out infinite;
 }
+
 
 .glow-button:hover {
   color: #fff;
