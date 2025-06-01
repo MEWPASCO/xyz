@@ -327,7 +327,7 @@ h1 {
 }
 
 /*✅ Downloads button below */
-.glow-button {
+a.glow-button {
   padding: 12px 28px;
   background: transparent;
   border: 2px solid #ff00cc;
@@ -342,7 +342,7 @@ h1 {
   box-shadow: 0 0 10px rgba(255, 0, 204, 0.2);
 }
 
-.glow-button::before {
+a.glow-button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -358,7 +358,7 @@ h1 {
   100% { left: 100%; }
 }
 
-.glow-button:hover {
+a.glow-button:hover {
   background-color: rgba(255, 0, 204, 0.1);
   color: #fff;
   border-color: #00ffff;
