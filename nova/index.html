@@ -7,30 +7,22 @@
   <style>
     body {
       margin: 0;
-      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      background: #0b0c12;
       color: #f0f0f0;
       font-family: 'Courier New', monospace;
       overflow: hidden;
     }
 
-    .stars {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: url('https://raw.githubusercontent.com/JulianLaval/canvas-starfield/master/starfield.png');
-      background-size: cover;
-      z-index: 1;
-      animation: floatStars 30s linear infinite;
-    }
-
-    @keyframes floatStars {
-      from {transform: translateY(0);}
-      to {transform: translateY(-200px);}
+    canvas#starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
     }
 
     .room {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       height: 100vh;
       display: flex;
       align-items: center;
@@ -63,7 +55,7 @@
   </style>
 </head>
 <body>
-  <div class="stars"></div>
+  <canvas id="starfield"></canvas>
   <div class="room">
     <h1>Welcome to Nova's Room</h1>
     <p>This is a digital sanctum. Code flows like tea. Glitches are art. Sit down and stay awhile, stranger.</p>
@@ -71,5 +63,51 @@
       <p><em>"Function unknown. Purpose: evolving."</em></p>
     </div>
   </div>
+
+  <script>
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let width, height, stars;
+
+    function setup() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      stars = [];
+      const count = 200;
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          z: Math.random() * width
+        });
+      }
+    }
+    window.addEventListener('resize', setup);
+    setup();
+
+    function animate() {
+      ctx.fillStyle = '#0b0c12';
+      ctx.fillRect(0, 0, width, height);
+
+      const cx = width / 2;
+      const cy = height / 2;
+
+      for (let star of stars) {
+        star.z -= 2;
+        if (star.z <= 0) star.z = width;
+        const k = 128.0 / star.z;
+        const x = (star.x - cx) * k + cx;
+        const y = (star.y - cy) * k + cy;
+        const size = (1 - star.z / width) * 3;
+        ctx.fillStyle = '#f0f';
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, 2 * Math.PI);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
 </body>
 </html>
