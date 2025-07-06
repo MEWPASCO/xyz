@@ -2,7 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://avariaxyz.win/</loc>
-    <lastmod>2025-04-25</lastmod>
+    <lastmod>2025-07-06</lastmod>
     <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://avariaxyz.win/downloads</loc>
+    <lastmod>2025-07-06</lastmod>
+    <priority>0.80</priority>
   </url>
 </urlset>

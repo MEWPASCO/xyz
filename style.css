@@ -377,3 +377,8 @@ a.glow-button {
   display: flex;
   justify-content: center;
 }
+
+/* Site Navigation - Only visible for Google */
+.main-nav {
+  display: none;
+}
