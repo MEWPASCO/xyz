@@ -380,14 +380,21 @@ a.glow-button {
 
 /* Limiter Guides Font Styling */
 .limit-list {
-  height: 100vh;
   color: #ffffff;
   font-family: "Roboto Mono", monospace;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px;
+  text-align: center;
+}
+
+.limit-list img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.limit-list p {
+  margin: 4px 0;
 }
