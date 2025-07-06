@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- Preloads -->
-  <link rel="preload" as="image" href="media/avatar.webp">
-  <link rel="preload" as="video" href="media/cool-gif.mp4" type="video/mp4">
+  <link rel="preload" as="image" href="./media/avatar.webp">
+  <link rel="preload" as="video" href="./media/cool-gif.mp4" type="video/mp4">
 
   <!-- SEO Meta -->
   <meta name="description" content="Wolfÿ#3139 | ΛVΛRIΛ - Discord, Steam & downloadable content.">
@@ -96,14 +96,6 @@
 <body>
   <!-- Background Hexagonses ;) -->
   <canvas id="hexCanvas"></canvas>
-  
-  <!-- Site Navigation -->
-  <nav class="main-nav">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/downloads">Downloads</a></li>
-    </ul>
-  </nav>
 
   <!-- Title - Bungie User Name -->
   <div class="content-wrapper">
@@ -119,7 +111,7 @@
       <div id="discord-card" class="discord-widget">
         <div class="user-row">
           <div class="avatar-container">
-            <img id="avatar" src="media/avatar.webp" alt="Discord avatar" width="128" height="132">
+            <img id="avatar" src="./media/avatar.webp" alt="Discord avatar" width="128" height="132">
             <span id="status-dot" class="status-dot" style="background-color: #747f8d;"></span>
           </div>
           <div class="user-info">
@@ -158,7 +150,7 @@
       <!-- Right -->
       <div class="gif-container">
         <video autoplay loop muted playsinline width="360" height="360">
-          <source src="media/cool-gif.mp4" type="video/mp4">
+          <source src="./media/cool-gif.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
