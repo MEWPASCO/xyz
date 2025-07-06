@@ -62,12 +62,6 @@ h1 {
   min-height: 100vh;
 }
 
-.content-wrapper p {
-  color: #ffffff;
-  font-family: "Roboto Mono", monospace;
-  margin: 4px 0;
-}
-
 /* 👤 Discord User Widget */
 .discord-widget {
   background: rgba(0, 0, 0, 0.4);
@@ -382,4 +376,11 @@ a.glow-button {
   margin: 40px 0;
   display: flex;
   justify-content: center;
+}
+
+/* Limiter Guides Text */
+.limit-list p {
+  color: #ffffff;
+  font-family: "Roboto Mono", monospace;
+  margin: 4px 0;
 }
