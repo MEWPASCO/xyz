@@ -65,6 +65,7 @@ h1 {
 .content-wrapper p {
   color: #ffffff;
   font-family: "Roboto Mono", monospace;
+  margin: 4px 0;
 }
 
 /* 👤 Discord User Widget */
@@ -381,25 +382,4 @@ a.glow-button {
   margin: 40px 0;
   display: flex;
   justify-content: center;
-}
-
-/* Limiter Guides Font Styling */
-.limit-list {
-  color: #ffffff;
-  font-family: "Roboto Mono", monospace;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.limit-list img {
-  max-width: 100%;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
-
-.limit-list p {
-  margin: 4px 0;
 }
