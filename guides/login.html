@@ -97,17 +97,17 @@
   const TOKEN_KEY = "avaria_guides_token";
   const TOKEN_VALUE = "L1M1T3D";
   const EXPIRY_KEY = "avaria_guides_token_expiry";
-  const EXPIRES_IN_HOURS = 1; // you can change this to however long you want
+  const EXPIRES_IN_MINUTES = 5; // you can change this to however long you want
 
   function go() {
     const input = document.getElementById("pass").value.trim();
     if (input === "Riss in der Hose") {
-      const expiry = Date.now() + EXPIRES_IN_HOURS * 60 * 60 * 1000;
+      const expiry = Date.now() + EXPIRES_IN_MINUTES * 60 * 1000;
       localStorage.setItem(TOKEN_KEY, TOKEN_VALUE);
       localStorage.setItem(EXPIRY_KEY, expiry);
       window.location.href = "index.html";
     } else {
-      document.getElementById("error").textContent = "Wrong password.";
+      document.getElementById("error").textContent = "Wrong password!";
     }
   }
 
