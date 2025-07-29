@@ -1,29 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Enter Password</title>
-  <style>
-    body { background: #111; color: white; font-family: sans-serif; text-align: center; margin-top: 100px; }
-    input, button { padding: 10px; font-size: 16px; }
-    p#error { color: red; }
-  </style>
+  <title>Guides Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://avariaxyz.win/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guides Login",
+        "item": "https://avariaxyz.win/guides/login.html"
+      }
+    ]
+  }
+  </script>
 </head>
+
 <body>
-  <h2>Enter Access Code</h2>
-  <input type="password" id="pass" placeholder="Enter code">
-  <button onclick="check()">Enter</button>
-  <p id="error"></p>
+  <canvas id="hexCanvas"></canvas>
+
+  <div class="content-wrapper">
+    <h1>Access Restricted</h1>
+    <p>Please enter the password to continue.</p>
+
+    <input type="password" id="pass" placeholder="Password" style="padding: 10px; border-radius: 8px; font-size: 16px; width: 220px; text-align: center;">
+    <br><br>
+    <button class="glow-button" onclick="go()">Enter</button>
+    <p id="error" style="color: #ff5f5f; font-weight: bold;"></p>
+  </div>
 
   <script>
-    function check() {
+    function go() {
       const input = document.getElementById("pass").value.trim();
-      if (input === "nova1337") { // your password
-        window.location.href = "index.html?auth=L1M1T3D"; // secret token
+      if (input === "Riss in der Hose") {
+        window.location.href = "index.html?auth=L1M1T3D"; // adjust if needed
       } else {
         document.getElementById("error").textContent = "Wrong password.";
       }
     }
   </script>
+
+  <script defer src="/hexbg.js"></script>
 </body>
 </html>
