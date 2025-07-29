@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Password</title>
+  <style>
+    body { background: #111; color: white; font-family: sans-serif; text-align: center; margin-top: 100px; }
+    input, button { padding: 10px; font-size: 16px; }
+    p#error { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Enter Access Code</h2>
+  <input type="password" id="pass" placeholder="Enter code">
+  <button onclick="check()">Enter</button>
+  <p id="error"></p>
+
+  <script>
+    function check() {
+      const input = document.getElementById("pass").value.trim();
+      if (input === "nova1337") { // your password
+        window.location.href = "index.html?auth=L1M1T3D"; // secret token
+      } else {
+        document.getElementById("error").textContent = "Wrong password.";
+      }
+    }
+  </script>
+</body>
+</html>

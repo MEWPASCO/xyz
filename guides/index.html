@@ -29,6 +29,13 @@
   }
   </script>
 
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("auth") !== "L1M1T3D") {
+      window.location.href = "login.html";
+    }
+  </script>
+
 </head>
 <body>
   <canvas id="hexCanvas"></canvas>
