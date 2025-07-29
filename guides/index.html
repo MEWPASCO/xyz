@@ -29,14 +29,28 @@
   }
   </script>
 
+  <!-- Access check -->
   <script>
     if (sessionStorage.getItem("accessGranted") !== "true") {
       window.location.href = "/guides/login.html";
+    } else {
+      window.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("protected").style.display = "block";
+      });
     }
   </script>
 
+  <!-- No-JS fallback -->
+  <noscript>
+    <style>
+      body { display: none !important; }
+    </style>
+    <meta http-equiv="refresh" content="0; url=/guides/login.html" />
+  </noscript>
+
 </head>
 <body>
+  <div id="protected" style="display:none;"></div>
   <canvas id="hexCanvas"></canvas>
 
   <div class="content-wrapper">
