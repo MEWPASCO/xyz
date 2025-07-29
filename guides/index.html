@@ -29,6 +29,12 @@
   }
   </script>
 
+  <script>
+    if (sessionStorage.getItem("accessGranted") !== "true") {
+      window.location.href = "/guides/login.html";
+    }
+  </script>
+
 </head>
 <body>
   <canvas id="hexCanvas"></canvas>

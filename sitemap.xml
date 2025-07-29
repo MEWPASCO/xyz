@@ -14,6 +14,13 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Nova's page -->
+  <url>
+    <loc>https://avariaxyz.win/nova/</loc>
+    <lastmod>2025-07-29</lastmod>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Guides index -->
   <url>
     <loc>https://avariaxyz.win/guides/</loc>
