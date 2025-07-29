@@ -30,6 +30,42 @@
   </script>
 
   <style>
+    .glow-input {
+      padding: 12px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: white;
+      width: 240px;
+      text-align: center;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .glow-input:focus {
+      border-color: #8d6bff;
+      box-shadow: 0 0 5px #8d6bffaa;
+    }
+
+    .glow-button {
+      background: linear-gradient(90deg, #ff5f9e, #8d6bff);
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(141, 107, 255, 0.5);
+      transition: background 0.3s, box-shadow 0.3s, transform 0.2s ease;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .glow-button:hover {
+      box-shadow: 0 0 18px rgba(141, 107, 255, 0.8), 0 0 5px rgba(255, 95, 158, 0.5);
+      transform: scale(1.03);
+    }
+
     #error {
       color: #ff5f5f;
       font-weight: bold;
@@ -49,7 +85,7 @@
       type="password"
       id="pass"
       placeholder="Password"
-      class="glow-button"
+      class="glow-input"
       autofocus
     >
     <br>
