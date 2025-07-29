@@ -28,17 +28,34 @@
     ]
   }
   </script>
+
+  <style>
+    .text-gradient {
+      background: linear-gradient(90deg, #ff5f9e, #8d6bff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+  </style>
 </head>
 
 <body>
   <canvas id="hexCanvas"></canvas>
 
   <div class="content-wrapper">
-    <h1>Access Restricted</h1>
+    <h1><span class="text-gradient">Access Restricted</span></h1>
     <p>Please enter the password to continue.</p>
 
-    <input type="password" id="pass" placeholder="Password" style="padding: 10px; border-radius: 8px; font-size: 16px; width: 220px; text-align: center;">
+    <input
+      type="password"
+      id="pass"
+      placeholder="Password"
+      autofocus
+      style="padding: 10px; border-radius: 8px; font-size: 16px; width: 220px; text-align: center;"
+    >
     <br><br>
+
     <button class="glow-button" onclick="go()">Enter</button>
     <p id="error" style="color: #ff5f5f; font-weight: bold;"></p>
   </div>
@@ -47,11 +64,15 @@
     function go() {
       const input = document.getElementById("pass").value.trim();
       if (input === "Riss in der Hose") {
-        window.location.href = "index.html?auth=L1M1T3D"; // adjust if needed
+        window.location.href = "index.html?auth=L1M1T3D";
       } else {
         document.getElementById("error").textContent = "Wrong password.";
       }
     }
+
+    document.getElementById("pass").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") go();
+    });
   </script>
 
   <script defer src="/hexbg.js"></script>
