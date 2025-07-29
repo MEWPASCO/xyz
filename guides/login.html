@@ -30,12 +30,48 @@
   </script>
 
   <style>
-    .text-gradient {
-    background: linear-gradient(90deg, #ff5f9e, #8d6bff);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent; /* fallback if fill-color isn't supported */
+    .gradient-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ff5f9e, #8d6bff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .glow-input {
+      padding: 12px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: white;
+      width: 240px;
+      text-align: center;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .glow-input:focus {
+      border-color: #8d6bff;
+      box-shadow: 0 0 5px #8d6bffaa;
+    }
+
+    .glow-button {
+      padding: 10px 18px;
+      font-size: 14px;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    #error {
+      color: #ff5f5f;
+      font-weight: bold;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -44,20 +80,19 @@
   <canvas id="hexCanvas"></canvas>
 
   <div class="content-wrapper">
-    <h1><span class="text-gradient">Access Restricted</span></h1>
+    <h1 class="gradient-title">Access Restricted</h1>
     <p>Please enter the password to continue.</p>
 
     <input
       type="password"
       id="pass"
       placeholder="Password"
+      class="glow-input"
       autofocus
-      style="padding: 10px; border-radius: 8px; font-size: 16px; width: 220px; text-align: center;"
     >
-    <br><br>
-
+    <br>
     <button class="glow-button" onclick="go()">Enter</button>
-    <p id="error" style="color: #ff5f5f; font-weight: bold;"></p>
+    <p id="error"></p>
   </div>
 
   <script>
