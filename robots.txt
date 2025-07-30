@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /guides/login.html
 Sitemap: https://avariaxyz.win/sitemap.xml
