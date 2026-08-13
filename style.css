@@ -148,7 +148,7 @@ h1 a:hover {
   height: 20px;
 }
 
-/* 🎶 Activity Cards (Overpowering the JS!) */
+/* 🎶 Activity Cards (Stabilized!) */
 .activity-card {
   margin-top: 20px;
   padding: 12px 16px;
@@ -162,14 +162,21 @@ h1 a:hover {
   max-width: 280px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
   border: 1px solid rgba(255, 255, 255, 0.05);
-  /* ✨ Replaced 'all' with explicit properties to bypass the WebKit glitch */
+
+  /* 🚀 Force Hardware Acceleration */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
+
   transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease; 
 }
 
 .activity-card:hover {
-  /* Fades into a silky smooth frosted glow */
-  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.12) !important; 
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  /* Use 3D transform instead of translateY */
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.08); 
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .activity-icon {
@@ -276,17 +283,24 @@ h1 a:hover {
   background: rgba(13, 13, 26, 0.4); 
   backdrop-filter: blur(16px); 
   -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08); 
   border-radius: 24px; 
-  /* Overpowering the JS magenta glow! */
-  border: 1px solid rgba(255, 255, 255, 0.08) !important; 
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important; 
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  /* 🚀 Force Hardware Acceleration to stop Chrome from clipping the shadow */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
+  
+  transition: box-shadow 0.4s ease, transform 0.4s ease, border 0.4s ease;
 }
 
 .glass-panel:hover {
-  transform: translateY(-4px); /* Smoother, less drastic pop */
-  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.08), 0 5px 15px rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  /* Use 3D transform instead of translateY */
+  transform: translate3d(0, -8px, 0); 
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.08), 0 5px 15px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* 📱 Mobile Overrides */
