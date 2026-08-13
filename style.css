@@ -105,31 +105,13 @@ h1 a:hover {
   text-align: left;
 }
 
+/* 👤 Clean, Premium Username */
 #username {
-  font-weight: bold;
+  font-weight: 800;
   font-size: 1.2em;
   margin-bottom: 4px;
-  color: #c084fc;
-  text-shadow:
-    0 0 2px #7c3aed,
-    0 0 6px #a855f7,
-    0 0 10px #9333ea;
-  animation: username-glow 3s ease-in-out infinite;
-}
-
-@keyframes username-glow {
-  0%, 100% {
-    text-shadow:
-      0 0 2px #7c3aed,
-      0 0 6px #a855f7,
-      0 0 10px #9333ea;
-  }
-  50% {
-    text-shadow:
-      0 0 4px #7c3aed,
-      0 0 10px #a855f7,
-      0 0 16px #9333ea;
-  }
+  color: #ffffff; /* Crisp white text */
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.25); /* Soft silver glow */
 }
 
 .avatar-container {
@@ -178,10 +160,10 @@ h1 a:hover {
   text-align: left;
   width: 90%;
   max-width: 280px;
-  /* ✨ !important forces the browser to ignore Lanyard's inline JS shadows */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important; 
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
-  transition: all 0.3s ease; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  /* ✨ Replaced 'all' with explicit properties to bypass the WebKit glitch */
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease; 
 }
 
 .activity-card:hover {
