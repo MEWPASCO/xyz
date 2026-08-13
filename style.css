@@ -36,7 +36,7 @@ body {
   pointer-events: none;
 }
 
-/* 💫 Header Title (Premium Iridescent Glow) */
+/* 💫 Header Title (Anti-Dark-Mode Iridescent Glow) */
 h1 {
   font-size: 2.5em; 
   font-weight: 800;
@@ -44,8 +44,8 @@ h1 {
   margin-top: 40px;
   margin-bottom: 20px;
   
-  /* ✨ The Modern Web3 Gradient */
-  background: linear-gradient(to right, #ffffff 20%, #ff00cc 50%, #00ffff 80%, #ffffff 100%);
+  /* ✨ Swapped white for brand colors so extensions don't invert it to black! */
+  background: linear-gradient(to right, #00ffff 0%, #a855f7 25%, #ff00cc 50%, #a855f7 75%, #00ffff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -240,9 +240,12 @@ h1 a:hover {
 
 .activity-text div {
   transition: opacity 0.4s ease;
-  white-space: nowrap; /* ✨ Forces the text to stay on a single line */
-  overflow: hidden; /* ✨ Hides the excess text */
-  text-overflow: ellipsis; /* ✨ Adds the clean '...' at the end */
+  white-space: normal; /* ✨ Allows the text to wrap to the next line */
+  overflow: hidden; /* ✨ Hides anything past line 2 */
+  text-overflow: ellipsis; /* ✨ Adds the '...' if it overflows */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* ✨ Hard caps it at a maximum of 2 lines */
+  -webkit-box-orient: vertical;
 }
 
 /* 🖼️ GIF Panel */
