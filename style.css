@@ -169,17 +169,17 @@ h1 a:hover {
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease; 
 }
 
-/* 👻 The invisible clone holding the shadow */
+/* 👻 The invisible clone holding the shadow (Fixed with higher visibility!) */
 .activity-card::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   border-radius: inherit;
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15); /* Stronger white pop */
-  opacity: 0; /* Hidden by default */
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3); /* Bumped to 30% opacity */
+  opacity: 0; 
   transition: opacity 0.3s ease;
   pointer-events: none;
-  z-index: -1; /* Keeps it behind the text and icons */
+  z-index: -1; 
 }
 
 .activity-card:hover {
@@ -310,7 +310,7 @@ h1 a:hover {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   border-radius: inherit;
-  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.12), 0 5px 15px rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25), 0 5px 15px rgba(255, 255, 255, 0.15); /* 👈 BOOM, brighter glow! */
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
