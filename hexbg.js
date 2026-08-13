@@ -62,33 +62,46 @@ document.addEventListener("DOMContentLoaded", () => {
     mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
   });
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    offset += speed;
+  // ⏱️ FPS Limiter Variables
+  let lastTime = 0;
+  const targetFPS = 60;
+  const frameInterval = 1000 / targetFPS;
 
-    const driftX = Math.sin(offset * 0.01) * spacing;
-    const driftY = Math.cos(offset * 0.01) * spacing;
-    const parallaxX = mouseX * 20;
-    const parallaxY = mouseY * 20;
-    const timeFactor = Date.now() * 0.002;
-
-    for (const hex of hexes) {
-      const opacity = 0.03 + Math.abs(Math.sin(timeFactor + hex.phase)) * 0.1;
-      const glow = 0.3 + Math.abs(Math.sin(timeFactor + hex.phase)) * 0.5;
-      const finalColor = hex.colorBase.replace('OPACITY', opacity.toFixed(2));
-      drawHex(
-        hex.x + driftX + parallaxX,
-        hex.y + driftY + parallaxY,
-        hexSize,
-        Math.PI / 4,
-        finalColor,
-        glow.toFixed(2)
-      );
-    }
-
+  function animate(currentTime) {
     requestAnimationFrame(animate);
+
+    // Calculate delta time
+    const deltaTime = currentTime - lastTime;
+
+    // Only draw if enough time has passed (capped at 60 FPS)
+    if (deltaTime >= frameInterval) {
+      lastTime = currentTime - (deltaTime % frameInterval);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      offset += speed;
+
+      const driftX = Math.sin(offset * 0.01) * spacing;
+      const driftY = Math.cos(offset * 0.01) * spacing;
+      const parallaxX = mouseX * 20;
+      const parallaxY = mouseY * 20;
+      const timeFactor = Date.now() * 0.002;
+
+      for (const hex of hexes) {
+        const opacity = 0.03 + Math.abs(Math.sin(timeFactor + hex.phase)) * 0.1;
+        const glow = 0.3 + Math.abs(Math.sin(timeFactor + hex.phase)) * 0.5;
+        const finalColor = hex.colorBase.replace('OPACITY', opacity.toFixed(2));
+        drawHex(
+          hex.x + driftX + parallaxX,
+          hex.y + driftY + parallaxY,
+          hexSize,
+          Math.PI / 4,
+          finalColor,
+          glow.toFixed(2)
+        );
+      }
+    }
   }
 
   resizeCanvas();
-  animate();
+  requestAnimationFrame(animate); // Kick off the loop
 });

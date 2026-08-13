@@ -286,12 +286,13 @@ h1 {
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
-    width: 100%;
+    width: 100vw; /* Swapped to viewport width */
     margin: 0;
     padding: 0;
   }
 
   body {
+    box-sizing: border-box; /* Ensures padding doesn't break the width */
     padding: 0 16px;
   }
 
