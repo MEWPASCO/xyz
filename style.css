@@ -3,7 +3,7 @@
 /* ─────────────────────────────── */
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-size: 16px;
   color: #fff;
   min-height: 100vh;
@@ -13,11 +13,21 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
+  /* ✨ Animated Mesh Gradient */
+  background: linear-gradient(125deg, #0d0d1a, #130b29, #0a1128, #1a0b1c);
+  background-size: 400% 400%;
+  animation: bg-drift 15s ease infinite;
   position: relative;
   z-index: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* 🌊 The Background Animation Keyframes */
+@keyframes bg-drift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @media (max-width: 480px) {
@@ -253,15 +263,16 @@ h1 {
   text-shadow: 0 0 10px rgba(255, 0, 204, 0.5);
 }
 
-/* 🧩 Bento Box Grid */
+/* 🧩 Bento Box Grid (Perfect 2x2 Layout) */
 .bento-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 30px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 800px; /* 👈 This is the magic limit that forces the 2x2 shape */
   padding: 20px;
-  place-items: center;
   box-sizing: border-box;
 }
 
@@ -351,39 +362,39 @@ h1 {
   margin-bottom: 40px;
 }
 
+/* ✅ Premium Glow Button */
 a.glow-button {
-  display: inline-block;
-  min-width: 240px; /* or whatever width fits best */
-  text-align: center;
-  padding: 12px 28px;
-  background: transparent;
-  border: 2px solid #ff00cc;
-  border-radius: 12px;
-  font-size: 1.1em;
-  font-weight: bold;
-  color: #ff00cc;
+  display: inline-flex; 
+  justify-content: center;
+  align-items: center;
+  min-width: 260px; 
+  padding: 14px 32px;
+  background: rgba(13, 13, 26, 0.6); 
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 0, 204, 0.4); 
+  border-radius: 16px;
+  font-size: 1.15em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ff00cc; 
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(255, 0, 204, 0.2);
-  animation: pulse-glow 3s ease-in-out infinite;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 15px rgba(255, 0, 204, 0.15), inset 0 0 10px rgba(255, 0, 204, 0.05);
 }
 
+/* 🚀 The Hover State */
 .glow-button:hover {
-  color: #fff;
-  background: rgba(0, 255, 255, 0.1);
-  border-color: #00ffff;
-  box-shadow: 0 0 14px rgba(0, 255, 255, 0.2), 0 0 28px rgba(255, 0, 204, 0.2);
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 8px rgba(255, 0, 204, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 16px rgba(255, 0, 204, 0.3), 0 0 30px rgba(255, 0, 204, 0.1);
-  }
+  color: #00ffff; 
+  background: rgba(0, 255, 255, 0.05); 
+  border-color: #00ffff; 
+  box-shadow: 
+    0 0 20px rgba(0, 255, 255, 0.3), 
+    0 0 40px rgba(255, 0, 204, 0.2), 
+    inset 0 0 15px rgba(0, 255, 255, 0.1); 
+  transform: translateY(-3px); 
 }
 
 .downloads-button-container {
