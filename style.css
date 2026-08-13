@@ -148,7 +148,7 @@ h1 a:hover {
   height: 20px;
 }
 
-/* 🎶 Activity Cards (Stabilized!) */
+/* 🎶 Activity Cards (The Flawless Pseudo-Element Fix) */
 .activity-card {
   margin-top: 20px;
   padding: 12px 16px;
@@ -160,23 +160,35 @@ h1 a:hover {
   text-align: left;
   width: 90%;
   max-width: 280px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
   border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+  
+  /* ✨ Create a local layer so the shadow stays behind the card, not the page */
+  position: relative; 
+  z-index: 1;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease; 
+}
 
-  /* 🚀 Force Hardware Acceleration */
-  transform: translate3d(0, 0, 0);
-  -webkit-transform-style: preserve-3d;
-  backface-visibility: hidden;
-  will-change: transform, box-shadow;
-
-  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease; 
+/* 👻 The invisible clone holding the shadow */
+.activity-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15); /* Stronger white pop */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1; /* Keeps it behind the text and icons */
 }
 
 .activity-card:hover {
-  /* Use 3D transform instead of translateY */
-  transform: translate3d(0, -2px, 0);
-  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.08); 
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.activity-card:hover::after {
+  opacity: 1; /* Flawlessly fades the GPU-rendered shadow in */
 }
 
 .activity-icon {
@@ -278,29 +290,40 @@ h1 a:hover {
   padding: 0;
 }
 
-/* ✨ Modern Glassmorphism for all cards */
+/* ✨ Modern Glassmorphism (The Flawless Pseudo-Element Fix) */
 .glass-panel {
   background: rgba(13, 13, 26, 0.4); 
   backdrop-filter: blur(16px); 
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08); 
   border-radius: 24px; 
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   
-  /* 🚀 Force Hardware Acceleration to stop Chrome from clipping the shadow */
-  transform: translate3d(0, 0, 0);
-  -webkit-transform-style: preserve-3d;
-  backface-visibility: hidden;
-  will-change: transform, box-shadow;
-  
-  transition: box-shadow 0.4s ease, transform 0.4s ease, border 0.4s ease;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
+}
+
+/* 👻 The invisible clone for the big panels */
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.12), 0 5px 15px rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .glass-panel:hover {
-  /* Use 3D transform instead of translateY */
-  transform: translate3d(0, -8px, 0); 
-  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.08), 0 5px 15px rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: translateY(-6px); 
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.glass-panel:hover::after {
+  opacity: 1; /* Smooth, glitch-free fade */
 }
 
 /* 📱 Mobile Overrides */
