@@ -8,7 +8,7 @@
   <title>♅</title>
   <link rel="canonical" href="https://avariaxyz.win">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
 
   <!-- Preloads -->
@@ -97,18 +97,29 @@
   <!-- Background Hexagonses ;) -->
   <canvas id="hexCanvas"></canvas>
 
-  <!-- Title - Bungie User Name -->
-  <div class="content-wrapper">
+<div class="content-wrapper">
+    <!-- Title -->
     <h1>
       <a href="https://www.bungie.net/7/en/User/Profile/3/4611686018519998253?bgn=Wolf%C3%BF" target="_blank" style="color: inherit; text-decoration: none;">
         Wolfÿ#3139
       </a>
     </h1>
 
-    <!-- Main Website Area -->
-    <div class="main-section">
+    <!-- Floating Social Pill (Moved above the grid!) -->
+    <div class="social-links">
+      <a href="https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y" target="_blank" aria-label="Spotify" title="Spotify"><i class="fab fa-spotify"></i></a>
+      <a href="https://www.youtube.com/@MEWPASCO" target="_blank" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.twitch.tv/mewpasco" target="_blank" aria-label="Twitch" title="Twitch"><i class="fab fa-twitch"></i></a>
+      <a href="https://discord.gg/avia" target="_blank" aria-label="Discord Server" title="Discord"><i class="fab fa-discord"></i></a>
+      <a href="https://raid.report/pc/4611686018519998253" target="_blank" aria-label="Raid Report" title="Raid Report"><i class="fas fa-trophy"></i></a>
+      <a href="https://dungeon.report/pc/4611686018519998253" target="_blank" aria-label="Dungeon Report" title="Dungeon Report"><i class="fas fa-dungeon"></i></a>
+    </div>
+
+    <!-- 🧩 New Bento Grid Layout -->
+    <div class="bento-grid">
+      
       <!-- Discord User Widget -->
-      <div id="discord-card" class="discord-widget">
+      <div id="discord-card" class="discord-widget glass-panel">
         <div class="user-row">
           <div class="avatar-container">
             <img id="avatar" src="/media/avatar.webp" alt="Discord avatar" width="128" height="132">
@@ -137,23 +148,24 @@
         </div>
       </div>
 
-    <!-- Social Links -->
-    <div class="social-links">
-      <a href="https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y" target="_blank" aria-label="Spotify" title="Spotify"><i class="fab fa-spotify"></i></a>
-      <a href="https://www.youtube.com/@MEWPASCO" target="_blank" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.twitch.tv/mewpasco" target="_blank" aria-label="Twitch" title="Twitch"><i class="fab fa-twitch"></i></a>
-      <a href="https://discord.gg/avia" target="_blank" aria-label="Discord Server" title="Discord"><i class="fab fa-discord"></i></a>
-      <a href="https://raid.report/pc/4611686018519998253" target="_blank" aria-label="Raid Report" title="Raid Report"><i class="fas fa-trophy"></i></a>
-      <a href="https://dungeon.report/pc/4611686018519998253" target="_blank" aria-label="Dungeon Report" title="Dungeon Report"><i class="fas fa-dungeon"></i></a>
-    </div>
-
-      <!-- Right -->
-      <div class="gif-container">
+      <!-- GIF Panel -->
+      <div class="gif-container glass-panel">
         <video autoplay loop muted playsinline width="360" height="360">
           <source src="/media/cool-gif.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
+
+      <!-- Steam Widget -->
+      <div class="steam-profile-widget glass-panel">
+        <iframe loading="lazy" src="https://mewpasco.github.io/steam-miniprofile-fork/?interactive=true&amp;vanityId=mewpasco&amp;appId=1085660" frameborder="0" scrolling="no" style="border: none; width: 360px; height: 360px;" allowfullscreen></iframe>
+      </div>
+
+      <!-- Discord Server Widget -->
+      <div class="discord-server-widget glass-panel">
+        <iframe loading="lazy" src="https://discord.com/widget?id=936383427215785985&amp;theme=dark" width="100%" height="100%" allowtransparency="true" frameborder="0" style="border: none;" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+      </div>
+
     </div>
 
     <!-- Downloads Button -->
@@ -161,16 +173,6 @@
       <a href="downloads" class="glow-button">Visit Downloads Page</a>
     </div>
 
-    <!-- 2nd Row of Widgets -->
-    <div class="widget-row">
-      <div class="steam-profile-widget">
-        <iframe loading="lazy" src="https://mewpasco.github.io/steam-miniprofile-fork/?interactive=true&amp;vanityId=mewpasco&amp;appId=1085660" frameborder="0" scrolling="no" style="border: none; width: 360px; height: 360px;" allowfullscreen></iframe>
-      </div>
-
-      <div class="discord-server-widget">
-        <iframe loading="lazy" src="https://discord.com/widget?id=936383427215785985&amp;theme=dark" width="100%" height="100%" allowtransparency="true" frameborder="0" style="border: none;" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-      </div>
-    </div>
   </div>
 
   <script defer src="/lanyard.js"></script>
