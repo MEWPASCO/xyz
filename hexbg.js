@@ -19,7 +19,113 @@ document.addEventListener("DOMContentLoaded", () => {
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    initHexes();
+    initHexes();document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById('hexCanvas');
+  const ctx = canvas.getContext('2d');
+
+  const config = window.HEX_CONFIG || {};
+  const baseSize = 3; // Much smaller, subtle dots
+  const spacing = baseSize * 25; // Spread them out organically
+  const speed = 0.05; // Slower, cinematic drift
+  
+  // ✨ Minimalist Cinematic Whites & Silvers
+  const colors = [
+    'rgba(255, 255, 255, OPACITY)',
+    'rgba(226, 232, 240, OPACITY)',
+    'rgba(148, 163, 184, OPACITY)'
+  ];
+
+  let particles = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initParticles();
+  }
+
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(resizeCanvas, 200);
+  });
+
+  function initParticles() {
+    particles = [];
+    for (let y = -spacing; y < canvas.height + spacing; y += spacing) {
+      for (let x = -spacing; x < canvas.width + spacing; x += spacing) {
+        // Add random offsets so it looks like natural dust, not a strict grid
+        const randomX = x + (Math.random() - 0.5) * spacing;
+        const randomY = y + (Math.random() - 0.5) * spacing;
+        const colorBase = colors[Math.floor(Math.random() * colors.length)];
+        const phase = Math.random() * Math.PI * 2;
+        const sizeMult = Math.random() * 0.8 + 0.4; // Randomize sizes
+        particles.push({ x: randomX, y: randomY, colorBase, phase, sizeMult });
+      }
+    }
+  }
+
+  // Draw soft circles instead of sharp hexagons
+  function drawParticle(x, y, size, color, glowAlpha) {
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.shadowColor = color.replace(/rgba\(([^,]+),([^,]+),([^,]+),[^)]+\)/, 'rgba($1,$2,$3,' + glowAlpha + ')');
+    ctx.shadowBlur = 12; // High blur for bokeh effect
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+
+  let offset = 0;
+  let mouseX = 0, mouseY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  // ⏱️ FPS Limiter Variables (Locked to 60 FPS)
+  let lastTime = 0;
+  const targetFPS = 60;
+  const frameInterval = 1000 / targetFPS;
+
+  function animate(currentTime) {
+    requestAnimationFrame(animate);
+
+    const deltaTime = currentTime - lastTime;
+
+    if (deltaTime >= frameInterval) {
+      lastTime = currentTime - (deltaTime % frameInterval);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      offset += speed;
+
+      const driftX = Math.sin(offset * 0.01) * (spacing * 0.5);
+      const driftY = Math.cos(offset * 0.01) * (spacing * 0.5);
+      const parallaxX = mouseX * 15;
+      const parallaxY = mouseY * 15;
+      const timeFactor = Date.now() * 0.0015;
+
+      for (const p of particles) {
+        // Smooth pulsing opacity
+        const opacity = 0.1 + Math.abs(Math.sin(timeFactor + p.phase)) * 0.5;
+        const glow = 0.4 + Math.abs(Math.sin(timeFactor + p.phase)) * 0.6;
+        const finalColor = p.colorBase.replace('OPACITY', opacity.toFixed(2));
+        
+        drawParticle(
+          p.x + driftX + parallaxX,
+          p.y + driftY + parallaxY,
+          baseSize * p.sizeMult,
+          finalColor,
+          glow.toFixed(2)
+        );
+      }
+    }
+  }
+
+  resizeCanvas();
+  requestAnimationFrame(animate); 
+});
   }
 
   let resizeTimeout;

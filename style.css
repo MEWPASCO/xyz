@@ -166,10 +166,11 @@ h1 a:hover {
   height: 20px;
 }
 
+/* 🎶 Activity Cards (Cleansed!) */
 .activity-card {
   margin-top: 20px;
   padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03); /* Slightly more transparent */
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -177,12 +178,17 @@ h1 a:hover {
   text-align: left;
   width: 90%;
   max-width: 280px;
-  box-shadow: 0 0 8px rgba(255, 0, 204, 0.15), 0 0 16px rgba(147, 51, 234, 0.12);
-  transition: box-shadow 0.3s ease;
+  /* Replaced neon glow with a subtle premium shadow and border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border 0.3s ease;
 }
 
 .activity-card:hover {
-  box-shadow: 0 0 12px rgba(255, 0, 204, 0.25), 0 0 24px rgba(147, 51, 234, 0.2);
+  /* Subtle frosted white glow instead of magenta */
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .activity-icon {
