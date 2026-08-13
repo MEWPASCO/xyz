@@ -148,10 +148,11 @@ h1 a:hover {
   height: 20px;
 }
 
-/* 🎶 Activity Cards (The Ultimate Decoupled Fix) */
+/* 🎶 Activity Cards (The Flawless Dual-Layer Crossfade) */
 .activity-card {
   margin-top: 20px;
   padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03); 
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -162,21 +163,32 @@ h1 a:hover {
   border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative; 
   z-index: 1;
-  /* Only animate the physical movement and border on the parent */
+  /* ✨ NO box-shadow on the main card! */
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease; 
 }
 
-/* 🎨 The ::before handles background and shadow rendering seamlessly */
+/* 🌑 Layer 1: The Base Dark Shadow */
 .activity-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   border-radius: inherit;
-  background: rgba(255, 255, 255, 0.03); 
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Base dark shadow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+  opacity: 1; 
+  transition: opacity 0.3s ease;
   z-index: -1; 
-  /* Only animate the shadow on the child */
-  transition: box-shadow 0.3s ease;
+}
+
+/* 🌕 Layer 2: The Hover White Glow */
+.activity-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35); /* Crisp white pop */
+  opacity: 0; 
+  transition: opacity 0.3s ease;
+  z-index: -2; 
 }
 
 .activity-card:hover {
@@ -184,9 +196,9 @@ h1 a:hover {
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-.activity-card:hover::before {
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3); /* Flawless white glow */
-}
+/* ✨ The Magic Crossfade */
+.activity-card:hover::before { opacity: 0; } /* Fade black out */
+.activity-card:hover::after { opacity: 1; }  /* Fade white in */
 
 .activity-icon {
   font-size: 1.8em;
@@ -287,27 +299,41 @@ h1 a:hover {
   padding: 0;
 }
 
-/* ✨ Modern Glassmorphism (The Ultimate Decoupled Fix) */
+/* ✨ Modern Glassmorphism (The Flawless Dual-Layer Crossfade) */
 .glass-panel {
+  background: rgba(13, 13, 26, 0.4); 
+  backdrop-filter: blur(16px); 
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08); 
   border-radius: 24px; 
   position: relative;
   z-index: 1;
+  /* ✨ NO box-shadow on the main card! */
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
 }
 
-/* 🎨 The ::before handles the glass blur and shadow rendering */
+/* 🌑 Layer 1: The Base Dark Shadow */
 .glass-panel::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   border-radius: inherit;
-  background: rgba(13, 13, 26, 0.4); 
-  backdrop-filter: blur(16px); 
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* Base dark shadow */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  transition: opacity 0.4s ease;
   z-index: -1;
-  transition: box-shadow 0.4s ease;
+}
+
+/* 🌕 Layer 2: The Hover White Glow */
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25), 0 5px 15px rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -2;
 }
 
 .glass-panel:hover {
@@ -315,9 +341,9 @@ h1 a:hover {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.glass-panel:hover::before {
-  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25), 0 5px 15px rgba(255, 255, 255, 0.15); /* Bright white pop */
-}
+/* ✨ The Magic Crossfade */
+.glass-panel:hover::before { opacity: 0; } /* Fade black out */
+.glass-panel:hover::after { opacity: 1; }  /* Fade white in */
 
 /* 📱 Mobile Overrides */
 @media (max-width: 768px) {
@@ -375,33 +401,51 @@ h1 a:hover {
   margin-bottom: 40px;
 }
 
-/* ✅ Premium Ghost Button */
+/* ✅ Premium Ghost Button (The Pink Accent Fix) */
 a.glow-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   min-width: 240px;
   padding: 14px 32px;
-  background-color: transparent !important; /* Forces the ghost look */
+  background-color: transparent !important; 
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2); 
+  border: 1px solid rgba(255, 0, 204, 0.3); /* Subtle pink base border */
   border-radius: 12px; 
   font-size: 1.1em;
   font-weight: 600;
   letter-spacing: 0.5px;
-  color: #ffffff;
+  color: #ff00cc; /* Pink text */
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, color 0.3s ease;
+}
+
+/* 👻 The invisible clone for the pink button glow */
+a.glow-button::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  box-shadow: 0 8px 24px rgba(255, 0, 204, 0.25), inset 0 0 12px rgba(255, 0, 204, 0.15); 
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* 🚀 The Hover State */
 .glow-button:hover {
-  background: rgba(255, 255, 255, 0.95); /* Fills with solid white */
-  color: #0d0d1a; /* Inverts text to dark */
-  border-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
-  transform: translateY(-3px); /* Satisfying tactile pop */
+  color: #ffffff; /* Text turns white on hover */
+  border-color: rgba(255, 0, 204, 0.8);
+  background: rgba(255, 0, 204, 0.05); /* Slight pink glass fill */
+  transform: translateY(-3px); 
+}
+
+.glow-button:hover::after {
+  opacity: 1; /* Smooth pink shadow fade */
 }
 
 .downloads-button-container {
