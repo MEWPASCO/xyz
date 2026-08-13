@@ -5,7 +5,7 @@ body {
   margin: 0;
   font-family: 'Inter', 'Arial', sans-serif;
   font-size: 16px;
-  color: #fff;
+  color: #e2e8f0; /* Soft, premium off-white */
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
@@ -13,21 +13,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  /* ✨ Animated Mesh Gradient */
-  background: linear-gradient(125deg, #0d0d1a, #130b29, #0a1128, #1a0b1c);
-  background-size: 400% 400%;
-  animation: bg-drift 15s ease infinite;
+  /* 🎬 Deep Cinematic Spotlight Background */
+  background: radial-gradient(circle at 50% 0%, #1e1e2f 0%, #0d0d1a 50%, #05050a 100%);
   position: relative;
   z-index: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* 🌊 The Background Animation Keyframes */
-@keyframes bg-drift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 @media (max-width: 480px) {
@@ -45,21 +36,25 @@ body {
   pointer-events: none;
 }
 
-/* 💫 Header Glow Title */
+/* 💫 Header Title (Minimalist) */
 h1 {
-  font-size: 3em;
-  background: linear-gradient(90deg, #ff00cc, #00ffff, #ff00cc);
-  background-size: 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: shine 3s linear infinite;
+  font-size: 2.5em; /* Scaled down slightly for elegance */
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  text-shadow: 0 4px 24px rgba(255, 255, 255, 0.15); /* Soft, diffused glow */
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
-@keyframes shine {
-  0% { background-position: 0%; }
-  100% { background-position: 200%; }
+h1 a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+h1 a:hover {
+  opacity: 0.8; /* Simple fade effect on hover */
 }
 
 /* 🧱 Wrapper for Content */
@@ -362,39 +357,33 @@ h1 {
   margin-bottom: 40px;
 }
 
-/* ✅ Premium Glow Button */
+/* ✅ Premium Ghost Button */
 a.glow-button {
-  display: inline-flex; 
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: 260px; 
+  min-width: 240px;
   padding: 14px 32px;
-  background: rgba(13, 13, 26, 0.6); 
+  background: transparent;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 0, 204, 0.4); 
-  border-radius: 16px;
-  font-size: 1.15em;
-  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Crisp white outline */
+  border-radius: 12px; /* Slightly sharper edges */
+  font-size: 1.1em;
+  font-weight: 600;
   letter-spacing: 0.5px;
-  color: #ff00cc; 
+  color: #ffffff;
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 0 15px rgba(255, 0, 204, 0.15), inset 0 0 10px rgba(255, 0, 204, 0.05);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* 🚀 The Hover State */
 .glow-button:hover {
-  color: #00ffff; 
-  background: rgba(0, 255, 255, 0.05); 
-  border-color: #00ffff; 
-  box-shadow: 
-    0 0 20px rgba(0, 255, 255, 0.3), 
-    0 0 40px rgba(255, 0, 204, 0.2), 
-    inset 0 0 15px rgba(0, 255, 255, 0.1); 
-  transform: translateY(-3px); 
+  background: rgba(255, 255, 255, 0.95); /* Fills with solid white */
+  color: #0d0d1a; /* Inverts text to dark */
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px); /* Satisfying tactile pop */
 }
 
 .downloads-button-container {
