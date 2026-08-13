@@ -166,8 +166,7 @@ h1 a:hover {
   height: 20px;
 }
 
-/* 🎶 Activity Cards (Cleansed and Stabilized!) */
-/* 🎶 Activity Cards (Cleansed and Stabilized!) */
+/* 🎶 Activity Cards (Overpowering the JS!) */
 .activity-card {
   margin-top: 20px;
   padding: 12px 16px;
@@ -179,18 +178,16 @@ h1 a:hover {
   text-align: left;
   width: 90%;
   max-width: 280px;
-  /* Defined the base shadow clearly */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  /* Unified the transition timing */
+  /* ✨ !important forces the browser to ignore Lanyard's inline JS shadows */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important; 
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
   transition: all 0.3s ease; 
 }
 
 .activity-card:hover {
-  /* Fades smoothly into the white glow */
-  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.08); 
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+  /* Fades into a silky smooth frosted glow */
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.12) !important; 
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .activity-icon {
@@ -297,18 +294,17 @@ h1 a:hover {
   background: rgba(13, 13, 26, 0.4); 
   backdrop-filter: blur(16px); 
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08); 
   border-radius: 24px; 
-  /* Added a second transparent shadow to match the hover state structure */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 rgba(255, 255, 255, 0); 
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border 0.4s ease;
+  /* Overpowering the JS magenta glow! */
+  border: 1px solid rgba(255, 255, 255, 0.08) !important; 
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important; 
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .glass-panel:hover {
-  transform: translateY(-8px);
-  /* Replaced magenta/purple with a pure, frosted white shadow */
-  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.08), 0 5px 15px rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px); /* Smoother, less drastic pop */
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.08), 0 5px 15px rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 /* 📱 Mobile Overrides */
