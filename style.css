@@ -364,11 +364,11 @@ a.glow-button {
   align-items: center;
   min-width: 240px;
   padding: 14px 32px;
-  background: transparent;
+  background-color: transparent !important; /* Forces the ghost look */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Crisp white outline */
-  border-radius: 12px; /* Slightly sharper edges */
+  border: 1px solid rgba(255, 255, 255, 0.2); 
+  border-radius: 12px; 
   font-size: 1.1em;
   font-weight: 600;
   letter-spacing: 0.5px;

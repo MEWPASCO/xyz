@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const hexSize = config.size || 10;
   const spacing = hexSize * 3.5;
   const speed = config.speed || 0.2;
+  
+  // ✨ Updated Minimalist White/Silver Colors
   const colors = config.colors || [
-    'rgba(0, 255, 255, OPACITY)',
-    'rgba(255, 0, 255, OPACITY)',
-    'rgba(255, 128, 255, OPACITY)'
+    'rgba(255, 255, 255, OPACITY)',
+    'rgba(226, 232, 240, OPACITY)',
+    'rgba(148, 163, 184, OPACITY)'
   ];
 
   let hexes = [];
@@ -73,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Calculate delta time
     const deltaTime = currentTime - lastTime;
 
-    // Only draw if enough time has passed (capped at 60 FPS)
+    // Only draw if enough time has passed
     if (deltaTime >= frameInterval) {
       lastTime = currentTime - (deltaTime % frameInterval);
 
