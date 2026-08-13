@@ -36,15 +36,31 @@ body {
   pointer-events: none;
 }
 
-/* 💫 Header Title (Minimalist) */
+/* 💫 Header Title (Premium Iridescent Glow) */
 h1 {
-  font-size: 2.5em; /* Scaled down slightly for elegance */
+  font-size: 2.5em; 
   font-weight: 800;
   letter-spacing: -0.5px;
-  color: #ffffff;
-  text-shadow: 0 4px 24px rgba(255, 255, 255, 0.15); /* Soft, diffused glow */
   margin-top: 40px;
   margin-bottom: 20px;
+  
+  /* ✨ The Modern Web3 Gradient */
+  background: linear-gradient(to right, #ffffff 20%, #ff00cc 50%, #00ffff 80%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  /* ✨ Slow, elegant ambient shine */
+  animation: iridescent-shine 6s linear infinite;
+  
+  /* Subtle drop shadow that doesn't ruin the gradient text */
+  filter: drop-shadow(0 4px 12px rgba(255, 0, 204, 0.2));
+}
+
+/* 🔄 The animation that makes the colors drift */
+@keyframes iridescent-shine {
+  to { background-position: 200% center; }
 }
 
 h1 a {
@@ -54,7 +70,7 @@ h1 a {
 }
 
 h1 a:hover {
-  opacity: 0.8; /* Simple fade effect on hover */
+  opacity: 0.8; 
 }
 
 /* 🧱 Wrapper for Content */
@@ -209,6 +225,8 @@ h1 a:hover {
 .activity-text {
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* ✨ Traps the runaway text */
+  width: 100%; /* Ensures it properly fills the rest of the card */
 }
 
 .activity-text a {
@@ -222,6 +240,9 @@ h1 a:hover {
 
 .activity-text div {
   transition: opacity 0.4s ease;
+  white-space: nowrap; /* ✨ Forces the text to stay on a single line */
+  overflow: hidden; /* ✨ Hides the excess text */
+  text-overflow: ellipsis; /* ✨ Adds the clean '...' at the end */
 }
 
 /* 🖼️ GIF Panel */
