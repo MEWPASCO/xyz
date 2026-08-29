@@ -28,7 +28,6 @@ body {
   }
 }
 
-/* Background Animation Canvas */
 #hexCanvas {
   position: fixed;
   top: 0;
@@ -37,16 +36,14 @@ body {
   pointer-events: none;
 }
 
-/* Header Title */
 h1 {
-  font-size: 2.5em; 
+  font-size: 2.5em;
   font-weight: 800;
   letter-spacing: -0.5px;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  background: linear-gradient(to right, #00ffff 0%, #a855f7 25%, var(--brand-color) 50%, #a855f7 75%, #00ffff 100%); 
+  margin: 40px 0 20px;
+  background: linear-gradient(to right, #00ffff 0%, #a855f7 25%, var(--brand-color) 50%, #a855f7 75%, #00ffff 100%);
   background-size: 200% auto;
-  background-clip: text; /* Added standard property */
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
@@ -65,10 +62,9 @@ h1 a {
 }
 
 h1 a:hover {
-  opacity: 0.8; 
+  opacity: 0.8;
 }
 
-/* Content Wrapper */
 .content-wrapper {
   flex: 1;
   display: flex;
@@ -78,7 +74,6 @@ h1 a:hover {
   min-height: 100vh;
 }
 
-/* Discord User Widget */
 .discord-widget {
   padding: 20px;
   box-sizing: border-box;
@@ -153,7 +148,7 @@ h1 a:hover {
 .activity-card {
   margin-top: 20px;
   padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.03); 
+  background: rgba(255, 255, 255, 0.03);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -162,31 +157,31 @@ h1 a:hover {
   width: 90%;
   max-width: 280px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  position: relative; 
+  position: relative;
   z-index: 1;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease; 
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
 }
 
-.activity-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: inherit;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
-  opacity: 1; 
-  transition: opacity 0.3s ease;
-  z-index: -1; 
-}
-
+.activity-card::before,
 .activity-card::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: inherit;
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35); 
-  opacity: 0; 
+  opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: -2; 
+  z-index: -1;
+}
+
+.activity-card::before {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.activity-card::after {
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35);
 }
 
 .activity-card:hover {
@@ -194,8 +189,13 @@ h1 a:hover {
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-.activity-card:hover::before { opacity: 0; } 
-.activity-card:hover::after { opacity: 1; } 
+.activity-card:hover::before {
+  opacity: 0;
+}
+
+.activity-card:hover::after {
+  opacity: 1;
+}
 
 .activity-icon {
   font-size: 1.8em;
@@ -207,7 +207,7 @@ h1 a:hover {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  width: 100%; 
+  width: 100%;
 }
 
 .activity-text a {
@@ -225,12 +225,11 @@ h1 a:hover {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Already defined */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  line-clamp: 2; /* Added standard property */
+  line-clamp: 2;
 }
 
-/* GIF Panel */
 .gif-container {
   width: 360px;
   height: 360px;
@@ -250,7 +249,6 @@ h1 a:hover {
   display: block;
 }
 
-/* Social Links */
 .social-links {
   display: flex;
   flex-direction: row;
@@ -261,7 +259,7 @@ h1 a:hover {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 12px 32px;
-  border-radius: 50px; 
+  border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   margin: 20px 0 40px 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -279,7 +277,6 @@ h1 a:hover {
   text-shadow: 0 0 10px rgba(255, 0, 204, 0.5);
 }
 
-/* Bento Box Grid */
 .bento-grid {
   display: flex;
   flex-wrap: wrap;
@@ -287,12 +284,11 @@ h1 a:hover {
   align-items: center;
   gap: 30px;
   width: 100%;
-  max-width: 800px; 
+  max-width: 800px;
   padding: 20px;
   box-sizing: border-box;
 }
 
-/* Widgets */
 .discord-server-widget,
 .steam-profile-widget {
   width: 360px;
@@ -305,49 +301,52 @@ h1 a:hover {
   padding: 0;
 }
 
-/* Glassmorphism */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.05); 
-  backdrop-filter: blur(10px); 
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08); 
-  border-radius: 24px; 
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
   position: relative;
   z-index: 1;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
 }
 
-.glass-panel::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: inherit;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  opacity: 1;
-  transition: opacity 0.4s ease;
-  z-index: -1; 
-}
-
+.glass-panel::before,
 .glass-panel::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: inherit;
-  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25), 0 5px 15px rgba(255, 255, 255, 0.15);
   opacity: 0;
   transition: opacity 0.4s ease;
-  z-index: -2;
+  z-index: -1;
+}
+
+.glass-panel::before {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.glass-panel::after {
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25), 0 5px 15px rgba(255, 255, 255, 0.15);
 }
 
 .glass-panel:hover {
-  transform: translateY(-6px); 
+  transform: translateY(-6px);
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.glass-panel:hover::before { opacity: 0; } 
-.glass-panel:hover::after { opacity: 1; } 
+.glass-panel:hover::before {
+  opacity: 0;
+}
 
-/* Mobile Overrides */
+.glass-panel:hover::after {
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
@@ -391,7 +390,6 @@ h1 a:hover {
   }
 }
 
-/* Downloads Button */
 .download-list {
   list-style: none;
   padding: 0;
@@ -403,7 +401,6 @@ h1 a:hover {
   margin-bottom: 40px;
 }
 
-/* Premium Ghost Button */
 a.glow-button {
   display: inline-flex;
   justify-content: center;
@@ -441,9 +438,9 @@ a.glow-button::after {
 }
 
 .glow-button:hover {
-  color: var(--brand-color); /* Change text color to brand color */
-  border-color: var(--brand-color); /* Change border color to brand color */
-  background-color: rgba(255, 0, 204, 0.1); /* Enhance glow intensity */
+  color: var(--brand-color);
+  border-color: var(--brand-color);
+  background-color: rgba(255, 0, 204, 0.1);
   transform: translateY(-3px);
 }
 
@@ -457,7 +454,6 @@ a.glow-button::after {
   justify-content: center;
 }
 
-/* Limiter Guides Text */
 .limit-list p {
   color: var(--text-color);
   font-family: "Roboto Mono", monospace;
