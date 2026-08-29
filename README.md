@@ -9,11 +9,10 @@
 
 # ΛVΛRIΛ
 
-We used to be known as **ฟธ」- Wolves Street™**, but after a big rebrand, we’re now **ΛVΛRIΛ**.  
-If you wanna know why and what changed, you can read it [here](https://discord.com/channels/936383427215785985/936967510861951056/1262470155779313795).
+ΛVΛRIΛ was formerly known as **ฟธ」- Wolves Street™.** Following a significant rebrand, we are now **ΛVΛRIΛ**. For more details on our rebranding, you can read our [announcements](https://discord.com/channels/936383427215785985/936967510861951056/1262470155779313795).
 
-Appreciate everyone who's been part of it since before, then and till now <3
+A special thank you to all who have been part of ΛVΛRIΛ from the start, through the journey, and into the future! <3
 
 > [!CAUTION]
 > # ⚠️ **BREAKING NEWS**  
-> **Bananas are fruits, Mangos are made out of cotton**
+> *Bananas are fruits, Mangos are made out of cotton... or maybe not? 🤔*

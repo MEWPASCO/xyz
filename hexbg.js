@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById('hexCanvas');
   const ctx = canvas.getContext('2d');
+  const TWO_PI = Math.PI * 2; // Store Math.PI * 2 for performance
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -11,10 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
   resizeCanvas();
 
   let time = 0;
+  const timeMultiplier = 0.002; // Adjust step size for smoother animation
 
   function animate() {
     requestAnimationFrame(animate);
-    time += 0.003; // Slightly faster drift for a bit more life
+    time += timeMultiplier;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -24,12 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const r1 = Math.max(canvas.width, canvas.height) * 0.4;
     
     const grad1 = ctx.createRadialGradient(x1, y1, 0, x1, y1, r1);
-    grad1.addColorStop(0, 'rgba(67, 24, 255, 0.18)'); // Much more visible
+    grad1.addColorStop(0, 'rgba(67, 24, 255, 0.18)');
     grad1.addColorStop(1, 'rgba(67, 24, 255, 0)');
     
     ctx.fillStyle = grad1;
     ctx.beginPath();
-    ctx.arc(x1, y1, r1, 0, Math.PI * 2);
+    ctx.arc(x1, y1, r1, 0, TWO_PI);
     ctx.fill();
 
     // ✨ Orb 2: Vibrant Magenta (Increased opacity)
@@ -38,12 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const r2 = Math.max(canvas.width, canvas.height) * 0.35;
     
     const grad2 = ctx.createRadialGradient(x2, y2, 0, x2, y2, r2);
-    grad2.addColorStop(0, 'rgba(255, 0, 204, 0.15)'); // More pop
+    grad2.addColorStop(0, 'rgba(255, 0, 204, 0.15)');
     grad2.addColorStop(1, 'rgba(255, 0, 204, 0)');
     
     ctx.fillStyle = grad2;
     ctx.beginPath();
-    ctx.arc(x2, y2, r2, 0, Math.PI * 2);
+    ctx.arc(x2, y2, r2, 0, TWO_PI);
     ctx.fill();
 
     // ✨ Orb 3: Subtle Cyan (The new addition for depth!)
@@ -52,12 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const r3 = Math.max(canvas.width, canvas.height) * 0.3;
     
     const grad3 = ctx.createRadialGradient(x3, y3, 0, x3, y3, r3);
-    grad3.addColorStop(0, 'rgba(0, 255, 255, 0.08)'); // Gentle cyan highlight
+    grad3.addColorStop(0, 'rgba(0, 255, 255, 0.08)');
     grad3.addColorStop(1, 'rgba(0, 255, 255, 0)');
     
     ctx.fillStyle = grad3;
     ctx.beginPath();
-    ctx.arc(x3, y3, r3, 0, Math.PI * 2);
+    ctx.arc(x3, y3, r3, 0, TWO_PI);
     ctx.fill();
   }
 

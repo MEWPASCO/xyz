@@ -3,70 +3,82 @@
   <!-- Home page -->
   <url>
     <loc>https://avariaxyz.win/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Downloads page -->
   <url>
     <loc>https://avariaxyz.win/downloads/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Nova's page -->
   <url>
     <loc>https://avariaxyz.win/nova/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Guides index -->
   <url>
     <loc>https://avariaxyz.win/guides/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Individual guide pages -->
   <url>
     <loc>https://avariaxyz.win/guides/teamkill/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://avariaxyz.win/guides/lobbycrash/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://avariaxyz.win/guides/multishot/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://avariaxyz.win/guides/restoken/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://avariaxyz.win/guides/3084pre/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://avariaxyz.win/guides/7500pre/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://avariaxyz.win/guides/dualitypre/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://avariaxyz.win/guides/divchunks/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2023-08-29</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 </urlset>

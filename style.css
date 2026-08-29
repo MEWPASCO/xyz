@@ -1,20 +1,21 @@
-/* ─────────────────────────────── */
-/* ⚙️  Base Styles and Layout     */
-/* ─────────────────────────────── */
+:root {
+  --background-color: #1e1e2f;
+  --text-color: #e2e8f0;
+  --brand-color: #ff00cc;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', 'Arial', sans-serif;
   font-size: 16px;
-  color: #e2e8f0; /* Soft, premium off-white */
+  color: var(--text-color);
   min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  /* 🎬 Deep Cinematic Spotlight Background */
-  background: radial-gradient(circle at 50% 0%, #1e1e2f 0%, #0d0d1a 50%, #05050a 100%);
+  background: radial-gradient(circle at 50% 0%, var(--background-color) 0%, #0d0d1a 50%, #05050a 100%);
   position: relative;
   z-index: 0;
   -webkit-font-smoothing: antialiased;
@@ -27,7 +28,7 @@ body {
   }
 }
 
-/* 🌌 Background Animation Canvas */
+/* Background Animation Canvas */
 #hexCanvas {
   position: fixed;
   top: 0;
@@ -36,29 +37,23 @@ body {
   pointer-events: none;
 }
 
-/* 💫 Header Title (Anti-Dark-Mode Iridescent Glow) */
+/* Header Title */
 h1 {
   font-size: 2.5em; 
   font-weight: 800;
   letter-spacing: -0.5px;
   margin-top: 40px;
   margin-bottom: 20px;
-  
-  /* ✨ Swapped white for brand colors so extensions don't invert it to black! */
-  background: linear-gradient(to right, #00ffff 0%, #a855f7 25%, #ff00cc 50%, #a855f7 75%, #00ffff 100%);
+  background: linear-gradient(to right, #00ffff 0%, #a855f7 25%, var(--brand-color) 50%, #a855f7 75%, #00ffff 100%); 
   background-size: 200% auto;
+  background-clip: text; /* Added standard property */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  
-  /* ✨ Slow, elegant ambient shine */
   animation: iridescent-shine 6s linear infinite;
-  
-  /* Subtle drop shadow that doesn't ruin the gradient text */
   filter: drop-shadow(0 4px 12px rgba(255, 0, 204, 0.2));
 }
 
-/* 🔄 The animation that makes the colors drift */
 @keyframes iridescent-shine {
   to { background-position: 200% center; }
 }
@@ -73,7 +68,7 @@ h1 a:hover {
   opacity: 0.8; 
 }
 
-/* 🧱 Wrapper for Content */
+/* Content Wrapper */
 .content-wrapper {
   flex: 1;
   display: flex;
@@ -83,7 +78,7 @@ h1 a:hover {
   min-height: 100vh;
 }
 
-/* 👤 Discord User Widget */
+/* Discord User Widget */
 .discord-widget {
   padding: 20px;
   box-sizing: border-box;
@@ -96,7 +91,6 @@ h1 a:hover {
   align-items: center;
 }
 
-.discord-widget img,
 .avatar-container img {
   width: 96px;
   height: 96px;
@@ -105,7 +99,6 @@ h1 a:hover {
   display: block;
 }
 
-/* Avatar + Info */
 .user-row {
   display: flex;
   align-items: center;
@@ -121,13 +114,12 @@ h1 a:hover {
   text-align: left;
 }
 
-/* 👤 Clean, Premium Username */
 #username {
   font-weight: 800;
   font-size: 1.2em;
   margin-bottom: 4px;
-  color: #ffffff; /* Crisp white text */
-  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.25); /* Soft silver glow */
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.25);
 }
 
 .avatar-container {
@@ -148,7 +140,6 @@ h1 a:hover {
   background-color: gray;
 }
 
-/* ✨ Custom Tag Below Name */
 #custom-text {
   font-size: 0.9em;
   color: #ccc;
@@ -159,12 +150,6 @@ h1 a:hover {
   line-height: 1.4;
 }
 
-/* 🎶 Activity Cards */
-.activity-separator {
-  height: 20px;
-}
-
-/* 🎶 Activity Cards (The Flawless Dual-Layer Crossfade) */
 .activity-card {
   margin-top: 20px;
   padding: 12px 16px;
@@ -179,11 +164,9 @@ h1 a:hover {
   border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative; 
   z-index: 1;
-  /* ✨ NO box-shadow on the main card! */
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease; 
 }
 
-/* 🌑 Layer 1: The Base Dark Shadow */
 .activity-card::before {
   content: '';
   position: absolute;
@@ -195,13 +178,12 @@ h1 a:hover {
   z-index: -1; 
 }
 
-/* 🌕 Layer 2: The Hover White Glow */
 .activity-card::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   border-radius: inherit;
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35); /* Crisp white pop */
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35); 
   opacity: 0; 
   transition: opacity 0.3s ease;
   z-index: -2; 
@@ -212,9 +194,8 @@ h1 a:hover {
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* ✨ The Magic Crossfade */
-.activity-card:hover::before { opacity: 0; } /* Fade black out */
-.activity-card:hover::after { opacity: 1; }  /* Fade white in */
+.activity-card:hover::before { opacity: 0; } 
+.activity-card:hover::after { opacity: 1; } 
 
 .activity-icon {
   font-size: 1.8em;
@@ -225,8 +206,8 @@ h1 a:hover {
 .activity-text {
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* ✨ Traps the runaway text */
-  width: 100%; /* Ensures it properly fills the rest of the card */
+  overflow: hidden;
+  width: 100%; 
 }
 
 .activity-text a {
@@ -235,20 +216,21 @@ h1 a:hover {
 }
 
 .activity-text a:hover {
-  color: #ff00cc;
+  color: var(--brand-color);
 }
 
 .activity-text div {
   transition: opacity 0.4s ease;
-  white-space: normal; /* ✨ Allows the text to wrap to the next line */
-  overflow: hidden; /* ✨ Hides anything past line 2 */
-  text-overflow: ellipsis; /* ✨ Adds the '...' if it overflows */
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* ✨ Hard caps it at a maximum of 2 lines */
+  -webkit-line-clamp: 2; /* Already defined */
   -webkit-box-orient: vertical;
+  line-clamp: 2; /* Added standard property */
 }
 
-/* 🖼️ GIF Panel */
+/* GIF Panel */
 .gif-container {
   width: 360px;
   height: 360px;
@@ -268,7 +250,7 @@ h1 a:hover {
   display: block;
 }
 
-/* 🌐 Social Links (Modern Pill) */
+/* Social Links */
 .social-links {
   display: flex;
   flex-direction: row;
@@ -292,12 +274,12 @@ h1 a:hover {
 }
 
 .social-links a:hover {
-  color: #ff00cc;
+  color: var(--brand-color);
   transform: scale(1.2) translateY(-2px);
   text-shadow: 0 0 10px rgba(255, 0, 204, 0.5);
 }
 
-/* 🧩 Bento Box Grid (Perfect 2x2 Layout) */
+/* Bento Box Grid */
 .bento-grid {
   display: flex;
   flex-wrap: wrap;
@@ -305,12 +287,12 @@ h1 a:hover {
   align-items: center;
   gap: 30px;
   width: 100%;
-  max-width: 800px; /* 👈 This is the magic limit that forces the 2x2 shape */
+  max-width: 800px; 
   padding: 20px;
   box-sizing: border-box;
 }
 
-/* 🤖 Widgets */
+/* Widgets */
 .discord-server-widget,
 .steam-profile-widget {
   width: 360px;
@@ -323,9 +305,8 @@ h1 a:hover {
   padding: 0;
 }
 
-/* ✨ Modern Glassmorphism (The Flawless Dual-Layer Crossfade) */
+/* Glassmorphism */
 .glass-panel {
-  /* Matched the background and blur to the social pill exactly! */
   background: rgba(255, 255, 255, 0.05); 
   backdrop-filter: blur(10px); 
   -webkit-backdrop-filter: blur(10px);
@@ -333,11 +314,9 @@ h1 a:hover {
   border-radius: 24px; 
   position: relative;
   z-index: 1;
-  /* ✨ NO box-shadow on the main card! */
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
 }
 
-/* 🌑 Layer 1: The Base Dark Shadow */
 .glass-panel::before {
   content: '';
   position: absolute;
@@ -346,10 +325,9 @@ h1 a:hover {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   opacity: 1;
   transition: opacity 0.4s ease;
-  z-index: -1;
+  z-index: -1; 
 }
 
-/* 🌕 Layer 2: The Hover White Glow */
 .glass-panel::after {
   content: '';
   position: absolute;
@@ -366,21 +344,20 @@ h1 a:hover {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* ✨ The Magic Crossfade */
-.glass-panel:hover::before { opacity: 0; } /* Fade black out */
-.glass-panel:hover::after { opacity: 1; }  /* Fade white in */
+.glass-panel:hover::before { opacity: 0; } 
+.glass-panel:hover::after { opacity: 1; } 
 
-/* 📱 Mobile Overrides */
+/* Mobile Overrides */
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
-    width: 100vw; /* Swapped to viewport width */
+    width: 100vw;
     margin: 0;
     padding: 0;
   }
 
   body {
-    box-sizing: border-box; /* Ensures padding doesn't break the width */
+    box-sizing: border-box;
     padding: 0 16px;
   }
 
@@ -414,7 +391,7 @@ h1 a:hover {
   }
 }
 
-/*✅ Downloads button below */
+/* Downloads Button */
 .download-list {
   list-style: none;
   padding: 0;
@@ -426,52 +403,52 @@ h1 a:hover {
   margin-bottom: 40px;
 }
 
-/* ✅ Premium Ghost Button (White to Pink Transition) */
+/* Premium Ghost Button */
 a.glow-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   min-width: 240px;
   padding: 14px 32px;
-  background-color: transparent !important; 
+  background-color: transparent !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  /* ✨ Bumped to 2px solid and increased opacity for a stronger structure */
-  border: 2px solid rgba(255, 255, 255, 0.5); 
-  border-radius: 12px; 
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
   font-size: 1.1em;
   font-weight: 600;
   letter-spacing: 0.5px;
-  color: #ffffff; 
+  color: var(--text-color);
   text-decoration: none;
   position: relative;
   z-index: 1;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
 }
 
-/* 👻 The invisible clone for the pink button glow */
 a.glow-button::after {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: inherit;
-  box-shadow: 0 8px 24px rgba(255, 0, 204, 0.25), inset 0 0 12px rgba(255, 0, 204, 0.15); 
+  box-shadow: 0 8px 24px rgba(255, 0, 204, 0.25), inset 0 0 12px rgba(255, 0, 204, 0.15);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
   z-index: -1;
 }
 
-/* 🚀 The Hover State */
 .glow-button:hover {
-  color: #ffffff; /* Keeps text white */
-  border-color: rgba(255, 0, 204, 0.8); /* Border snaps to pink */
-  background-color: rgba(255, 0, 204, 0.05); /* Slight pink glass fill */
-  transform: translateY(-3px); 
+  color: var(--brand-color); /* Change text color to brand color */
+  border-color: var(--brand-color); /* Change border color to brand color */
+  background-color: rgba(255, 0, 204, 0.1); /* Enhance glow intensity */
+  transform: translateY(-3px);
 }
 
 .glow-button:hover::after {
-  opacity: 1; /* Smooth pink shadow fade */
+  opacity: 1;
 }
 
 .downloads-button-container {
@@ -482,7 +459,7 @@ a.glow-button::after {
 
 /* Limiter Guides Text */
 .limit-list p {
-  color: #ffffff;
+  color: var(--text-color);
   font-family: "Roboto Mono", monospace;
   margin: 0 0 8px 0;
 }
