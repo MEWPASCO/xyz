@@ -5,7 +5,9 @@
 
 [discord]: https://discord.gg/avia
 
-# Come hang out in our community for support, **Destiny 2** guides, archives, and more!
+# Contact 
+
+Come hang out in our community for support, **Destiny 2** guides, archives, and more!
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)][discord]
 
