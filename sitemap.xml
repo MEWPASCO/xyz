@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Only <loc> (and an honest <lastmod>) matter to search engines.
-       Add <lastmod>YYYY-MM-DD</lastmod> to a page when you actually change it. -->
+  <!-- Guides are intentionally left out (they are noindex). -->
   <url>
     <loc>https://avariaxyz.win/</loc>
     <lastmod>2026-10-26</lastmod>
@@ -11,32 +10,5 @@
   </url>
   <url>
     <loc>https://avariaxyz.win/nova/</loc>
-  </url>
-  <url>
-    <loc>https://avariaxyz.win/guides/</loc>
-  </url>
-  <url>
-    <loc>https://avariaxyz.win/guides/teamkill/</loc>
-  </url>
-  <url>
-    <loc>https://avariaxyz.win/guides/lobbycrash/</loc>
-  </url>
-  <url>
-    <loc>https://avariaxyz.win/guides/multishot/</loc>
-  </url>
-  <url>
-    <loc>https://avariaxyz.win/guides/restoken/</loc>
-  </url>
-  <url>
-    <loc>https://avariaxyz.win/guides/3074pre/</loc>
-  </url>
-  <url>
-    <loc>https://avariaxyz.win/guides/7500pre/</loc>
-  </url>
-  <url>
-    <loc>https://avariaxyz.win/guides/dualitypre/</loc>
-  </url>
-  <url>
-    <loc>https://avariaxyz.win/guides/divchunks/</loc>
   </url>
 </urlset>
