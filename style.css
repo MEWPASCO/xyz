@@ -438,6 +438,13 @@ a.glow-button::after {
   justify-content: center;
 }
 
+/* Guide GIFs scale down on small screens instead of getting clipped */
+.limit-list img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
 .limit-list p {
   color: var(--text-color);
   font-family: "Roboto Mono", ui-monospace, monospace;
