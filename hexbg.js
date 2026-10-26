@@ -1,76 +1,101 @@
+// Animated background orbs + motion preferences.
+// (File name kept as hexbg.js so every page that loads it keeps working.)
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('hexCanvas');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const TWO_PI = Math.PI * 2; // Store 2π for performance
+  if (!ctx) return;
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
+  const TWO_PI = Math.PI * 2;
+  const SCALE = 0.5;          // render at half resolution; CSS scales it up (the gradients are soft)
+  const SPEED = 0.12;         // radians per second (same pace as the old 0.002/frame at 60Hz)
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   let time = 0;
-  const timeMultiplier = 0.002; // Step size for smoother animation
-  let animationFrameId;
+  let last = 0;
+  let rafId = 0;
 
-  function animate() {
-    animationFrameId = requestAnimationFrame(animate);
-    time += timeMultiplier;
+  function resizeCanvas() {
+    canvas.width = Math.max(1, Math.round(window.innerWidth * SCALE));
+    canvas.height = Math.max(1, Math.round(window.innerHeight * SCALE));
+    draw(); // repaint immediately so a resize never shows a blank frame
+  }
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // ✨ Orb 1: Deep Violet
-    const x1 = canvas.width / 2 + Math.cos(time) * canvas.width * 0.3;
-    const y1 = canvas.height / 2 + Math.sin(time * 0.8) * canvas.height * 0.3;
-    const r1 = Math.max(canvas.width, canvas.height) * 0.4;
-
-    const grad1 = ctx.createRadialGradient(x1, y1, 0, x1, y1, r1);
-    grad1.addColorStop(0, 'rgba(67, 24, 255, 0.18)');
-    grad1.addColorStop(1, 'rgba(67, 24, 255, 0)');
-
-    ctx.fillStyle = grad1;
+  function orb(cx, cy, radius, rgb, alpha) {
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+    g.addColorStop(0, `rgba(${rgb}, ${alpha})`);
+    g.addColorStop(1, `rgba(${rgb}, 0)`);
+    ctx.fillStyle = g;
     ctx.beginPath();
-    ctx.arc(x1, y1, r1, 0, TWO_PI);
-    ctx.fill();
-
-    // ✨ Orb 2: Vibrant Magenta
-    const x2 = canvas.width / 2 + Math.sin(time * 1.1) * canvas.width * 0.25;
-    const y2 = canvas.height / 2 + Math.cos(time * 0.9) * canvas.height * 0.25;
-    const r2 = Math.max(canvas.width, canvas.height) * 0.35;
-
-    const grad2 = ctx.createRadialGradient(x2, y2, 0, x2, y2, r2);
-    grad2.addColorStop(0, 'rgba(255, 0, 204, 0.15)');
-    grad2.addColorStop(1, 'rgba(255, 0, 204, 0)');
-
-    ctx.fillStyle = grad2;
-    ctx.beginPath();
-    ctx.arc(x2, y2, r2, 0, TWO_PI);
-    ctx.fill();
-
-    // ✨ Orb 3: Subtle Cyan
-    const x3 = canvas.width / 2 + Math.cos(time * 1.3) * canvas.width * 0.2;
-    const y3 = canvas.height / 2 + Math.sin(time * 1.2) * canvas.height * 0.2;
-    const r3 = Math.max(canvas.width, canvas.height) * 0.3;
-
-    const grad3 = ctx.createRadialGradient(x3, y3, 0, x3, y3, r3);
-    grad3.addColorStop(0, 'rgba(0, 255, 255, 0.08)');
-    grad3.addColorStop(1, 'rgba(0, 255, 255, 0)');
-
-    ctx.fillStyle = grad3;
-    ctx.beginPath();
-    ctx.arc(x3, y3, r3, 0, TWO_PI);
+    ctx.arc(cx, cy, radius, 0, TWO_PI);
     ctx.fill();
   }
 
-  window.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      cancelAnimationFrame(animationFrameId);
-    } else {
-      requestAnimationFrame(animate);
-    }
+  function draw() {
+    const w = canvas.width;
+    const h = canvas.height;
+    const big = Math.max(w, h);
+
+    ctx.clearRect(0, 0, w, h);
+
+    // Orb 1: deep violet
+    orb(w / 2 + Math.cos(time) * w * 0.3,
+        h / 2 + Math.sin(time * 0.8) * h * 0.3,
+        big * 0.4, '67, 24, 255', 0.18);
+
+    // Orb 2: vibrant magenta
+    orb(w / 2 + Math.sin(time * 1.1) * w * 0.25,
+        h / 2 + Math.cos(time * 0.9) * h * 0.25,
+        big * 0.35, '255, 0, 204', 0.15);
+
+    // Orb 3: subtle cyan
+    orb(w / 2 + Math.cos(time * 1.3) * w * 0.2,
+        h / 2 + Math.sin(time * 1.2) * h * 0.2,
+        big * 0.3, '0, 255, 255', 0.08);
+  }
+
+  function frame(now) {
+    rafId = requestAnimationFrame(frame);
+    const dt = Math.min((now - last) / 1000, 0.1); // clamp so a tab switch doesn't make it jump
+    last = now;
+    time += dt * SPEED;
+    draw();
+  }
+
+  function start() {
+    if (rafId || reducedMotion.matches || document.hidden) return;
+    last = performance.now();
+    rafId = requestAnimationFrame(frame);
+  }
+
+  function stop() {
+    cancelAnimationFrame(rafId);
+    rafId = 0;
+  }
+
+  // Debounced resize so dragging the window doesn't thrash the canvas
+  let resizeTimer = 0;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resizeCanvas, 120);
   });
 
-  requestAnimationFrame(animate);
+  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+
+  // Respect "reduce motion": show one still frame and pause the video
+  const video = document.querySelector('.gif-container video');
+  function applyMotionPreference() {
+    if (reducedMotion.matches) {
+      stop();
+      draw();
+      if (video) video.pause();
+    } else {
+      start();
+      if (video) video.play().catch(() => {});
+    }
+  }
+  reducedMotion.addEventListener('change', applyMotionPreference);
+
+  resizeCanvas();
+  applyMotionPreference();
 });

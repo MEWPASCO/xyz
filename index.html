@@ -5,29 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Wolfÿ">
-  <title>♅</title>
-  <link rel="canonical" href="https://avariaxyz.win">
+  <meta name="theme-color" content="#0d0d1a">
+  <title>Wolfÿ | ΛVΛRIΛ</title>
+  <link rel="canonical" href="https://avariaxyz.win/">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="style.css?v=nuke_cache_2026">
 
-  <!-- Preloads -->
-  <link rel="preload" as="image" href="./media/avatar.webp">
-  <link rel="preload" as="video" href="./media/cool-gif.mp4" type="video/mp4">
+  <!-- Fonts (Inter is what style.css asks for; display=swap keeps text visible while it loads) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css?v=2026-10-26">
+
+  <!-- Preload (only the above-the-fold avatar; video preload isn't supported by browsers) -->
+  <link rel="preload" as="image" href="/media/avatar.webp">
 
   <!-- SEO Meta -->
   <meta name="description" content="Wolfÿ#3139 | ΛVΛRIΛ - Discord, Steam & downloadable content.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="♅">
+  <meta property="og:title" content="Wolfÿ | ΛVΛRIΛ">
   <meta property="og:description" content="Wolfÿ#3139 | ΛVΛRIΛ - Discord, Steam & downloadable content.">
-  <meta property="og:url" content="https://avariaxyz.win">
+  <meta property="og:url" content="https://avariaxyz.win/">
   <meta property="og:image" content="https://avariaxyz.win/media/avatar.webp">
   <meta property="og:type" content="website">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="♅">
+  <meta name="twitter:title" content="Wolfÿ | ΛVΛRIΛ">
   <meta name="twitter:description" content="Wolfÿ#3139 | ΛVΛRIΛ - Discord, Steam & downloadable content.">
   <meta name="twitter:image" content="https://avariaxyz.win/media/avatar.webp">
 
@@ -40,7 +46,7 @@
         "@type": "Organization",
         "@id": "https://avariaxyz.win/#organization",
         "name": "ΛVΛRIΛ",
-        "url": "https://avariaxyz.win",
+        "url": "https://avariaxyz.win/",
         "logo": {
           "@type": "ImageObject",
           "url": "https://avariaxyz.win/media/avatar.webp"
@@ -55,7 +61,7 @@
       {
         "@type": "Person",
         "name": "Wolfÿ",
-        "url": "https://avariaxyz.win",
+        "url": "https://avariaxyz.win/",
         "image": "https://avariaxyz.win/media/avatar.webp",
         "affiliation": {
           "@id": "https://avariaxyz.win/#organization"
@@ -67,53 +73,32 @@
           "https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y"
         ],
         "description": "Wolfÿ#3139 | ΛVΛRIΛ - Discord, Steam & downloadable content."
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Who is Wolfÿ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Wolfÿ is a creator and gamer showcasing live Discord activity, gaming presence, and curated links as part of ΛVΛRIΛ."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is ΛVΛRIΛ?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "ΛVΛRIΛ is an online community and profile project built around presence, aesthetics, and gaming culture — currently centered on Destiny 2 and Marathon."
-            }
-          }
-        ]
       }
     ]
   }
   </script>
 </head>
 <body>
-  <!-- Background Hexagonses ;) -->
-  <canvas id="hexCanvas"></canvas>
+  <!-- Background orbs -->
+  <canvas id="hexCanvas" aria-hidden="true"></canvas>
 
   <!-- Main Content Wrapper -->
   <main class="content-wrapper">
     <!-- Title -->
     <h1>
-      <a href="https://www.bungie.net/7/en/User/Profile/3/4611686018519998253?bgn=Wolf%C3%BF" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+      <a href="https://www.bungie.net/7/en/User/Profile/3/4611686018519998253?bgn=Wolf%C3%BF" target="_blank" rel="noopener noreferrer">
         Wolfÿ#3139
       </a>
     </h1>
 
     <!-- Floating Social Pill -->
-    <nav class="social-links">
-      <a href="https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y" target="_blank" rel="noopener noreferrer" aria-label="Spotify" title="Spotify"><i class="fab fa-spotify"></i></a>
-      <a href="https://www.youtube.com/@MEWPASCO" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.twitch.tv/mewpasco" target="_blank" rel="noopener noreferrer" aria-label="Twitch" title="Twitch"><i class="fab fa-twitch"></i></a>
-      <a href="https://discord.gg/avia" target="_blank" rel="noopener noreferrer" aria-label="Discord Server" title="Discord"><i class="fab fa-discord"></i></a>
-      <a href="https://raid.report/pc/4611686018519998253" target="_blank" rel="noopener noreferrer" aria-label="Raid Report" title="Raid Report"><i class="fas fa-trophy"></i></a>
-      <a href="https://dungeon.report/pc/4611686018519998253" target="_blank" rel="noopener noreferrer" aria-label="Dungeon Report" title="Dungeon Report"><i class="fas fa-dungeon"></i></a>
+    <nav class="social-links" aria-label="Social links">
+      <a href="https://open.spotify.com/user/21jfhcbrbqznxwafykqahzt6y" target="_blank" rel="noopener noreferrer" aria-label="Spotify" title="Spotify"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+      <a href="https://www.youtube.com/@MEWPASCO" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+      <a href="https://www.twitch.tv/mewpasco" target="_blank" rel="noopener noreferrer" aria-label="Twitch" title="Twitch"><i class="fab fa-twitch" aria-hidden="true"></i></a>
+      <a href="https://discord.gg/avia" target="_blank" rel="noopener noreferrer" aria-label="Discord Server" title="Discord"><i class="fab fa-discord" aria-hidden="true"></i></a>
+      <a href="https://raid.report/pc/4611686018519998253" target="_blank" rel="noopener noreferrer" aria-label="Raid Report" title="Raid Report"><i class="fas fa-trophy" aria-hidden="true"></i></a>
+      <a href="https://dungeon.report/pc/4611686018519998253" target="_blank" rel="noopener noreferrer" aria-label="Dungeon Report" title="Dungeon Report"><i class="fas fa-dungeon" aria-hidden="true"></i></a>
     </nav>
 
     <!-- Bento Grid Layout -->
@@ -122,8 +107,8 @@
       <div id="discord-card" class="discord-widget glass-panel">
         <div class="user-row">
           <div class="avatar-container">
-            <img id="avatar" src="/media/avatar.webp" alt="Discord avatar" width="128" height="132">
-            <span id="status-dot" class="status-dot" style="background-color: #747f8d;"></span>
+            <img id="avatar" src="/media/avatar.webp" alt="Discord avatar" width="96" height="96" decoding="async">
+            <span id="status-dot" class="status-dot" style="background-color: #747f8d;" title="offline"></span>
           </div>
           <div class="user-info">
             <div id="username">Wolfÿ</div>
@@ -132,16 +117,16 @@
         </div>
 
         <div class="activity-card" id="spotify-card">
-          <i id="spotify-icon" class="activity-icon fab fa-spotify"></i>
-          <div class="activity-text">
+          <i id="spotify-icon" class="activity-icon fab fa-spotify" aria-hidden="true"></i>
+          <div class="activity-text" aria-live="polite">
             <div id="spotify-header">Fetching...</div>
             <div id="spotify-detail">Fetching...</div>
           </div>
         </div>
 
         <div class="activity-card" id="game-card">
-          <i id="game-icon" class="activity-icon fab fa-discord"></i>
-          <div class="activity-text">
+          <i id="game-icon" class="activity-icon fab fa-discord" aria-hidden="true"></i>
+          <div class="activity-text" aria-live="polite">
             <div id="game-header">Fetching...</div>
             <div id="game-detail">Fetching...</div>
           </div>
@@ -150,20 +135,19 @@
 
       <!-- GIF Panel -->
       <div class="gif-container glass-panel">
-        <video autoplay loop muted playsinline width="360" height="360">
+        <video autoplay loop muted playsinline preload="metadata" width="360" height="360" aria-hidden="true">
           <source src="/media/cool-gif.mp4" type="video/mp4">
-          Your browser does not support the video tag.
         </video>
       </div>
 
       <!-- Steam Widget -->
       <div class="steam-profile-widget glass-panel">
-        <iframe loading="lazy" src="https://mewpasco.github.io/steam-miniprofile-fork/?interactive=true&amp;vanityId=mewpasco&amp;appId=1085660" frameborder="0" scrolling="no" style="border: none; width: 360px; height: 360px;" allowfullscreen></iframe>
+        <iframe title="Steam profile" loading="lazy" src="https://mewpasco.github.io/steam-miniprofile-fork/?interactive=true&amp;vanityId=mewpasco&amp;appId=1085660" frameborder="0" scrolling="no" allowfullscreen></iframe>
       </div>
 
       <!-- Discord Server Widget -->
       <div class="discord-server-widget glass-panel">
-        <iframe loading="lazy" src="https://discord.com/widget?id=936383427215785985&amp;theme=dark" width="100%" height="100%" allowtransparency="true" frameborder="0" style="border: none;" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+        <iframe title="Discord server" loading="lazy" src="https://discord.com/widget?id=936383427215785985&amp;theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
       </div>
     </section>
 

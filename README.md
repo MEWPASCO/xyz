@@ -1,6 +1,6 @@
 > [!CAUTION]
 > # ⚠️ **Disclaimer**  
-> This is **not an official project of any usability**.  
+> This is **not an official project of any entity**.  
 > It is a **website** made for my own enjoyment!
 
 [discord]: https://discord.gg/avia

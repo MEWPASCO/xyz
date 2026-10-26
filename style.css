@@ -2,15 +2,17 @@
   --background-color: #1e1e2f;
   --text-color: #e2e8f0;
   --brand-color: #ff00cc;
+  --widget-size: 360px;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', 'Arial', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   font-size: 16px;
   color: var(--text-color);
   min-height: 100vh;
-  overflow-x: hidden;
+  min-height: 100dvh;
+  overflow-x: clip;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,10 +30,13 @@ body {
   }
 }
 
+/* The canvas is drawn at half resolution by hexbg.js and scaled up here */
 #hexCanvas {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   z-index: -1;
   pointer-events: none;
 }
@@ -41,6 +46,7 @@ h1 {
   font-weight: 800;
   letter-spacing: -0.5px;
   margin: 40px 0 20px;
+  text-align: center;
   background: linear-gradient(to right, #00ffff 0%, #a855f7 25%, var(--brand-color) 50%, #a855f7 75%, #00ffff 100%);
   background-size: 200% auto;
   background-clip: text;
@@ -48,7 +54,7 @@ h1 {
   -webkit-text-fill-color: transparent;
   color: transparent;
   animation: iridescent-shine 6s linear infinite;
-  filter: drop-shadow(0 4px 12px rgba(255, 0, 204, 0.2));
+  /* No drop-shadow filter here: it forced a full repaint on every animation frame */
 }
 
 @keyframes iridescent-shine {
@@ -67,24 +73,72 @@ h1 a:hover {
 
 .content-wrapper {
   flex: 1;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ---------- Widgets: fluid up to 360px, never wider than the screen ---------- */
+
+.discord-widget,
+.gif-container,
+.discord-server-widget,
+.steam-profile-widget {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--widget-size);
+  border-radius: 16px;
 }
 
 .discord-widget {
   padding: 20px;
-  box-sizing: border-box;
-  width: 360px;
-  height: 360px;
-  border-radius: 16px;
+  min-height: var(--widget-size); /* grows if a long title needs the room */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+.gif-container,
+.discord-server-widget,
+.steam-profile-widget {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gif-container {
+  flex-direction: column;
+}
+
+.discord-server-widget,
+.steam-profile-widget {
+  padding: 0;
+}
+
+.discord-server-widget iframe,
+.steam-profile-widget iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.gif-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+/* ---------- Discord presence card ---------- */
 
 .avatar-container img {
   width: 96px;
@@ -162,35 +216,22 @@ h1 a:hover {
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
 }
 
-.activity-card::before,
+/* Hover glow (the unused ::before shadow layer was removed) */
 .activity-card::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   border-radius: inherit;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35);
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
   z-index: -1;
-}
-
-.activity-card::before {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.activity-card::after {
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35);
 }
 
 .activity-card:hover {
   transform: translateY(-3px);
   border-color: rgba(255, 255, 255, 0.15);
-}
-
-.activity-card:hover::before {
-  opacity: 0;
 }
 
 .activity-card:hover::after {
@@ -223,6 +264,7 @@ h1 a:hover {
   transition: opacity 0.4s ease;
   white-space: normal;
   overflow: hidden;
+  overflow-wrap: anywhere; /* very long titles wrap instead of pushing the card wider */
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -230,28 +272,12 @@ h1 a:hover {
   line-clamp: 2;
 }
 
-.gif-container {
-  width: 360px;
-  height: 360px;
-  border-radius: 16px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.gif-container video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 16px;
-  display: block;
-}
+/* ---------- Social pill ---------- */
 
 .social-links {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -271,11 +297,14 @@ h1 a:hover {
   transition: all 0.3s ease;
 }
 
-.social-links a:hover {
+.social-links a:hover,
+.social-links a:focus-visible {
   color: var(--brand-color);
   transform: scale(1.2) translateY(-2px);
   text-shadow: 0 0 10px rgba(255, 0, 204, 0.5);
 }
+
+/* ---------- Layout ---------- */
 
 .bento-grid {
   display: flex;
@@ -289,17 +318,7 @@ h1 a:hover {
   box-sizing: border-box;
 }
 
-.discord-server-widget,
-.steam-profile-widget {
-  width: 360px;
-  height: 360px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  padding: 0;
-}
+/* ---------- Glass panels ---------- */
 
 .glass-panel {
   background: rgba(255, 255, 255, 0.05);
@@ -312,26 +331,17 @@ h1 a:hover {
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
 }
 
-.glass-panel::before,
+/* Hover glow (the unused ::before shadow layer was removed) */
 .glass-panel::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   border-radius: inherit;
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25), 0 5px 15px rgba(255, 255, 255, 0.15);
   opacity: 0;
   transition: opacity 0.4s ease;
+  pointer-events: none;
   z-index: -1;
-}
-
-.glass-panel::before {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-.glass-panel::after {
-  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25), 0 5px 15px rgba(255, 255, 255, 0.15);
 }
 
 .glass-panel:hover {
@@ -339,56 +349,31 @@ h1 a:hover {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.glass-panel:hover::before {
-  opacity: 0;
-}
-
 .glass-panel:hover::after {
   opacity: 1;
 }
 
+/* Browsers without backdrop-filter get a slightly more opaque panel instead */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-panel,
+  .social-links {
+    background: rgba(20, 20, 40, 0.8);
+  }
+}
+
 @media (max-width: 768px) {
-  html, body {
-    overflow-x: hidden;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    box-sizing: border-box;
-    padding: 0 16px;
-  }
-
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  .main-section {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .widget-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    padding: 20px;
-    margin-top: 0;
+  .bento-grid {
+    padding: 16px;
+    gap: 24px;
   }
 
   .social-links {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 16px;
-    height: auto;
-    font-size: 1.8em;
     margin-bottom: 10px;
   }
 }
+
+/* ---------- Downloads / buttons (used by other pages too) ---------- */
 
 .download-list {
   list-style: none;
@@ -425,10 +410,7 @@ a.glow-button {
 a.glow-button::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   border-radius: inherit;
   box-shadow: 0 8px 24px rgba(255, 0, 204, 0.25), inset 0 0 12px rgba(255, 0, 204, 0.15);
   opacity: 0;
@@ -437,14 +419,16 @@ a.glow-button::after {
   z-index: -1;
 }
 
-.glow-button:hover {
+.glow-button:hover,
+.glow-button:focus-visible {
   color: var(--brand-color);
   border-color: var(--brand-color);
   background-color: rgba(255, 0, 204, 0.1);
   transform: translateY(-3px);
 }
 
-.glow-button:hover::after {
+.glow-button:hover::after,
+.glow-button:focus-visible::after {
   opacity: 1;
 }
 
@@ -456,6 +440,26 @@ a.glow-button::after {
 
 .limit-list p {
   color: var(--text-color);
-  font-family: "Roboto Mono", monospace;
+  font-family: "Roboto Mono", ui-monospace, monospace;
   margin: 0 0 8px 0;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  h1 {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+
+  .glass-panel:hover,
+  .activity-card:hover,
+  .glow-button:hover {
+    transform: none;
+  }
 }
